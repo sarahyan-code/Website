@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Homeaway — Emotional Support Hub for International Students</title>
+<meta name="description" content="A calm, anonymous space where international students can share, reflect, and find support." />
+
+<!-- ============================================================
+     FONTS — Newsreader (display serif), Figtree (body sans),
+     Spline Sans Mono (labels/timestamps). Pulled from the
+     Homeaway design system tokens (tokens/fonts.css).
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Figtree:wght@300..700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Lucide icon set (outline style) — matches the design system's icon guidance -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   Pulled directly from the Homeaway Design System
+   (tokens/colors.css, typography.css, layout.css).
+   Keeping these as CSS custom properties means every color,
+   radius, shadow and timing value below traces back to one
+   source of truth.
+============================================================ */
+:root{
+  /* Paper / warm greige surfaces */
+  --paper-0:#FBFAF6; --paper-1:#F5F2EB; --paper-2:#EDE9DF; --paper-3:#E3DED2; --paper-4:#D5CFC0;
+  /* Ink */
+  --ink-0:#2C2A25; --ink-1:#4A473F; --ink-2:#6E6A5E; --ink-3:#948F80; --ink-4:#B6B1A2;
+  /* Sage — brand accent */
+  --sage-0:#EEF1E7; --sage-1:#DCE3CF; --sage-2:#B9C6A3; --sage-3:#8FA277; --sage-4:#6E8156; --sage-5:#566A42; --sage-6:#3F4F30;
+  /* Clay — secondary accent */
+  --clay-1:#F0E2D4; --clay-2:#D8B79A; --clay-3:#BE8E6A;
+  /* Semantic hues (muted) */
+  --hue-success:#6E8156; --hue-success-soft:#E3EAD6;
+  --hue-warning:#BC8A57; --hue-warning-soft:#F3E7D5;
+  --hue-danger:#B06A5B; --hue-danger-soft:#F1DDD7;
+  --hue-info:#7C8DA0; --hue-info-soft:#E1E7ED;
+  --white:#FFFFFF;
+
+  /* Semantic aliases */
+  --bg-app:var(--paper-0);
+  --surface-card:var(--paper-1);
+  --surface-raised:var(--white);
+  --surface-inset:var(--paper-2);
+  --surface-sage:var(--sage-0);
+  --text-strong:var(--ink-0);
+  --text-body:var(--ink-1);
+  --text-muted:var(--ink-2);
+  --text-faint:var(--ink-3);
+  --text-on-accent:#FBFAF6;
+  --border-soft:var(--paper-3);
+  --border-strong:var(--paper-4);
+  --border-focus:var(--sage-3);
+  --accent:var(--sage-4);
+  --accent-hover:var(--sage-5);
+  --accent-quiet:var(--sage-1);
+  --accent-wash:var(--sage-0);
+  --focus-ring: color-mix(in oklch, var(--sage-3) 45%, transparent);
+
+  /* Typography */
+  --font-display:'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-body:'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:'Spline Sans Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --text-xs:0.75rem; --text-sm:0.875rem; --text-base:1rem; --text-md:1.125rem;
+  --text-lg:1.375rem; --text-xl:1.75rem; --text-2xl:2.25rem; --text-3xl:3rem; --text-4xl:3.75rem;
+  --leading-tight:1.15; --leading-snug:1.3; --leading-normal:1.55; --leading-relaxed:1.7;
+  --tracking-caps:0.14em;
+  --weight-light:300; --weight-regular:400; --weight-medium:500; --weight-semibold:600;
+
+  /* Spacing / radii / shadow / motion */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:64px; --space-9:96px;
+  --radius-sm:10px; --radius-md:16px; --radius-lg:24px; --radius-xl:32px; --radius-pill:999px;
+  --shadow-xs:0 1px 2px rgba(58,52,40,0.05);
+  --shadow-sm:0 2px 8px rgba(58,52,40,0.06);
+  --shadow-md:0 6px 20px rgba(58,52,40,0.08);
+  --shadow-lg:0 16px 40px rgba(58,52,40,0.10);
+  --shadow-inset:inset 0 1px 2px rgba(58,52,40,0.06);
+  --ease-soft:cubic-bezier(0.22,0.61,0.36,1);
+  --dur-fast:140ms; --dur-base:240ms; --dur-slow:420ms;
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg-app);
+  color:var(--text-body);
+  font-family:var(--font-body);
+  font-size:var(--text-base);
+  line-height:var(--leading-normal);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{ font-family:var(--font-display); color:var(--text-strong); margin:0; font-weight:var(--weight-regular); }
+p{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; }
+img,svg{ display:block; max-width:100%; }
+::selection{ background:var(--sage-1); }
+:focus-visible{ outline:3px solid var(--focus-ring); outline-offset:2px; border-radius:var(--radius-sm); }
+
+.wrap{ max-width:1120px; margin:0 auto; padding:0 var(--space-5); }
+.eyebrow{
+  font-family:var(--font-mono); font-size:var(--text-xs); letter-spacing:var(--tracking-caps);
+  text-transform:uppercase; color:var(--sage-5); font-weight:var(--weight-medium);
+}
+.section{ padding:var(--space-9) 0; }
+.section-head{ max-width:640px; margin:0 auto var(--space-7); text-align:center; }
+.section-head h2{ font-size:var(--text-3xl); line-height:var(--leading-tight); margin-top:var(--space-3); }
+.section-head p{ color:var(--text-muted); margin-top:var(--space-4); font-size:var(--text-md); line-height:var(--leading-relaxed); }
+.icon{ width:20px; height:20px; stroke-width:1.8; }
+
+/* Fade-in-on-scroll (JS toggles .in-view) */
+.reveal{ opacity:0; transform:translateY(16px); transition:opacity var(--dur-slow) var(--ease-soft), transform var(--dur-slow) var(--ease-soft); }
+.reveal.in-view{ opacity:1; transform:translateY(0); }
+
+/* ============================================================
+   BUTTONS — mirrors the design system's Button component
+   (pill shape, soft transitions, four variants).
+============================================================ */
+.btn{
+  font-family:var(--font-body); font-weight:var(--weight-medium);
+  border:1px solid transparent; border-radius:var(--radius-pill);
+  cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
+  gap:var(--space-2); line-height:1; white-space:nowrap;
+  padding:11px 22px; font-size:var(--text-base);
+  transition:background var(--dur-base) var(--ease-soft), color var(--dur-base) var(--ease-soft),
+             border-color var(--dur-base) var(--ease-soft), transform var(--dur-fast) var(--ease-soft),
+             box-shadow var(--dur-base) var(--ease-soft);
+}
+.btn:active{ transform:scale(0.98); }
+.btn-lg{ padding:15px 30px; font-size:var(--text-md); }
+.btn-sm{ padding:8px 16px; font-size:var(--text-sm); }
+.btn-primary{ background:var(--accent); color:var(--text-on-accent); }
+.btn-primary:hover{ background:var(--accent-hover); }
+.btn-secondary{ background:var(--surface-raised); color:var(--text-strong); border-color:var(--border-strong); }
+.btn-secondary:hover{ background:var(--surface-inset); }
+.btn-soft{ background:var(--accent-quiet); color:var(--sage-6); }
+.btn-soft:hover{ background:var(--sage-2); }
+.btn-ghost{ background:transparent; color:var(--text-body); }
+.btn-ghost:hover{ background:var(--surface-inset); }
+.btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+/* ============================================================
+   CARDS — mirrors the design system's Card component
+   (raised / flat / sage / inset).
+============================================================ */
+.card{ border-radius:var(--radius-lg); padding:var(--space-5); transition:box-shadow var(--dur-base) var(--ease-soft), transform var(--dur-base) var(--ease-soft); }
+.card-raised{ background:var(--surface-raised); box-shadow:var(--shadow-sm); border:1px solid var(--paper-2); }
+.card-flat{ background:var(--surface-card); border:1px solid var(--border-soft); }
+.card-sage{ background:var(--surface-sage); border:1px solid var(--sage-1); }
+.card-inset{ background:var(--surface-inset); border:1px solid transparent; }
+.card-interactive{ cursor:pointer; }
+.card-interactive:hover{ box-shadow:var(--shadow-md); transform:translateY(-2px); }
+
+/* Badges / tags */
+.badge{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono);
+  font-size:var(--text-xs); letter-spacing:.02em; padding:5px 12px; border-radius:var(--radius-pill);
+  background:var(--sage-0); color:var(--sage-6); border:1px solid var(--sage-1);
+}
+.badge-dot{ width:6px; height:6px; border-radius:50%; background:var(--sage-4); }
+
+/* ============================================================
+   NAV
+============================================================ */
+.nav{
+  position:sticky; top:0; z-index:50; background:rgba(251,250,246,.85);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--border-soft);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:var(--space-4) var(--space-5); max-width:1120px; margin:0 auto; }
+.brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-size:var(--text-lg); color:var(--text-strong); }
+.brand-dot{ width:10px; height:10px; border-radius:50%; background:var(--sage-4); }
+.nav-links{ display:flex; align-items:center; gap:var(--space-6); }
+.nav-links a{ font-size:var(--text-sm); color:var(--text-body); font-weight:var(--weight-medium); transition:color var(--dur-base) var(--ease-soft); }
+.nav-links a:hover{ color:var(--sage-5); }
+.nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{
+  position:relative; overflow:hidden; padding:var(--space-9) 0 var(--space-8);
+  background:
+    radial-gradient(60% 50% at 85% 10%, var(--sage-1) 0%, transparent 70%),
+    radial-gradient(50% 45% at 8% 25%, var(--hue-info-soft) 0%, transparent 70%),
+    linear-gradient(180deg, var(--paper-0), var(--paper-1));
+}
+.hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; text-align:center; }
+.hero .eyebrow{ display:inline-flex; align-items:center; gap:8px; }
+.hero h1{ font-size:clamp(2.75rem, 6vw, 4rem); line-height:var(--leading-tight); margin-top:var(--space-4); letter-spacing:-0.02em; }
+.hero h1 em{ font-style:italic; color:var(--sage-5); }
+.hero .tagline{ font-size:var(--text-lg); color:var(--text-body); margin-top:var(--space-4); font-family:var(--font-display); font-style:italic; }
+.hero .intro{ margin-top:var(--space-5); color:var(--text-muted); font-size:var(--text-md); line-height:var(--leading-relaxed); }
+.hero-ctas{ display:flex; gap:var(--space-4); justify-content:center; margin-top:var(--space-7); flex-wrap:wrap; }
+.hero-note{ margin-top:var(--space-5); color:var(--text-faint); font-size:var(--text-sm); }
+.blob{ position:absolute; border-radius:50%; filter:blur(2px); opacity:.6; }
+
+/* ============================================================
+   KINDNESS REMINDER BANNER
+============================================================ */
+.kindness{
+  display:flex; align-items:flex-start; gap:var(--space-3);
+  background:var(--sage-0); border:1px solid var(--sage-1); border-radius:var(--radius-md);
+  padding:var(--space-4) var(--space-5); color:var(--sage-6); font-size:var(--text-sm); margin-bottom:var(--space-6);
+}
+.kindness .icon{ flex-shrink:0; margin-top:2px; color:var(--sage-5); }
+
+/* ============================================================
+   JOURNAL
+============================================================ */
+.composer{ margin-bottom:var(--space-7); }
+.composer textarea{
+  width:100%; min-height:110px; resize:vertical; border-radius:var(--radius-md);
+  border:1px solid var(--border-soft); background:var(--paper-0); padding:var(--space-4);
+  font-family:var(--font-body); font-size:var(--text-base); color:var(--text-strong);
+  transition:border-color var(--dur-base) var(--ease-soft), box-shadow var(--dur-base) var(--ease-soft);
+}
+.composer textarea:focus{ outline:none; border-color:var(--border-focus); box-shadow:0 0 0 4px var(--focus-ring); }
+.composer-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:var(--space-4); gap:var(--space-4); flex-wrap:wrap; }
+.composer-hint{ font-size:var(--text-sm); color:var(--text-faint); display:flex; align-items:center; gap:6px; }
+
+.feed{ display:flex; flex-direction:column; gap:var(--space-5); }
+.post{ padding:var(--space-5); }
+.post-head{ display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4); }
+.post-avatar{
+  width:38px; height:38px; border-radius:50%; background:var(--sage-1); color:var(--sage-6);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.post-who{ font-weight:var(--weight-semibold); color:var(--text-strong); font-size:var(--text-sm); }
+.post-when{ font-family:var(--font-mono); font-size:var(--text-xs); color:var(--text-faint); }
+.post-body{ color:var(--text-body); font-size:var(--text-base); line-height:var(--leading-relaxed); }
+.post-tag{ display:inline-block; margin-top:var(--space-3); }
+
+.comments{ margin-top:var(--space-4); padding-top:var(--space-4); border-top:1px solid var(--border-soft); display:flex; flex-direction:column; gap:var(--space-3); }
+.comment{ display:flex; gap:var(--space-3); }
+.comment-avatar{
+  width:26px; height:26px; border-radius:50%; background:var(--paper-2); color:var(--ink-2);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:var(--text-xs);
+}
+.comment-body{ background:var(--surface-inset); border-radius:var(--radius-md); padding:var(--space-3) var(--space-4); flex:1; }
+.comment-who{ font-size:var(--text-xs); font-weight:var(--weight-semibold); color:var(--text-strong); margin-bottom:2px; }
+.comment-text{ font-size:var(--text-sm); color:var(--text-body); }
+.comment-form{ display:flex; gap:var(--space-2); margin-top:var(--space-2); }
+.comment-form input{
+  flex:1; border-radius:var(--radius-pill); border:1px solid var(--border-soft); background:var(--paper-0);
+  padding:8px 16px; font-size:var(--text-sm); font-family:var(--font-body); color:var(--text-strong);
+}
+.comment-form input:focus{ outline:none; border-color:var(--border-focus); box-shadow:0 0 0 3px var(--focus-ring); }
+
+/* ============================================================
+   AI LISTENER
+============================================================ */
+.chat-shell{ max-width:640px; margin:0 auto; }
+.chat-window{ display:flex; flex-direction:column; height:520px; padding:0; overflow:hidden; }
+.chat-header{ display:flex; align-items:center; gap:var(--space-3); padding:var(--space-4) var(--space-5); border-bottom:1px solid var(--border-soft); background:var(--surface-card); }
+.chat-avatar{ width:40px; height:40px; border-radius:50%; background:var(--sage-4); color:var(--white); display:flex; align-items:center; justify-content:center; }
+.chat-title{ font-weight:var(--weight-semibold); color:var(--text-strong); font-size:var(--text-base); }
+.chat-status{ font-size:var(--text-xs); color:var(--sage-5); display:flex; align-items:center; gap:6px; }
+.chat-status::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--sage-4); }
+.chat-log{ flex:1; overflow-y:auto; padding:var(--space-5); display:flex; flex-direction:column; gap:var(--space-4); }
+.msg{ max-width:78%; padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); font-size:var(--text-sm); line-height:var(--leading-relaxed); animation:pop var(--dur-slow) var(--ease-soft); }
+@keyframes pop{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+.msg-ai{ align-self:flex-start; background:var(--surface-card); color:var(--text-body); border-bottom-left-radius:var(--radius-sm); }
+.msg-user{ align-self:flex-end; background:var(--accent); color:var(--text-on-accent); border-bottom-right-radius:var(--radius-sm); }
+.typing{ align-self:flex-start; display:flex; gap:5px; padding:var(--space-3) var(--space-4); background:var(--surface-card); border-radius:var(--radius-lg); border-bottom-left-radius:var(--radius-sm); }
+.typing span{ width:6px; height:6px; border-radius:50%; background:var(--ink-3); animation:bounce 1.1s infinite ease-in-out; }
+.typing span:nth-child(2){ animation-delay:.15s; }
+.typing span:nth-child(3){ animation-delay:.3s; }
+@keyframes bounce{ 0%,80%,100%{ transform:translateY(0); opacity:.5; } 40%{ transform:translateY(-4px); opacity:1; } }
+.chat-input{ display:flex; gap:var(--space-3); padding:var(--space-4); border-top:1px solid var(--border-soft); background:var(--surface-raised); }
+.chat-input input{
+  flex:1; border-radius:var(--radius-pill); border:1px solid var(--border-soft); background:var(--paper-0);
+  padding:12px 20px; font-size:var(--text-base); font-family:var(--font-body); color:var(--text-strong);
+}
+.chat-input input:focus{ outline:none; border-color:var(--border-focus); box-shadow:0 0 0 4px var(--focus-ring); }
+.chat-send{ width:44px; height:44px; border-radius:50%; padding:0; flex-shrink:0; }
+.chat-note{ text-align:center; font-size:var(--text-xs); color:var(--text-faint); margin-top:var(--space-4); }
+
+/* ============================================================
+   RESOURCES
+============================================================ */
+.resource-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:var(--space-5); }
+.resource-card{ display:flex; flex-direction:column; gap:var(--space-3); }
+.resource-icon{ width:44px; height:44px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; }
+.resource-card h3{ font-family:var(--font-body); font-weight:var(--weight-semibold); font-size:var(--text-md); color:var(--text-strong); }
+.resource-card p{ font-size:var(--text-sm); color:var(--text-muted); line-height:var(--leading-relaxed); flex:1; }
+.resource-links{ display:flex; flex-direction:column; gap:var(--space-2); margin-top:var(--space-2); }
+.resource-links a{ font-size:var(--text-sm); font-weight:var(--weight-medium); color:var(--sage-5); display:inline-flex; align-items:center; gap:6px; transition:gap var(--dur-base) var(--ease-soft); }
+.resource-links a:hover{ gap:9px; text-decoration:underline; }
+
+/* ============================================================
+   WHY THIS MATTERS
+============================================================ */
+.feature-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:var(--space-5); }
+.feature-card{ text-align:left; }
+.feature-icon{ width:40px; height:40px; border-radius:50%; background:var(--sage-0); color:var(--sage-5); display:flex; align-items:center; justify-content:center; margin-bottom:var(--space-4); }
+.feature-card h3{ font-family:var(--font-body); font-size:var(--text-base); font-weight:var(--weight-semibold); color:var(--text-strong); margin-bottom:var(--space-2); }
+.feature-card p{ font-size:var(--text-sm); color:var(--text-muted); line-height:var(--leading-relaxed); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{ background:var(--sage-6); color:var(--sage-0); padding:var(--space-8) 0 var(--space-6); }
+.footer-inner{ display:flex; flex-direction:column; gap:var(--space-6); align-items:center; text-align:center; }
+.footer-brand{ font-family:var(--font-display); font-size:var(--text-xl); color:var(--white); }
+.disclaimer{
+  max-width:640px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius-md); padding:var(--space-5); font-size:var(--text-sm); line-height:var(--leading-relaxed); color:var(--sage-1);
+}
+.disclaimer strong{ color:var(--white); }
+.footer-links{ display:flex; gap:var(--space-5); flex-wrap:wrap; justify-content:center; font-size:var(--text-sm); }
+.footer-links a{ color:var(--sage-1); }
+.footer-links a:hover{ color:var(--white); }
+.footer-fine{ font-size:var(--text-xs); color:var(--sage-2); opacity:.8; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 860px){
+  .nav-links{ position:absolute; top:100%; left:0; right:0; background:var(--paper-0); flex-direction:column; align-items:flex-start; padding:var(--space-5); gap:var(--space-4); border-bottom:1px solid var(--border-soft); display:none; }
+  .nav-links.open{ display:flex; }
+  .nav-toggle{ display:block; }
+  .chat-window{ height:70vh; }
+}
+@media (max-width: 560px){
+  .section{ padding:var(--space-7) 0; }
+  .hero-ctas{ flex-direction:column; align-items:stretch; }
+  .hero-ctas .btn{ width:100%; }
+  .composer-foot{ flex-direction:column; align-items:stretch; }
+  .msg{ max-width:88%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="brand-dot"></span>Homeaway</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#journal">Journal</a>
+      <a href="#ai-listener">AI Listener</a>
+      <a href="#resources">Resources</a>
+      <a href="#why">Why It Matters</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i data-lucide="menu" class="icon"></i></button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><i data-lucide="sparkles" class="icon" style="width:14px;height:14px"></i>a softer place to land</span>
+    <h1>Home<em>away</em></h1>
+    <p class="tagline">You're not alone. Share, reflect, and find support anonymously.</p>
+    <p class="intro">
+      Loneliness, homesickness, anxiety, culture shock, academic pressure, financial stress —
+      so many international students carry these quietly, in a language and a place that still
+      feel new. Homeaway exists to remind you that others are carrying something similar,
+      and that reaching out doesn't have to mean explaining everything, or even giving your name.
+    </p>
+    <div class="hero-ctas">
+      <a href="#journal" class="btn btn-primary btn-lg"><i data-lucide="feather" class="icon"></i>Share Your Story</a>
+      <a href="#ai-listener" class="btn btn-secondary btn-lg"><i data-lucide="message-circle" class="icon"></i>Talk to AI</a>
+    </div>
+    <p class="hero-note">No sign-up. No names. Just people.</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     ANONYMOUS VENT JOURNAL
+============================================================ -->
+<section class="section" id="journal">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Anonymous vent journal</span>
+      <h2>Say the thing you haven't said out loud.</h2>
+      <p>Write freely. It posts instantly, with nothing attached but how you're feeling — and others here can leave a kind word underneath.</p>
+    </div>
+
+    <div class="kindness reveal">
+      <i data-lucide="heart-handshake" class="icon"></i>
+      <span>This space stays kind. No judgment, no advice-dumping, no arguing — just people showing up for each other. Please be gentle with whoever's on the other side of a post.</span>
+    </div>
+
+    <!-- Composer -->
+    <div class="card card-raised composer reveal">
+      <textarea id="journalInput" placeholder="What's on your mind today? No one will know it's you..."></textarea>
+      <div class="composer-foot">
+        <span class="composer-hint"><i data-lucide="shield-check" class="icon" style="width:16px;height:16px"></i>Posted anonymously, always</span>
+        <button class="btn btn-primary" id="postBtn"><i data-lucide="send" class="icon"></i>Post anonymously</button>
+      </div>
+    </div>
+
+    <!-- Feed -->
+    <div class="feed" id="feed"><!-- sample + user posts render here via JS --></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AI LISTENER
+============================================================ -->
+<section class="section" id="ai-listener" style="background:var(--paper-1)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">AI listener</span>
+      <h2>Someone to listen, any hour of the night.</h2>
+      <p>Not a therapist, not a replacement for one — just a calm, judgment-free ear when you need to put words to how you're feeling.</p>
+    </div>
+
+    <div class="chat-shell reveal">
+      <div class="card card-raised chat-window">
+        <div class="chat-header">
+          <div class="chat-avatar"><i data-lucide="sprout" class="icon" style="color:#fff"></i></div>
+          <div>
+            <div class="chat-title">Homeaway Listener</div>
+            <div class="chat-status">here to listen</div>
+          </div>
+        </div>
+        <div class="chat-log" id="chatLog">
+          <div class="msg msg-ai">Hi, I'm glad you're here. There's no rush — tell me whatever is on your mind, or just how today has felt.</div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Type how you're feeling..." maxlength="500" />
+          <button class="btn btn-primary chat-send" id="chatSend" aria-label="Send"><i data-lucide="send" class="icon"></i></button>
+        </div>
+      </div>
+      <p class="chat-note">This is a supportive listener, not a crisis service or licensed therapist. If you're in danger, please see the resources below.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HELPFUL RESOURCES
+============================================================ -->
+<section class="section" id="resources">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Helpful resources</span>
+      <h2>When you're ready for more support.</h2>
+      <p>Anonymous venting and a caring AI can help — and sometimes the next right step is a real person. Here's where to start.</p>
+    </div>
+
+    <div class="resource-grid" id="resourceGrid"><!-- rendered via JS --></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY THIS MATTERS
+============================================================ -->
+<section class="section" id="why" style="background:var(--paper-1)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why this matters</span>
+      <h2>Feeling understood changes things.</h2>
+      <p>Most international students believe, at some point, that they're the only one struggling. They usually aren't — and knowing that tends to be the first step toward feeling less alone.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="card card-flat feature-card reveal">
+        <div class="feature-icon"><i data-lucide="users" class="icon"></i></div>
+        <h3>You're not the only one</h3>
+        <p>Reading someone else's anonymous story — one that sounds a lot like your own — is often the moment isolation starts to loosen its grip.</p>
+      </div>
+      <div class="card card-flat feature-card reveal">
+        <div class="feature-icon"><i data-lucide="message-square-heart" class="icon"></i></div>
+        <h3>Naming it helps</h3>
+        <p>Putting a feeling into words, even anonymously, makes it easier to understand and easier to carry. It's often the step before asking for help.</p>
+      </div>
+      <div class="card card-flat feature-card reveal">
+        <div class="feature-icon"><i data-lucide="footprints" class="icon"></i></div>
+        <h3>Small steps count</h3>
+        <p>You don't need a diagnosis or a crisis to belong here. A hard week, a homesick evening, and a genuine breakthrough are all welcome.</p>
+      </div>
+      <div class="card card-flat feature-card reveal">
+        <div class="feature-icon"><i data-lucide="globe-2" class="icon"></i></div>
+        <h3>Support looks different for everyone</h3>
+        <p>Language, culture, cost, and stigma all shape whether someone feels able to ask for help. This space tries to lower every one of those barriers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">Homeaway</div>
+    <div class="disclaimer">
+      <strong>Homeaway is a peer-support space, not a medical service.</strong> Nothing here — the journal, the comments, or the AI listener — replaces care from a licensed mental health professional.
+      If you are in crisis or thinking about harming yourself, please contact your local emergency number,
+      go to your nearest emergency room, or reach a crisis line where you live (in the U.S., call or text <strong>988</strong>).
+      You deserve real, immediate support, and you don't have to face this alone.
+    </div>
+    <div class="footer-links">
+      <a href="#journal">Journal</a>
+      <a href="#ai-listener">AI Listener</a>
+      <a href="#resources">Resources</a>
+      <a href="#why">Why It Matters</a>
+    </div>
+    <div class="footer-fine">Homeaway · a prototype for international student mental health support · built with care</div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     Organized into small, commented sections:
+     1. Icons + scroll reveal
+     2. Mobile nav toggle
+     3. Anonymous journal (posts + comments)
+     4. AI listener (canned empathetic response engine)
+     5. Resources data render
+============================================================ -->
+<script>
+/* ---------- 1. Icons + scroll reveal ---------- */
+lucide.createIcons();
+
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+/* ---------- 2. Mobile nav toggle ---------- */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+/* ---------- 3. Anonymous journal ---------- */
+// Pool of gentle, anonymous display names — no real identity is ever attached to a post.
+const anonAdjectives = ['Quiet','Gentle','Wandering','Steady','Hopeful','Homesick','Curious','Weary','Patient','Bright'];
+const anonNouns = ['Willow','Sparrow','Maple','Harbor','Compass','Lantern','River','Comet','Pebble','Fern'];
+function randomAnonName(){
+  const a = anonAdjectives[Math.floor(Math.random()*anonAdjectives.length)];
+  const n = anonNouns[Math.floor(Math.random()*anonNouns.length)];
+  return `${a} ${n}`;
+}
+function timeAgoLabel(){
+  const opts = ['just now','2 minutes ago','5 minutes ago'];
+  return opts[Math.floor(Math.random()*opts.length)];
+}
+
+// Sample posts so the feed feels populated on first load.
+const samplePosts = [
+  {
+    who: 'Homesick Maple', when: '2 hours ago',
+    body: "It's been four months and I still cry a little every time I smell my mom's cooking on a video call. I didn't think missing a kitchen could hurt this much. Is it normal to still feel this raw?",
+    tag: 'Homesickness',
+    comments: [
+      { who:'Quiet Harbor', text:"It's so normal. I made a playlist of sounds from home just to fall asleep to. It does get softer, even if it never fully goes away." },
+      { who:'Steady Fern', text:"Sending you a hug. That ache means you have a lot of love waiting for you back home." }
+    ]
+  },
+  {
+    who: 'Weary Compass', when: '5 hours ago',
+    body: "Midterms are in two weeks and I haven't told anyone how behind I feel because I'm scared my visa depends on my grades and everyone back home thinks I'm doing great here. I don't know how to say I'm struggling.",
+    tag: 'Academic Pressure',
+    comments: [
+      { who:'Hopeful Sparrow', text:"You just said it here, and that already took courage. Your campus counseling center has seen this exact fear before — you're not the first." }
+    ]
+  },
+  {
+    who: 'Curious Pebble', when: 'yesterday',
+    body: "Small win: I asked a classmate to explain a joke I didn't get instead of just laughing along and feeling like an outsider. She explained it happily and we ended up getting coffee. Baby steps, I guess.",
+    tag: 'Small Win',
+    comments: [
+      { who:'Bright Lantern', text:"This made me smile. That's exactly the kind of brave, tiny thing that adds up." },
+      { who:'Gentle River', text:"Coffee with a new friend sounds like a genuinely good day. Proud of you." }
+    ]
+  }
+];
+
+const feedEl = document.getElementById('feed');
+
+function avatarInitial(name){ return name.trim().charAt(0); }
+
+function renderComment(c){
+  return `
+    <div class="comment">
+      <div class="comment-avatar">${avatarInitial(c.who)}</div>
+      <div class="comment-body">
+        <div class="comment-who">${c.who}</div>
+        <div class="comment-text">${c.text}</div>
+      </div>
+    </div>`;
+}
+
+function createPostCard(post, isNew){
+  const card = document.createElement('div');
+  card.className = 'card card-raised post' + (isNew ? ' reveal' : '');
+  card.innerHTML = `
+    <div class="post-head">
+      <div class="post-avatar"><i data-lucide="user-round" class="icon"></i></div>
+      <div>
+        <div class="post-who">${post.who}</div>
+        <div class="post-when">${post.when}</div>
+      </div>
+    </div>
+    <p class="post-body">${post.body}</p>
+    ${post.tag ? `<span class="badge post-tag"><span class="badge-dot"></span>${post.tag}</span>` : ''}
+    <div class="comments">
+      ${post.comments.map(renderComment).join('')}
+      <form class="comment-form" data-role="comment-form">
+        <input type="text" placeholder="Leave a supportive comment..." maxlength="200" required />
+        <button type="submit" class="btn btn-soft btn-sm">Reply</button>
+      </form>
+    </div>
+  `;
+  // Wire up the per-post comment form.
+  const form = card.querySelector('[data-role="comment-form"]');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = form.querySelector('input');
+    const text = input.value.trim();
+    if (!text) return;
+    post.comments.push({ who: randomAnonName(), text });
+    const commentsList = card.querySelector('.comments');
+    const newComment = document.createElement('div');
+    newComment.className = 'comment';
+    newComment.innerHTML = renderComment(post.comments[post.comments.length - 1]);
+    commentsList.insertBefore(newComment.firstElementChild, form);
+    input.value = '';
+  });
+  return card;
+}
+
+function renderFeed(){
+  feedEl.innerHTML = '';
+  samplePosts.forEach(p => feedEl.appendChild(createPostCard(p, false)));
+  lucide.createIcons();
+  // Re-observe any reveal elements added after the first pass.
+  document.querySelectorAll('.reveal:not(.in-view)').forEach(el => io.observe(el));
+}
+renderFeed();
+
+const journalInput = document.getElementById('journalInput');
+const postBtn = document.getElementById('postBtn');
+postBtn.addEventListener('click', () => {
+  const text = journalInput.value.trim();
+  if (!text) { journalInput.focus(); return; }
+  const newPost = { who: randomAnonName(), when: timeAgoLabel(), body: text, tag: 'New', comments: [] };
+  samplePosts.unshift(newPost);
+  const card = createPostCard(newPost, true);
+  feedEl.insertBefore(card, feedEl.firstChild);
+  lucide.createIcons();
+  requestAnimationFrame(() => io.observe(card));
+  journalInput.value = '';
+});
+
+/* ---------- 4. AI listener — canned empathetic response engine ---------- */
+// This is a front-end-only simulation: simple keyword matching that picks a
+// reflective, non-judgmental reply. No real AI model or backend is called.
+const chatLog = document.getElementById('chatLog');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+
+const crisisWords = ['suicide','kill myself','end my life','hurt myself','self harm','self-harm',"don't want to live",'want to die'];
+
+const responseBank = [
+  {
+    keys: ['homesick','miss home','miss my family','missing home'],
+    replies: [
+      "That ache for home sounds real and heavy right now. What is it that you miss most in this moment — a person, a place, a smell, a sound?",
+      "Homesickness has a way of showing up in the smallest moments. It makes sense that it hurts. Is there a small piece of home you could bring into today, even in a tiny way?"
+    ]
+  },
+  {
+    keys: ['anxious','anxiety','panic','nervous','worried'],
+    replies: [
+      "It sounds like anxiety is taking up a lot of space for you right now. Can you tell me what it's about, if you feel like sharing?",
+      "That kind of worry can be exhausting to carry. Sometimes naming exactly what we're afraid of takes a little of its power away — what's the worst part of it, for you?"
+    ]
+  },
+  {
+    keys: ['alone','lonely','isolated','no friends','no one understands'],
+    replies: [
+      "Feeling alone in a new place is one of the hardest parts of this experience, and it's more common than it feels like right now. How long have you been feeling this way?",
+      "I hear how isolating this feels. You reaching out here, even anonymously, is a real step. What would feeling a little less alone look like today?"
+    ]
+  },
+  {
+    keys: ['stressed','overwhelmed','pressure','deadline','exam','exams','grades'],
+    replies: [
+      "That sounds like a lot to be carrying at once. What feels like the heaviest part of it right now?",
+      "Academic pressure on top of everything else you're adjusting to is genuinely a lot. Would it help to break down what's due first, or would you rather just vent for a bit?"
+    ]
+  },
+  {
+    keys: ['sad','down','depressed','crying','hopeless'],
+    replies: [
+      "I'm really glad you told me that. That sounds heavy to sit with. How long have you been feeling this way?",
+      "Thank you for trusting me with that. You don't have to explain it perfectly — just however it's showing up for you today is okay."
+    ]
+  },
+  {
+    keys: ['culture shock','different here','don\'t fit in','fit in','language barrier'],
+    replies: [
+      "Adjusting to a new culture while doing everything else on your plate is genuinely hard work, even when it doesn't look like 'work' from the outside. What's felt most unfamiliar lately?",
+      "That in-between feeling — not quite home, not quite here yet — is something a lot of people in this community describe. You're allowed time to land."
+    ]
+  }
+];
+
+const genericReplies = [
+  "Thank you for sharing that with me. Can you tell me a little more about how that's been feeling?",
+  "That sounds like a lot to hold. I'm here, and there's no rush — what feels most important to say right now?",
+  "I hear you. Whatever you're feeling right now is allowed to just be there without judgment.",
+  "That makes a lot of sense given everything you're adjusting to. How has today, specifically, been for you?"
+];
+
+const copingNudges = [
+  "If it helps, even a slow breath in for four counts and out for six can take the edge off a hard moment.",
+  "Something small, like stepping outside for a few minutes or texting one person you trust, sometimes helps more than it seems like it will.",
+  "It might help to write this down in the journal above, too — sometimes a feeling gets lighter once it's out of your head."
+];
+
+function detectCrisis(text){
+  const lower = text.toLowerCase();
+  return crisisWords.some(w => lower.includes(w));
+}
+
+function findReply(text){
+  const lower = text.toLowerCase();
+  for (const bucket of responseBank){
+    if (bucket.keys.some(k => lower.includes(k))){
+      return bucket.replies[Math.floor(Math.random()*bucket.replies.length)];
+    }
+  }
+  return genericReplies[Math.floor(Math.random()*genericReplies.length)];
+}
+
+function addMessage(text, who){
+  const msg = document.createElement('div');
+  msg.className = 'msg ' + (who === 'user' ? 'msg-user' : 'msg-ai');
+  msg.textContent = text;
+  chatLog.appendChild(msg);
+  chatLog.scrollTop = chatLog.scrollHeight;
+  return msg;
+}
+
+function showTyping(){
+  const typing = document.createElement('div');
+  typing.className = 'typing';
+  typing.id = 'typingIndicator';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chatLog.appendChild(typing);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+function hideTyping(){
+  const t = document.getElementById('typingIndicator');
+  if (t) t.remove();
+}
+
+let chatTurns = 0;
+
+function handleSend(){
+  const text = chatInput.value.trim();
+  if (!text) return;
+  addMessage(text, 'user');
+  chatInput.value = '';
+  chatTurns++;
+
+  showTyping();
+  const delay = 700 + Math.random() * 600;
+
+  setTimeout(() => {
+    hideTyping();
+
+    if (detectCrisis(text)){
+      addMessage(
+        "I'm really glad you told me this, and I want you to get support right now from someone who can help in real time. " +
+        "If you're in the U.S., you can call or text 988 (Suicide & Crisis Lifeline) any time, day or night. " +
+        "If you're elsewhere, please contact your local emergency number or campus crisis line. You deserve immediate, real support — I care that you're safe.",
+        'ai'
+      );
+      return;
+    }
+
+    addMessage(findReply(text), 'ai');
+
+    // Every few turns, gently offer a coping suggestion or a nudge toward resources —
+    // without being pushy or repeating the same line each time.
+    if (chatTurns % 3 === 0){
+      setTimeout(() => {
+        showTyping();
+        setTimeout(() => {
+          hideTyping();
+          addMessage(copingNudges[Math.floor(Math.random()*copingNudges.length)] + " And if this feeling keeps sticking around, your campus counseling center is a good, judgment-free next step.", 'ai');
+        }, 700);
+      }, 500);
+    }
+  }, delay);
+}
+
+chatSend.addEventListener('click', handleSend);
+chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
+
+/* ---------- 5. Resources data + render ---------- */
+const resources = [
+  {
+    icon: 'life-buoy', tone: 'var(--hue-danger-soft)', iconColor: 'var(--hue-danger)',
+    title: 'Crisis Support', desc: "If you're in immediate danger or thinking about harming yourself, these are staffed by real people, right now.",
+    links: [
+      { label: '988 Suicide & Crisis Lifeline (call/text 988)', href: 'https://988lifeline.org' },
+      { label: 'Crisis Text Line (text HOME to 741741)', href: 'https://www.crisistextline.org' },
+      { label: 'Find a crisis line outside the U.S.', href: 'https://www.iasp.info/resources/Crisis_Centres/' }
+    ]
+  },
+  {
+    icon: 'brain', tone: 'var(--hue-info-soft)', iconColor: 'var(--hue-info)',
+    title: 'Anxiety', desc: 'Grounding techniques and information for the racing, worried thoughts that can come with a new country and new pressures.',
+    links: [
+      { label: 'Anxiety & Depression Association (ADAA)', href: 'https://adaa.org' },
+      { label: 'NIMH — Anxiety Disorders overview', href: 'https://www.nimh.nih.gov/health/topics/anxiety-disorders' }
+    ]
+  },
+  {
+    icon: 'home', tone: 'var(--sage-0)', iconColor: 'var(--sage-5)',
+    title: 'Homesickness', desc: 'You are allowed to miss home loudly. These offer perspective and community for that specific ache.',
+    links: [
+      { label: 'NAFSA — resources for international students', href: 'https://www.nafsa.org' },
+      { label: 'Your university’s international student office', href: '#' }
+    ]
+  },
+  {
+    icon: 'graduation-cap', tone: 'var(--clay-1)', iconColor: 'var(--clay-3)',
+    title: 'Stress Management', desc: 'Academic and financial pressure, untangled a little at a time.',
+    links: [
+      { label: 'JED Foundation — student mental health', href: 'https://www.jedfoundation.org' },
+      { label: 'Mind — stress management basics', href: 'https://www.mind.org.uk' }
+    ]
+  },
+  {
+    icon: 'building-2', tone: 'var(--hue-success-soft)', iconColor: 'var(--hue-success)',
+    title: 'Campus Counseling', desc: 'Most universities offer free or low-cost counseling, often including sessions with international student specialists.',
+    links: [
+      { label: 'Ask your student health center about counseling', href: '#' },
+      { label: 'Active Minds — campus mental health', href: 'https://www.activeminds.org' }
+    ]
+  },
+  {
+    icon: 'flower-2', tone: 'var(--sage-1)', iconColor: 'var(--sage-6)',
+    title: 'Mindfulness', desc: 'Simple, low-cost practices for slowing down a busy or anxious mind.',
+    links: [
+      { label: 'UCLA Mindful Awareness — free guided meditations', href: 'https://www.uclahealth.org/programs/marc/mindful-meditations' },
+      { label: 'Headspace — mindfulness basics', href: 'https://www.headspace.com' }
+    ]
+  },
+  {
+    icon: 'sparkles', tone: 'var(--hue-warning-soft)', iconColor: 'var(--hue-warning)',
+    title: 'Self-Care Tips', desc: 'Small, sustainable habits — sleep, movement, food, connection — that support everything else.',
+    links: [
+      { label: 'Active Minds — self-care basics', href: 'https://www.activeminds.org/about-mental-health/self-care/' },
+      { label: 'NAMI — taking care of your mental health', href: 'https://www.nami.org' }
+    ]
+  }
+];
+
+const resourceGrid = document.getElementById('resourceGrid');
+resourceGrid.innerHTML = resources.map(r => `
+  <div class="card card-raised resource-card reveal">
+    <div class="resource-icon" style="background:${r.tone}"><i data-lucide="${r.icon}" class="icon" style="color:${r.iconColor}"></i></div>
+    <h3>${r.title}</h3>
+    <p>${r.desc}</p>
+    <div class="resource-links">
+      ${r.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener"><i data-lucide="arrow-up-right" class="icon" style="width:14px;height:14px"></i>${l.label}</a>`).join('')}
+    </div>
+  </div>
+`).join('');
+lucide.createIcons();
+document.querySelectorAll('.reveal:not(.in-view)').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
