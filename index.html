@@ -1,79 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlRoot">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Homeaway — Emotional Support Hub for International Students</title>
-<meta name="description" content="A calm, anonymous space where international students can share, reflect, and find support." />
+<meta name="description" content="A calm, anonymous space where international students can share, reflect, and find support — in your language." />
 
-<!-- ============================================================
-     FONTS — Newsreader (display serif), Figtree (body sans),
-     Spline Sans Mono (labels/timestamps). Pulled from the
-     Homeaway design system tokens (tokens/fonts.css).
-============================================================ -->
+<!-- Fonts: Newsreader (display serif), Figtree (body sans), Spline Sans Mono (labels).
+     Google Fonts also serves Noto Sans SC/KR/JP/Devanagari so Chinese, Korean,
+     Japanese and Hindi text render with a matching, legible typeface. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Figtree:wght@300..700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Figtree:wght@300..700&family=Spline+Sans+Mono:wght@400;500&family=Noto+Sans+SC:wght@300..600&family=Noto+Sans+KR:wght@300..600&family=Noto+Sans+JP:wght@300..600&family=Noto+Sans+Devanagari:wght@300..600&display=swap" rel="stylesheet">
 
-<!-- Lucide icon set (outline style) — matches the design system's icon guidance -->
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
 /* ============================================================
-   DESIGN TOKENS
-   Pulled directly from the Homeaway Design System
-   (tokens/colors.css, typography.css, layout.css).
-   Keeping these as CSS custom properties means every color,
-   radius, shadow and timing value below traces back to one
-   source of truth.
+   DESIGN TOKENS — Homeaway Design System
 ============================================================ */
 :root{
-  /* Paper / warm greige surfaces */
   --paper-0:#FBFAF6; --paper-1:#F5F2EB; --paper-2:#EDE9DF; --paper-3:#E3DED2; --paper-4:#D5CFC0;
-  /* Ink */
   --ink-0:#2C2A25; --ink-1:#4A473F; --ink-2:#6E6A5E; --ink-3:#948F80; --ink-4:#B6B1A2;
-  /* Sage — brand accent */
   --sage-0:#EEF1E7; --sage-1:#DCE3CF; --sage-2:#B9C6A3; --sage-3:#8FA277; --sage-4:#6E8156; --sage-5:#566A42; --sage-6:#3F4F30;
-  /* Clay — secondary accent */
   --clay-1:#F0E2D4; --clay-2:#D8B79A; --clay-3:#BE8E6A;
-  /* Semantic hues (muted) */
   --hue-success:#6E8156; --hue-success-soft:#E3EAD6;
   --hue-warning:#BC8A57; --hue-warning-soft:#F3E7D5;
   --hue-danger:#B06A5B; --hue-danger-soft:#F1DDD7;
   --hue-info:#7C8DA0; --hue-info-soft:#E1E7ED;
   --white:#FFFFFF;
-
-  /* Semantic aliases */
-  --bg-app:var(--paper-0);
-  --surface-card:var(--paper-1);
-  --surface-raised:var(--white);
-  --surface-inset:var(--paper-2);
-  --surface-sage:var(--sage-0);
-  --text-strong:var(--ink-0);
-  --text-body:var(--ink-1);
-  --text-muted:var(--ink-2);
-  --text-faint:var(--ink-3);
-  --text-on-accent:#FBFAF6;
-  --border-soft:var(--paper-3);
-  --border-strong:var(--paper-4);
-  --border-focus:var(--sage-3);
-  --accent:var(--sage-4);
-  --accent-hover:var(--sage-5);
-  --accent-quiet:var(--sage-1);
-  --accent-wash:var(--sage-0);
+  --bg-app:var(--paper-0); --surface-card:var(--paper-1); --surface-raised:var(--white);
+  --surface-inset:var(--paper-2); --surface-sage:var(--sage-0);
+  --text-strong:var(--ink-0); --text-body:var(--ink-1); --text-muted:var(--ink-2);
+  --text-faint:var(--ink-3); --text-on-accent:#FBFAF6;
+  --border-soft:var(--paper-3); --border-strong:var(--paper-4); --border-focus:var(--sage-3);
+  --accent:var(--sage-4); --accent-hover:var(--sage-5); --accent-quiet:var(--sage-1); --accent-wash:var(--sage-0);
   --focus-ring: color-mix(in oklch, var(--sage-3) 45%, transparent);
-
-  /* Typography */
-  --font-display:'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
-  --font-body:'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono:'Spline Sans Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-display:'Newsreader', ui-serif, Georgia, serif;
+  --font-body:'Figtree', 'Noto Sans SC', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans Devanagari', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:'Spline Sans Mono', ui-monospace, Menlo, monospace;
   --text-xs:0.75rem; --text-sm:0.875rem; --text-base:1rem; --text-md:1.125rem;
   --text-lg:1.375rem; --text-xl:1.75rem; --text-2xl:2.25rem; --text-3xl:3rem; --text-4xl:3.75rem;
   --leading-tight:1.15; --leading-snug:1.3; --leading-normal:1.55; --leading-relaxed:1.7;
   --tracking-caps:0.14em;
   --weight-light:300; --weight-regular:400; --weight-medium:500; --weight-semibold:600;
-
-  /* Spacing / radii / shadow / motion */
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
   --space-6:32px; --space-7:48px; --space-8:64px; --space-9:96px;
   --radius-sm:10px; --radius-md:16px; --radius-lg:24px; --radius-xl:32px; --radius-pill:999px;
@@ -86,61 +56,39 @@
   --dur-fast:140ms; --dur-base:240ms; --dur-slow:420ms;
 }
 
-/* ============================================================
-   RESET & BASE
-============================================================ */
 *,*::before,*::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
-body{
-  margin:0;
-  background:var(--bg-app);
-  color:var(--text-body);
-  font-family:var(--font-body);
-  font-size:var(--text-base);
-  line-height:var(--leading-normal);
-  -webkit-font-smoothing:antialiased;
-}
+body{ margin:0; background:var(--bg-app); color:var(--text-body); font-family:var(--font-body);
+  font-size:var(--text-base); line-height:var(--leading-normal); -webkit-font-smoothing:antialiased; }
 h1,h2,h3,h4{ font-family:var(--font-display); color:var(--text-strong); margin:0; font-weight:var(--weight-regular); }
-p{ margin:0; }
-ul{ margin:0; padding:0; list-style:none; }
-a{ color:inherit; text-decoration:none; }
-button{ font-family:inherit; }
-img,svg{ display:block; max-width:100%; }
+p{ margin:0; } ul{ margin:0; padding:0; list-style:none; } a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; } img,svg{ display:block; max-width:100%; }
 ::selection{ background:var(--sage-1); }
 :focus-visible{ outline:3px solid var(--focus-ring); outline-offset:2px; border-radius:var(--radius-sm); }
+:lang(zh) h1, :lang(zh) h2, :lang(zh) h3{ font-family:'Noto Sans SC', var(--font-body); font-weight:var(--weight-medium); }
+:lang(ko) h1, :lang(ko) h2, :lang(ko) h3{ font-family:'Noto Sans KR', var(--font-body); font-weight:var(--weight-medium); }
+:lang(ja) h1, :lang(ja) h2, :lang(ja) h3{ font-family:'Noto Sans JP', var(--font-body); font-weight:var(--weight-medium); }
+:lang(hi) h1, :lang(hi) h2, :lang(hi) h3{ font-family:'Noto Sans Devanagari', var(--font-body); font-weight:var(--weight-medium); }
 
 .wrap{ max-width:1120px; margin:0 auto; padding:0 var(--space-5); }
-.eyebrow{
-  font-family:var(--font-mono); font-size:var(--text-xs); letter-spacing:var(--tracking-caps);
-  text-transform:uppercase; color:var(--sage-5); font-weight:var(--weight-medium);
-}
+.eyebrow{ font-family:var(--font-mono); font-size:var(--text-xs); letter-spacing:var(--tracking-caps);
+  text-transform:uppercase; color:var(--sage-5); font-weight:var(--weight-medium); }
 .section{ padding:var(--space-9) 0; }
 .section-head{ max-width:640px; margin:0 auto var(--space-7); text-align:center; }
 .section-head h2{ font-size:var(--text-3xl); line-height:var(--leading-tight); margin-top:var(--space-3); }
 .section-head p{ color:var(--text-muted); margin-top:var(--space-4); font-size:var(--text-md); line-height:var(--leading-relaxed); }
 .icon{ width:20px; height:20px; stroke-width:1.8; }
-
-/* Fade-in-on-scroll (JS toggles .in-view) */
 .reveal{ opacity:0; transform:translateY(16px); transition:opacity var(--dur-slow) var(--ease-soft), transform var(--dur-slow) var(--ease-soft); }
 .reveal.in-view{ opacity:1; transform:translateY(0); }
 
-/* ============================================================
-   BUTTONS — mirrors the design system's Button component
-   (pill shape, soft transitions, four variants).
-============================================================ */
-.btn{
-  font-family:var(--font-body); font-weight:var(--weight-medium);
-  border:1px solid transparent; border-radius:var(--radius-pill);
-  cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
-  gap:var(--space-2); line-height:1; white-space:nowrap;
+.btn{ font-family:var(--font-body); font-weight:var(--weight-medium); border:1px solid transparent; border-radius:var(--radius-pill);
+  cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:var(--space-2); line-height:1; white-space:nowrap;
   padding:11px 22px; font-size:var(--text-base);
-  transition:background var(--dur-base) var(--ease-soft), color var(--dur-base) var(--ease-soft),
-             border-color var(--dur-base) var(--ease-soft), transform var(--dur-fast) var(--ease-soft),
-             box-shadow var(--dur-base) var(--ease-soft);
-}
+  transition:background var(--dur-base) var(--ease-soft), color var(--dur-base) var(--ease-soft), border-color var(--dur-base) var(--ease-soft), transform var(--dur-fast) var(--ease-soft), box-shadow var(--dur-base) var(--ease-soft); }
 .btn:active{ transform:scale(0.98); }
 .btn-lg{ padding:15px 30px; font-size:var(--text-md); }
 .btn-sm{ padding:8px 16px; font-size:var(--text-sm); }
+.btn-xs{ padding:5px 12px; font-size:var(--text-xs); }
 .btn-primary{ background:var(--accent); color:var(--text-on-accent); }
 .btn-primary:hover{ background:var(--accent-hover); }
 .btn-secondary{ background:var(--surface-raised); color:var(--text-strong); border-color:var(--border-strong); }
@@ -151,10 +99,6 @@ img,svg{ display:block; max-width:100%; }
 .btn-ghost:hover{ background:var(--surface-inset); }
 .btn:disabled{ opacity:.5; cursor:not-allowed; }
 
-/* ============================================================
-   CARDS — mirrors the design system's Card component
-   (raised / flat / sage / inset).
-============================================================ */
 .card{ border-radius:var(--radius-lg); padding:var(--space-5); transition:box-shadow var(--dur-base) var(--ease-soft), transform var(--dur-base) var(--ease-soft); }
 .card-raised{ background:var(--surface-raised); box-shadow:var(--shadow-sm); border:1px solid var(--paper-2); }
 .card-flat{ background:var(--surface-card); border:1px solid var(--border-soft); }
@@ -163,39 +107,30 @@ img,svg{ display:block; max-width:100%; }
 .card-interactive{ cursor:pointer; }
 .card-interactive:hover{ box-shadow:var(--shadow-md); transform:translateY(-2px); }
 
-/* Badges / tags */
-.badge{
-  display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono);
-  font-size:var(--text-xs); letter-spacing:.02em; padding:5px 12px; border-radius:var(--radius-pill);
-  background:var(--sage-0); color:var(--sage-6); border:1px solid var(--sage-1);
-}
+.badge{ display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:var(--text-xs);
+  letter-spacing:.02em; padding:5px 12px; border-radius:var(--radius-pill); background:var(--sage-0); color:var(--sage-6); border:1px solid var(--sage-1); }
 .badge-dot{ width:6px; height:6px; border-radius:50%; background:var(--sage-4); }
+.badge-danger{ background:var(--hue-danger-soft); color:var(--hue-danger); border-color:var(--hue-danger); }
 
-/* ============================================================
-   NAV
-============================================================ */
-.nav{
-  position:sticky; top:0; z-index:50; background:rgba(251,250,246,.85);
-  backdrop-filter:blur(10px); border-bottom:1px solid var(--border-soft);
-}
-.nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:var(--space-4) var(--space-5); max-width:1120px; margin:0 auto; }
-.brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-size:var(--text-lg); color:var(--text-strong); }
+/* Nav */
+.nav{ position:sticky; top:0; z-index:50; background:rgba(251,250,246,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-soft); }
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:var(--space-4) var(--space-5); max-width:1120px; margin:0 auto; gap:var(--space-4); }
+.brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-size:var(--text-lg); color:var(--text-strong); flex-shrink:0; }
 .brand-dot{ width:10px; height:10px; border-radius:50%; background:var(--sage-4); }
+.nav-right{ display:flex; align-items:center; gap:var(--space-5); }
 .nav-links{ display:flex; align-items:center; gap:var(--space-6); }
 .nav-links a{ font-size:var(--text-sm); color:var(--text-body); font-weight:var(--weight-medium); transition:color var(--dur-base) var(--ease-soft); }
 .nav-links a:hover{ color:var(--sage-5); }
 .nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+.lang-select{ font-family:var(--font-body); font-size:var(--text-sm); color:var(--text-strong); background:var(--surface-raised);
+  border:1px solid var(--border-strong); border-radius:var(--radius-pill); padding:7px 14px; cursor:pointer; }
+.lang-select:focus{ outline:none; border-color:var(--border-focus); box-shadow:0 0 0 3px var(--focus-ring); }
 
-/* ============================================================
-   HERO
-============================================================ */
-.hero{
-  position:relative; overflow:hidden; padding:var(--space-9) 0 var(--space-8);
-  background:
-    radial-gradient(60% 50% at 85% 10%, var(--sage-1) 0%, transparent 70%),
-    radial-gradient(50% 45% at 8% 25%, var(--hue-info-soft) 0%, transparent 70%),
-    linear-gradient(180deg, var(--paper-0), var(--paper-1));
-}
+/* Hero */
+.hero{ position:relative; overflow:hidden; padding:var(--space-9) 0 var(--space-8);
+  background: radial-gradient(60% 50% at 85% 10%, var(--sage-1) 0%, transparent 70%),
+              radial-gradient(50% 45% at 8% 25%, var(--hue-info-soft) 0%, transparent 70%),
+              linear-gradient(180deg, var(--paper-0), var(--paper-1)); }
 .hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; text-align:center; }
 .hero .eyebrow{ display:inline-flex; align-items:center; gap:8px; }
 .hero h1{ font-size:clamp(2.75rem, 6vw, 4rem); line-height:var(--leading-tight); margin-top:var(--space-4); letter-spacing:-0.02em; }
@@ -204,63 +139,48 @@ img,svg{ display:block; max-width:100%; }
 .hero .intro{ margin-top:var(--space-5); color:var(--text-muted); font-size:var(--text-md); line-height:var(--leading-relaxed); }
 .hero-ctas{ display:flex; gap:var(--space-4); justify-content:center; margin-top:var(--space-7); flex-wrap:wrap; }
 .hero-note{ margin-top:var(--space-5); color:var(--text-faint); font-size:var(--text-sm); }
-.blob{ position:absolute; border-radius:50%; filter:blur(2px); opacity:.6; }
 
-/* ============================================================
-   KINDNESS REMINDER BANNER
-============================================================ */
-.kindness{
-  display:flex; align-items:flex-start; gap:var(--space-3);
-  background:var(--sage-0); border:1px solid var(--sage-1); border-radius:var(--radius-md);
-  padding:var(--space-4) var(--space-5); color:var(--sage-6); font-size:var(--text-sm); margin-bottom:var(--space-6);
-}
+/* Banners */
+.kindness{ display:flex; align-items:flex-start; gap:var(--space-3); background:var(--sage-0); border:1px solid var(--sage-1);
+  border-radius:var(--radius-md); padding:var(--space-4) var(--space-5); color:var(--sage-6); font-size:var(--text-sm); margin-bottom:var(--space-6); }
 .kindness .icon{ flex-shrink:0; margin-top:2px; color:var(--sage-5); }
+.crisis-banner{ display:flex; gap:var(--space-3); align-items:flex-start; background:var(--hue-danger-soft); border:1px solid var(--hue-danger);
+  border-radius:var(--radius-md); padding:var(--space-4) var(--space-5); margin-bottom:var(--space-5); }
+.crisis-banner .icon{ color:var(--hue-danger); flex-shrink:0; margin-top:2px; }
+.crisis-banner h4{ font-family:var(--font-body); font-weight:var(--weight-semibold); font-size:var(--text-sm); color:var(--ink-0); }
+.crisis-banner p{ font-size:var(--text-sm); color:var(--ink-1); margin-top:4px; line-height:var(--leading-relaxed); }
+.crisis-banner a{ font-weight:var(--weight-semibold); text-decoration:underline; color:var(--hue-danger); }
 
-/* ============================================================
-   JOURNAL
-============================================================ */
+/* Journal */
 .composer{ margin-bottom:var(--space-7); }
-.composer textarea{
-  width:100%; min-height:110px; resize:vertical; border-radius:var(--radius-md);
-  border:1px solid var(--border-soft); background:var(--paper-0); padding:var(--space-4);
-  font-family:var(--font-body); font-size:var(--text-base); color:var(--text-strong);
-  transition:border-color var(--dur-base) var(--ease-soft), box-shadow var(--dur-base) var(--ease-soft);
-}
+.composer textarea{ width:100%; min-height:110px; resize:vertical; border-radius:var(--radius-md); border:1px solid var(--border-soft);
+  background:var(--paper-0); padding:var(--space-4); font-family:var(--font-body); font-size:var(--text-base); color:var(--text-strong);
+  transition:border-color var(--dur-base) var(--ease-soft), box-shadow var(--dur-base) var(--ease-soft); }
 .composer textarea:focus{ outline:none; border-color:var(--border-focus); box-shadow:0 0 0 4px var(--focus-ring); }
 .composer-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:var(--space-4); gap:var(--space-4); flex-wrap:wrap; }
 .composer-hint{ font-size:var(--text-sm); color:var(--text-faint); display:flex; align-items:center; gap:6px; }
-
 .feed{ display:flex; flex-direction:column; gap:var(--space-5); }
-.post{ padding:var(--space-5); }
+.post{ padding:var(--space-5); position:relative; }
 .post-head{ display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4); }
-.post-avatar{
-  width:38px; height:38px; border-radius:50%; background:var(--sage-1); color:var(--sage-6);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-}
+.post-avatar{ width:38px; height:38px; border-radius:50%; background:var(--sage-1); color:var(--sage-6); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .post-who{ font-weight:var(--weight-semibold); color:var(--text-strong); font-size:var(--text-sm); }
 .post-when{ font-family:var(--font-mono); font-size:var(--text-xs); color:var(--text-faint); }
 .post-body{ color:var(--text-body); font-size:var(--text-base); line-height:var(--leading-relaxed); }
-.post-tag{ display:inline-block; margin-top:var(--space-3); }
-
+.post-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:var(--space-3); flex-wrap:wrap; gap:var(--space-2); }
+.report-btn{ background:none; border:none; color:var(--text-faint); font-size:var(--text-xs); cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:color var(--dur-base) var(--ease-soft); }
+.report-btn:hover{ color:var(--hue-danger); }
+.reported-overlay{ background:var(--surface-inset); border-radius:var(--radius-md); padding:var(--space-4); text-align:center; color:var(--text-muted); font-size:var(--text-sm); }
 .comments{ margin-top:var(--space-4); padding-top:var(--space-4); border-top:1px solid var(--border-soft); display:flex; flex-direction:column; gap:var(--space-3); }
 .comment{ display:flex; gap:var(--space-3); }
-.comment-avatar{
-  width:26px; height:26px; border-radius:50%; background:var(--paper-2); color:var(--ink-2);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:var(--text-xs);
-}
+.comment-avatar{ width:26px; height:26px; border-radius:50%; background:var(--paper-2); color:var(--ink-2); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:var(--text-xs); }
 .comment-body{ background:var(--surface-inset); border-radius:var(--radius-md); padding:var(--space-3) var(--space-4); flex:1; }
-.comment-who{ font-size:var(--text-xs); font-weight:var(--weight-semibold); color:var(--text-strong); margin-bottom:2px; }
+.comment-who{ font-size:var(--text-xs); font-weight:var(--weight-semibold); color:var(--text-strong); margin-bottom:2px; display:flex; justify-content:space-between; gap:var(--space-2); }
 .comment-text{ font-size:var(--text-sm); color:var(--text-body); }
 .comment-form{ display:flex; gap:var(--space-2); margin-top:var(--space-2); }
-.comment-form input{
-  flex:1; border-radius:var(--radius-pill); border:1px solid var(--border-soft); background:var(--paper-0);
-  padding:8px 16px; font-size:var(--text-sm); font-family:var(--font-body); color:var(--text-strong);
-}
+.comment-form input{ flex:1; border-radius:var(--radius-pill); border:1px solid var(--border-soft); background:var(--paper-0); padding:8px 16px; font-size:var(--text-sm); font-family:var(--font-body); color:var(--text-strong); }
 .comment-form input:focus{ outline:none; border-color:var(--border-focus); box-shadow:0 0 0 3px var(--focus-ring); }
 
-/* ============================================================
-   AI LISTENER
-============================================================ */
+/* AI Listener */
 .chat-shell{ max-width:640px; margin:0 auto; }
 .chat-window{ display:flex; flex-direction:column; height:520px; padding:0; overflow:hidden; }
 .chat-header{ display:flex; align-items:center; gap:var(--space-3); padding:var(--space-4) var(--space-5); border-bottom:1px solid var(--border-soft); background:var(--surface-card); }
@@ -275,21 +195,15 @@ img,svg{ display:block; max-width:100%; }
 .msg-user{ align-self:flex-end; background:var(--accent); color:var(--text-on-accent); border-bottom-right-radius:var(--radius-sm); }
 .typing{ align-self:flex-start; display:flex; gap:5px; padding:var(--space-3) var(--space-4); background:var(--surface-card); border-radius:var(--radius-lg); border-bottom-left-radius:var(--radius-sm); }
 .typing span{ width:6px; height:6px; border-radius:50%; background:var(--ink-3); animation:bounce 1.1s infinite ease-in-out; }
-.typing span:nth-child(2){ animation-delay:.15s; }
-.typing span:nth-child(3){ animation-delay:.3s; }
+.typing span:nth-child(2){ animation-delay:.15s; } .typing span:nth-child(3){ animation-delay:.3s; }
 @keyframes bounce{ 0%,80%,100%{ transform:translateY(0); opacity:.5; } 40%{ transform:translateY(-4px); opacity:1; } }
 .chat-input{ display:flex; gap:var(--space-3); padding:var(--space-4); border-top:1px solid var(--border-soft); background:var(--surface-raised); }
-.chat-input input{
-  flex:1; border-radius:var(--radius-pill); border:1px solid var(--border-soft); background:var(--paper-0);
-  padding:12px 20px; font-size:var(--text-base); font-family:var(--font-body); color:var(--text-strong);
-}
+.chat-input input{ flex:1; border-radius:var(--radius-pill); border:1px solid var(--border-soft); background:var(--paper-0); padding:12px 20px; font-size:var(--text-base); font-family:var(--font-body); color:var(--text-strong); }
 .chat-input input:focus{ outline:none; border-color:var(--border-focus); box-shadow:0 0 0 4px var(--focus-ring); }
 .chat-send{ width:44px; height:44px; border-radius:50%; padding:0; flex-shrink:0; }
 .chat-note{ text-align:center; font-size:var(--text-xs); color:var(--text-faint); margin-top:var(--space-4); }
 
-/* ============================================================
-   RESOURCES
-============================================================ */
+/* Resources */
 .resource-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:var(--space-5); }
 .resource-card{ display:flex; flex-direction:column; gap:var(--space-3); }
 .resource-icon{ width:44px; height:44px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; }
@@ -298,40 +212,49 @@ img,svg{ display:block; max-width:100%; }
 .resource-links{ display:flex; flex-direction:column; gap:var(--space-2); margin-top:var(--space-2); }
 .resource-links a{ font-size:var(--text-sm); font-weight:var(--weight-medium); color:var(--sage-5); display:inline-flex; align-items:center; gap:6px; transition:gap var(--dur-base) var(--ease-soft); }
 .resource-links a:hover{ gap:9px; text-decoration:underline; }
+.resource-note{ text-align:center; font-size:var(--text-sm); color:var(--text-faint); margin-top:var(--space-6); }
+.community-feature{ background:linear-gradient(135deg, var(--sage-0), var(--paper-1)); border:1px solid var(--sage-2); border-radius:var(--radius-lg);
+  padding:var(--space-6); margin-bottom:var(--space-6); display:flex; gap:var(--space-6); align-items:center; flex-wrap:wrap; }
+.community-feature-body{ flex:1; min-width:260px; }
+.community-feature h3{ font-size:var(--text-xl); font-family:var(--font-display); color:var(--text-strong); }
+.community-feature p{ margin-top:var(--space-3); color:var(--text-body); font-size:var(--text-base); line-height:var(--leading-relaxed); }
+.community-feature .fine{ margin-top:var(--space-3); font-size:var(--text-xs); color:var(--text-faint); }
+.community-feature-ctas{ display:flex; flex-direction:column; gap:var(--space-3); min-width:220px; }
+.community-icon{ width:56px; height:56px; border-radius:50%; background:var(--sage-4); color:var(--white); display:flex; align-items:center; justify-content:center; margin-bottom:var(--space-4); }
 
-/* ============================================================
-   WHY THIS MATTERS
-============================================================ */
+/* Why + Guidelines */
 .feature-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:var(--space-5); }
 .feature-card{ text-align:left; }
 .feature-icon{ width:40px; height:40px; border-radius:50%; background:var(--sage-0); color:var(--sage-5); display:flex; align-items:center; justify-content:center; margin-bottom:var(--space-4); }
 .feature-card h3{ font-family:var(--font-body); font-size:var(--text-base); font-weight:var(--weight-semibold); color:var(--text-strong); margin-bottom:var(--space-2); }
 .feature-card p{ font-size:var(--text-sm); color:var(--text-muted); line-height:var(--leading-relaxed); }
 
-/* ============================================================
-   FOOTER
-============================================================ */
+.guidelines-list{ display:flex; flex-direction:column; gap:var(--space-4); max-width:720px; margin:0 auto; }
+.guideline-item{ display:flex; gap:var(--space-4); align-items:flex-start; }
+.guideline-icon{ width:36px; height:36px; border-radius:50%; background:var(--sage-0); color:var(--sage-5); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.guideline-item h4{ font-family:var(--font-body); font-weight:var(--weight-semibold); font-size:var(--text-base); color:var(--text-strong); }
+.guideline-item p{ font-size:var(--text-sm); color:var(--text-muted); margin-top:4px; line-height:var(--leading-relaxed); }
+.guidelines-disclaimer{ max-width:720px; margin:var(--space-6) auto 0; background:var(--surface-inset); border-radius:var(--radius-md); padding:var(--space-5); font-size:var(--text-sm); color:var(--text-body); line-height:var(--leading-relaxed); }
+.guidelines-disclaimer strong{ color:var(--text-strong); }
+
+/* Footer */
 footer{ background:var(--sage-6); color:var(--sage-0); padding:var(--space-8) 0 var(--space-6); }
 .footer-inner{ display:flex; flex-direction:column; gap:var(--space-6); align-items:center; text-align:center; }
 .footer-brand{ font-family:var(--font-display); font-size:var(--text-xl); color:var(--white); }
-.disclaimer{
-  max-width:640px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
-  border-radius:var(--radius-md); padding:var(--space-5); font-size:var(--text-sm); line-height:var(--leading-relaxed); color:var(--sage-1);
-}
+.disclaimer{ max-width:640px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius-md);
+  padding:var(--space-5); font-size:var(--text-sm); line-height:var(--leading-relaxed); color:var(--sage-1); }
 .disclaimer strong{ color:var(--white); }
 .footer-links{ display:flex; gap:var(--space-5); flex-wrap:wrap; justify-content:center; font-size:var(--text-sm); }
-.footer-links a{ color:var(--sage-1); }
-.footer-links a:hover{ color:var(--white); }
+.footer-links a{ color:var(--sage-1); } .footer-links a:hover{ color:var(--white); }
 .footer-fine{ font-size:var(--text-xs); color:var(--sage-2); opacity:.8; }
 
-/* ============================================================
-   RESPONSIVE
-============================================================ */
 @media (max-width: 860px){
-  .nav-links{ position:absolute; top:100%; left:0; right:0; background:var(--paper-0); flex-direction:column; align-items:flex-start; padding:var(--space-5); gap:var(--space-4); border-bottom:1px solid var(--border-soft); display:none; }
+  .nav-links{ position:absolute; top:100%; left:0; right:0; background:var(--paper-0); flex-direction:column; align-items:flex-start;
+    padding:var(--space-5); gap:var(--space-4); border-bottom:1px solid var(--border-soft); display:none; }
   .nav-links.open{ display:flex; }
   .nav-toggle{ display:block; }
   .chat-window{ height:70vh; }
+  .community-feature{ flex-direction:column; align-items:stretch; }
 }
 @media (max-width: 560px){
   .section{ padding:var(--space-7) 0; }
@@ -344,295 +267,899 @@ footer{ background:var(--sage-6); color:var(--sage-0); padding:var(--space-8) 0 
 </head>
 <body>
 
-<!-- ============================================================
-     NAV
-============================================================ -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="#top" class="brand"><span class="brand-dot"></span>Homeaway</a>
-    <div class="nav-links" id="navLinks">
-      <a href="#journal">Journal</a>
-      <a href="#ai-listener">AI Listener</a>
-      <a href="#resources">Resources</a>
-      <a href="#why">Why It Matters</a>
+    <div class="nav-right">
+      <div class="nav-links" id="navLinks">
+        <a href="#journal" data-i18n="nav.journal">Journal</a>
+        <a href="#ai-listener" data-i18n="nav.ai">AI Listener</a>
+        <a href="#resources" data-i18n="nav.resources">Resources</a>
+        <a href="#why" data-i18n="nav.why">Why It Matters</a>
+        <a href="#guidelines" data-i18n="nav.guidelines">Safety &amp; Guidelines</a>
+      </div>
+      <select class="lang-select" id="langSelect" aria-label="Language / 语言 / 언어 / 言語 / भाषा">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="ko">한국어</option>
+        <option value="ja">日本語</option>
+        <option value="hi">हिन्दी</option>
+      </select>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i data-lucide="menu" class="icon"></i></button>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i data-lucide="menu" class="icon"></i></button>
   </div>
 </nav>
 
-<!-- ============================================================
-     HERO
-============================================================ -->
 <header class="hero" id="top">
   <div class="wrap hero-inner">
-    <span class="eyebrow"><i data-lucide="sparkles" class="icon" style="width:14px;height:14px"></i>a softer place to land</span>
+    <span class="eyebrow"><i data-lucide="sparkles" class="icon" style="width:14px;height:14px"></i><span data-i18n="hero.eyebrow">a softer place to land</span></span>
     <h1>Home<em>away</em></h1>
-    <p class="tagline">You're not alone. Share, reflect, and find support anonymously.</p>
-    <p class="intro">
-      Loneliness, homesickness, anxiety, culture shock, academic pressure, financial stress —
-      so many international students carry these quietly, in a language and a place that still
-      feel new. Homeaway exists to remind you that others are carrying something similar,
-      and that reaching out doesn't have to mean explaining everything, or even giving your name.
-    </p>
+    <p class="tagline" data-i18n="hero.tagline">You're not alone. Share, reflect, and find support anonymously.</p>
+    <p class="intro" data-i18n="hero.intro">Loneliness, homesickness, anxiety, culture shock, academic pressure, financial stress — so many international students carry these quietly. Homeaway exists to remind you that others are carrying something similar.</p>
     <div class="hero-ctas">
-      <a href="#journal" class="btn btn-primary btn-lg"><i data-lucide="feather" class="icon"></i>Share Your Story</a>
-      <a href="#ai-listener" class="btn btn-secondary btn-lg"><i data-lucide="message-circle" class="icon"></i>Talk to AI</a>
+      <a href="#journal" class="btn btn-primary btn-lg"><i data-lucide="feather" class="icon"></i><span data-i18n="hero.cta1">Share Your Story</span></a>
+      <a href="#ai-listener" class="btn btn-secondary btn-lg"><i data-lucide="message-circle" class="icon"></i><span data-i18n="hero.cta2">Talk to AI</span></a>
     </div>
-    <p class="hero-note">No sign-up. No names. Just people.</p>
+    <p class="hero-note" data-i18n="hero.note">No sign-up. No names. Just people.</p>
   </div>
 </header>
 
 <main>
 
-<!-- ============================================================
-     ANONYMOUS VENT JOURNAL
-============================================================ -->
+<!-- JOURNAL -->
 <section class="section" id="journal">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Anonymous vent journal</span>
-      <h2>Say the thing you haven't said out loud.</h2>
-      <p>Write freely. It posts instantly, with nothing attached but how you're feeling — and others here can leave a kind word underneath.</p>
+      <span class="eyebrow" data-i18n="journal.eyebrow">Anonymous vent journal</span>
+      <h2 data-i18n="journal.heading">Say the thing you haven't said out loud.</h2>
+      <p data-i18n="journal.sub">Write freely. It posts instantly, with nothing attached but how you're feeling.</p>
     </div>
 
     <div class="kindness reveal">
       <i data-lucide="heart-handshake" class="icon"></i>
-      <span>This space stays kind. No judgment, no advice-dumping, no arguing — just people showing up for each other. Please be gentle with whoever's on the other side of a post.</span>
+      <span data-i18n="journal.kindness">This space stays kind. No judgment, no arguing — just people showing up for each other.</span>
     </div>
 
-    <!-- Composer -->
+    <div id="journalCrisisBanner"></div>
+
     <div class="card card-raised composer reveal">
-      <textarea id="journalInput" placeholder="What's on your mind today? No one will know it's you..."></textarea>
+      <textarea id="journalInput" data-i18n-placeholder="journal.composerPlaceholder" placeholder="What's on your mind today?"></textarea>
       <div class="composer-foot">
-        <span class="composer-hint"><i data-lucide="shield-check" class="icon" style="width:16px;height:16px"></i>Posted anonymously, always</span>
-        <button class="btn btn-primary" id="postBtn"><i data-lucide="send" class="icon"></i>Post anonymously</button>
+        <span class="composer-hint"><i data-lucide="shield-check" class="icon" style="width:16px;height:16px"></i><span data-i18n="journal.composerHint">Posted anonymously, always</span></span>
+        <button class="btn btn-primary" id="postBtn"><i data-lucide="send" class="icon"></i><span data-i18n="journal.postBtn">Post anonymously</span></button>
       </div>
     </div>
 
-    <!-- Feed -->
-    <div class="feed" id="feed"><!-- sample + user posts render here via JS --></div>
+    <div class="feed" id="feed"></div>
   </div>
 </section>
 
-<!-- ============================================================
-     AI LISTENER
-============================================================ -->
+<!-- AI LISTENER -->
 <section class="section" id="ai-listener" style="background:var(--paper-1)">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">AI listener</span>
-      <h2>Someone to listen, any hour of the night.</h2>
-      <p>Not a therapist, not a replacement for one — just a calm, judgment-free ear when you need to put words to how you're feeling.</p>
+      <span class="eyebrow" data-i18n="ai.eyebrow">AI listener</span>
+      <h2 data-i18n="ai.heading">Someone to listen, any hour of the night.</h2>
+      <p data-i18n="ai.sub">Not a therapist, not a replacement for one — just a calm, judgment-free ear.</p>
     </div>
-
     <div class="chat-shell reveal">
       <div class="card card-raised chat-window">
         <div class="chat-header">
           <div class="chat-avatar"><i data-lucide="sprout" class="icon" style="color:#fff"></i></div>
           <div>
-            <div class="chat-title">Homeaway Listener</div>
-            <div class="chat-status">here to listen</div>
+            <div class="chat-title" data-i18n="ai.chatTitle">Homeaway Listener</div>
+            <div class="chat-status" data-i18n="ai.chatStatus">here to listen</div>
           </div>
         </div>
-        <div class="chat-log" id="chatLog">
-          <div class="msg msg-ai">Hi, I'm glad you're here. There's no rush — tell me whatever is on your mind, or just how today has felt.</div>
-        </div>
+        <div class="chat-log" id="chatLog"></div>
         <div class="chat-input">
-          <input type="text" id="chatInput" placeholder="Type how you're feeling..." maxlength="500" />
+          <input type="text" id="chatInput" data-i18n-placeholder="ai.placeholder" placeholder="Type how you're feeling..." maxlength="500" />
           <button class="btn btn-primary chat-send" id="chatSend" aria-label="Send"><i data-lucide="send" class="icon"></i></button>
         </div>
       </div>
-      <p class="chat-note">This is a supportive listener, not a crisis service or licensed therapist. If you're in danger, please see the resources below.</p>
+      <p class="chat-note" data-i18n="ai.note">This is a supportive listener, not a crisis service or licensed therapist.</p>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     HELPFUL RESOURCES
-============================================================ -->
+<!-- RESOURCES -->
 <section class="section" id="resources">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Helpful resources</span>
-      <h2>When you're ready for more support.</h2>
-      <p>Anonymous venting and a caring AI can help — and sometimes the next right step is a real person. Here's where to start.</p>
+      <span class="eyebrow" data-i18n="resources.eyebrow">Helpful resources</span>
+      <h2 data-i18n="resources.heading">When you're ready for more support.</h2>
+      <p data-i18n="resources.sub">Anonymous venting and a caring AI can help — sometimes the next right step is a real person.</p>
     </div>
-
-    <div class="resource-grid" id="resourceGrid"><!-- rendered via JS --></div>
+    <div id="communityFeature"></div>
+    <div class="resource-grid" id="resourceGrid"></div>
+    <p class="resource-note" data-i18n="resources.note">Most linked resources below are in English — we hope to add more language options over time.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     WHY THIS MATTERS
-============================================================ -->
+<!-- WHY THIS MATTERS -->
 <section class="section" id="why" style="background:var(--paper-1)">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Why this matters</span>
-      <h2>Feeling understood changes things.</h2>
-      <p>Most international students believe, at some point, that they're the only one struggling. They usually aren't — and knowing that tends to be the first step toward feeling less alone.</p>
+      <span class="eyebrow" data-i18n="why.eyebrow">Why this matters</span>
+      <h2 data-i18n="why.heading">Feeling understood changes things.</h2>
+      <p data-i18n="why.sub">Most international students believe, at some point, that they're the only one struggling. They usually aren't.</p>
     </div>
+    <div class="feature-grid" id="whyGrid"></div>
+  </div>
+</section>
 
-    <div class="feature-grid">
-      <div class="card card-flat feature-card reveal">
-        <div class="feature-icon"><i data-lucide="users" class="icon"></i></div>
-        <h3>You're not the only one</h3>
-        <p>Reading someone else's anonymous story — one that sounds a lot like your own — is often the moment isolation starts to loosen its grip.</p>
-      </div>
-      <div class="card card-flat feature-card reveal">
-        <div class="feature-icon"><i data-lucide="message-square-heart" class="icon"></i></div>
-        <h3>Naming it helps</h3>
-        <p>Putting a feeling into words, even anonymously, makes it easier to understand and easier to carry. It's often the step before asking for help.</p>
-      </div>
-      <div class="card card-flat feature-card reveal">
-        <div class="feature-icon"><i data-lucide="footprints" class="icon"></i></div>
-        <h3>Small steps count</h3>
-        <p>You don't need a diagnosis or a crisis to belong here. A hard week, a homesick evening, and a genuine breakthrough are all welcome.</p>
-      </div>
-      <div class="card card-flat feature-card reveal">
-        <div class="feature-icon"><i data-lucide="globe-2" class="icon"></i></div>
-        <h3>Support looks different for everyone</h3>
-        <p>Language, culture, cost, and stigma all shape whether someone feels able to ask for help. This space tries to lower every one of those barriers.</p>
-      </div>
+<!-- SAFETY & GUIDELINES -->
+<section class="section" id="guidelines">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="guidelines.eyebrow">Safety &amp; moderation</span>
+      <h2 data-i18n="guidelines.heading">How we try to keep this space safe.</h2>
+      <p data-i18n="guidelines.sub">For students, and for the families and communities who care about them.</p>
     </div>
+    <div class="guidelines-list" id="guidelinesList"></div>
+    <div class="guidelines-disclaimer" id="guidelinesDisclaimer"></div>
   </div>
 </section>
 
 </main>
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
 <footer>
   <div class="wrap footer-inner">
     <div class="footer-brand">Homeaway</div>
-    <div class="disclaimer">
-      <strong>Homeaway is a peer-support space, not a medical service.</strong> Nothing here — the journal, the comments, or the AI listener — replaces care from a licensed mental health professional.
-      If you are in crisis or thinking about harming yourself, please contact your local emergency number,
-      go to your nearest emergency room, or reach a crisis line where you live (in the U.S., call or text <strong>988</strong>).
-      You deserve real, immediate support, and you don't have to face this alone.
-    </div>
+    <div class="disclaimer" id="footerDisclaimer"></div>
     <div class="footer-links">
-      <a href="#journal">Journal</a>
-      <a href="#ai-listener">AI Listener</a>
-      <a href="#resources">Resources</a>
-      <a href="#why">Why It Matters</a>
+      <a href="#journal" data-i18n="nav.journal">Journal</a>
+      <a href="#ai-listener" data-i18n="nav.ai">AI Listener</a>
+      <a href="#resources" data-i18n="nav.resources">Resources</a>
+      <a href="#guidelines" data-i18n="nav.guidelines">Safety &amp; Guidelines</a>
     </div>
-    <div class="footer-fine">Homeaway · a prototype for international student mental health support · built with care</div>
+    <div class="footer-fine" data-i18n="footer.fine">Homeaway · a prototype for international student mental health support · built with care</div>
   </div>
 </footer>
 
-<!-- ============================================================
-     JAVASCRIPT
-     Organized into small, commented sections:
-     1. Icons + scroll reveal
-     2. Mobile nav toggle
-     3. Anonymous journal (posts + comments)
-     4. AI listener (canned empathetic response engine)
-     5. Resources data render
-============================================================ -->
 <script>
-/* ---------- 1. Icons + scroll reveal ---------- */
-lucide.createIcons();
+/* ============================================================
+   TRANSLATIONS
+   Each language holds every string used on the page, including
+   the AI listener's reply bank and keyword lists (so keyword
+   matching works when someone types in their own language) and
+   localized sample content for the journal feed.
+============================================================ */
+const translations = {
 
-const revealEls = document.querySelectorAll('.reveal');
+/* ---------------- ENGLISH ---------------- */
+en: {
+  nav:{ journal:"Journal", ai:"AI Listener", resources:"Resources", why:"Why It Matters", guidelines:"Safety & Guidelines" },
+  hero:{ eyebrow:"a softer place to land",
+    tagline:"You're not alone. Share, reflect, and find support anonymously.",
+    intro:"Loneliness, homesickness, anxiety, culture shock, academic pressure, financial stress — so many international students carry these quietly, in a language and a place that still feel new. Homeaway exists to remind you that others are carrying something similar, and that reaching out doesn't have to mean explaining everything, or even giving your name.",
+    cta1:"Share Your Story", cta2:"Talk to AI", note:"No sign-up. No names. Just people." },
+  journal:{ eyebrow:"Anonymous vent journal", heading:"Say the thing you haven't said out loud.",
+    sub:"Write freely. It posts instantly, with nothing attached but how you're feeling — and others here can leave a kind word underneath.",
+    kindness:"This space stays kind. No judgment, no advice-dumping, no arguing — just people showing up for each other. Please be gentle with whoever's on the other side of a post.",
+    composerPlaceholder:"What's on your mind today? No one will know it's you...",
+    composerHint:"Posted anonymously, always", postBtn:"Post anonymously",
+    replyPlaceholder:"Leave a supportive comment...", replyBtn:"Reply", newTag:"New",
+    reportLabel:"Report", reportedLabel:"Thanks — this post has been flagged for review and hidden from the feed.",
+    crisisTitle:"It sounds like you might be carrying something heavy right now.",
+    crisisBody:"Before you post, please know real, immediate support is available. In the U.S., call or text 988 any time. Your post below will still be shared — but you deserve more than an anonymous feed.",
+    crisisLink:"See crisis resources" },
+  posts:[
+    { who:"Homesick Maple", when:"2 hours ago", tag:"Homesickness",
+      body:"It's been four months and I still cry a little every time I smell my mom's cooking on a video call. I didn't think missing a kitchen could hurt this much. Is it normal to still feel this raw?",
+      comments:[ {who:"Quiet Harbor", text:"It's so normal. I made a playlist of sounds from home just to fall asleep to. It does get softer, even if it never fully goes away."},
+                 {who:"Steady Fern", text:"Sending you a hug. That ache means you have a lot of love waiting for you back home."} ] },
+    { who:"Weary Compass", when:"5 hours ago", tag:"Academic Pressure",
+      body:"Midterms are in two weeks and I haven't told anyone how behind I feel because I'm scared my visa depends on my grades and everyone back home thinks I'm doing great here. I don't know how to say I'm struggling.",
+      comments:[ {who:"Hopeful Sparrow", text:"You just said it here, and that already took courage. Your campus counseling center has seen this exact fear before — you're not the first."} ] },
+    { who:"Curious Pebble", when:"yesterday", tag:"Small Win",
+      body:"Small win: I asked a classmate to explain a joke I didn't get instead of just laughing along and feeling like an outsider. She explained it happily and we ended up getting coffee. Baby steps, I guess.",
+      comments:[ {who:"Bright Lantern", text:"This made me smile. That's exactly the kind of brave, tiny thing that adds up."},
+                 {who:"Gentle River", text:"Coffee with a new friend sounds like a genuinely good day. Proud of you."} ] }
+  ],
+  ai:{ eyebrow:"AI listener", heading:"Someone to listen, any hour of the night.",
+    sub:"Not a therapist, not a replacement for one — just a calm, judgment-free ear when you need to put words to how you're feeling.",
+    chatTitle:"Homeaway Listener", chatStatus:"here to listen",
+    greeting:"Hi, I'm glad you're here. There's no rush — tell me whatever is on your mind, or just how today has felt.",
+    placeholder:"Type how you're feeling...",
+    note:"This is a supportive listener, not a crisis service or licensed therapist. If you're in danger, please see the resources below.",
+    crisisWords:["suicide","kill myself","end my life","hurt myself","self harm","self-harm","don't want to live","want to die"],
+    responseBank:[
+      { keys:["homesick","miss home","miss my family","missing home"],
+        replies:["That ache for home sounds real and heavy right now. What is it that you miss most in this moment — a person, a place, a smell, a sound?",
+                 "Homesickness has a way of showing up in the smallest moments. It makes sense that it hurts. Is there a small piece of home you could bring into today, even in a tiny way?"] },
+      { keys:["anxious","anxiety","panic","nervous","worried"],
+        replies:["It sounds like anxiety is taking up a lot of space for you right now. Can you tell me what it's about, if you feel like sharing?",
+                 "That kind of worry can be exhausting to carry. Sometimes naming exactly what we're afraid of takes a little of its power away — what's the worst part of it, for you?"] },
+      { keys:["alone","lonely","isolated","no friends","no one understands"],
+        replies:["Feeling alone in a new place is one of the hardest parts of this experience, and it's more common than it feels like right now. How long have you been feeling this way?",
+                 "I hear how isolating this feels. You reaching out here, even anonymously, is a real step. What would feeling a little less alone look like today?"] },
+      { keys:["stressed","overwhelmed","pressure","deadline","exam","exams","grades"],
+        replies:["That sounds like a lot to be carrying at once. What feels like the heaviest part of it right now?",
+                 "Academic pressure on top of everything else you're adjusting to is genuinely a lot. Would it help to break down what's due first, or would you rather just vent for a bit?"] },
+      { keys:["sad","down","depressed","crying","hopeless"],
+        replies:["I'm really glad you told me that. That sounds heavy to sit with. How long have you been feeling this way?",
+                 "Thank you for trusting me with that. You don't have to explain it perfectly — just however it's showing up for you today is okay."] },
+      { keys:["culture shock","different here","don't fit in","fit in","language barrier"],
+        replies:["Adjusting to a new culture while doing everything else on your plate is genuinely hard work, even when it doesn't look like 'work' from the outside. What's felt most unfamiliar lately?",
+                 "That in-between feeling — not quite home, not quite here yet — is something a lot of people in this community describe. You're allowed time to land."] }
+    ],
+    generic:["Thank you for sharing that with me. Can you tell me a little more about how that's been feeling?",
+             "That sounds like a lot to hold. I'm here, and there's no rush — what feels most important to say right now?",
+             "I hear you. Whatever you're feeling right now is allowed to just be there without judgment.",
+             "That makes a lot of sense given everything you're adjusting to. How has today, specifically, been for you?"],
+    nudges:["If it helps, even a slow breath in for four counts and out for six can take the edge off a hard moment.",
+            "Something small, like stepping outside for a few minutes or texting one person you trust, sometimes helps more than it seems like it will.",
+            "It might help to write this down in the journal above, too — sometimes a feeling gets lighter once it's out of your head."],
+    nudgeFollowup:"And if this feeling keeps sticking around, your campus counseling center is a good, judgment-free next step.",
+    crisisReply:"I'm really glad you told me this, and I want you to get support right now from someone who can help in real time. If you're in the U.S., you can call or text 988 (Suicide & Crisis Lifeline) any time, day or night. If you're elsewhere, please contact your local emergency number or campus crisis line. You deserve immediate, real support — I care that you're safe."
+  },
+  resources:{ eyebrow:"Helpful resources", heading:"When you're ready for more support.",
+    sub:"Anonymous venting and a caring AI can help — and sometimes the next right step is a real person. Here's where to start.",
+    note:"Most linked resources below are in English — we hope to add more language options over time.",
+    community:{ title:"Looking for real, in-person community?",
+      desc:"IFI USA (International Friendships, Inc.) is a national organization that connects international students with welcoming host families, campus friendship groups, and local community across the U.S. It's a faith-based (Christian) nonprofit that partners with churches and universities — worth knowing going in, if faith affiliation matters to you.",
+      fine:"Free to join. Locations nationwide, plus online community for anywhere you are.",
+      links:[ {label:"Find an IFI location near you", href:"https://www.ifiusa.org/locations/"},
+              {label:"Join the IFI WhatsApp student community", href:"https://chat.whatsapp.com/IyqBAXCC6LJCsP0Jgh0RY4"},
+              {label:"Learn more about IFI USA", href:"https://www.ifiusa.org"} ] },
+    cards:[
+      { icon:"life-buoy", tone:"var(--hue-danger-soft)", iconColor:"var(--hue-danger)", title:"Crisis Support",
+        desc:"If you're in immediate danger or thinking about harming yourself, these are staffed by real people, right now.",
+        links:[ {label:"988 Suicide & Crisis Lifeline (call/text 988)", href:"https://988lifeline.org"},
+                {label:"Crisis Text Line (text HOME to 741741)", href:"https://www.crisistextline.org"},
+                {label:"Find a crisis line outside the U.S.", href:"https://www.iasp.info/resources/Crisis_Centres/"} ] },
+      { icon:"brain", tone:"var(--hue-info-soft)", iconColor:"var(--hue-info)", title:"Anxiety",
+        desc:"Grounding techniques and information for the racing, worried thoughts that can come with a new country and new pressures.",
+        links:[ {label:"Anxiety & Depression Association (ADAA)", href:"https://adaa.org"},
+                {label:"NIMH — Anxiety Disorders overview", href:"https://www.nimh.nih.gov/health/topics/anxiety-disorders"} ] },
+      { icon:"home", tone:"var(--sage-0)", iconColor:"var(--sage-5)", title:"Homesickness",
+        desc:"You are allowed to miss home loudly. These offer perspective and community for that specific ache.",
+        links:[ {label:"NAFSA — resources for international students", href:"https://www.nafsa.org"},
+                {label:"Your university's international student office", href:"#"} ] },
+      { icon:"graduation-cap", tone:"var(--clay-1)", iconColor:"var(--clay-3)", title:"Stress Management",
+        desc:"Academic and financial pressure, untangled a little at a time.",
+        links:[ {label:"JED Foundation — student mental health", href:"https://www.jedfoundation.org"},
+                {label:"Mind — stress management basics", href:"https://www.mind.org.uk"} ] },
+      { icon:"building-2", tone:"var(--hue-success-soft)", iconColor:"var(--hue-success)", title:"Campus Counseling",
+        desc:"Most universities offer free or low-cost counseling, often including sessions with international student specialists.",
+        links:[ {label:"Ask your student health center about counseling", href:"#"},
+                {label:"Active Minds — campus mental health", href:"https://www.activeminds.org"} ] },
+      { icon:"flower-2", tone:"var(--sage-1)", iconColor:"var(--sage-6)", title:"Mindfulness",
+        desc:"Simple, low-cost practices for slowing down a busy or anxious mind.",
+        links:[ {label:"UCLA Mindful Awareness — free guided meditations", href:"https://www.uclahealth.org/programs/marc/mindful-meditations"},
+                {label:"Headspace — mindfulness basics", href:"https://www.headspace.com"} ] },
+      { icon:"sparkles", tone:"var(--hue-warning-soft)", iconColor:"var(--hue-warning)", title:"Self-Care Tips",
+        desc:"Small, sustainable habits — sleep, movement, food, connection — that support everything else.",
+        links:[ {label:"Active Minds — self-care basics", href:"https://www.activeminds.org/about-mental-health/self-care/"},
+                {label:"NAMI — taking care of your mental health", href:"https://www.nami.org"} ] }
+    ]
+  },
+  why:{ eyebrow:"Why this matters", heading:"Feeling understood changes things.",
+    sub:"Most international students believe, at some point, that they're the only one struggling. They usually aren't — and knowing that tends to be the first step toward feeling less alone.",
+    cards:[
+      { icon:"users", title:"You're not the only one", desc:"Reading someone else's anonymous story — one that sounds a lot like your own — is often the moment isolation starts to loosen its grip." },
+      { icon:"message-square-heart", title:"Naming it helps", desc:"Putting a feeling into words, even anonymously, makes it easier to understand and easier to carry. It's often the step before asking for help." },
+      { icon:"footprints", title:"Small steps count", desc:"You don't need a diagnosis or a crisis to belong here. A hard week, a homesick evening, and a genuine breakthrough are all welcome." },
+      { icon:"globe-2", title:"Support looks different for everyone", desc:"Language, culture, cost, and stigma all shape whether someone feels able to ask for help. This space tries to lower every one of those barriers." }
+    ]
+  },
+  guidelines:{ eyebrow:"Safety & moderation", heading:"How we try to keep this space safe.",
+    sub:"For students, and for the families and communities who care about them.",
+    points:[
+      { icon:"radar", title:"Automatic crisis-language detection", desc:"Both the journal and the AI listener scan for language that suggests someone may be in danger, and immediately surface real, human crisis resources — 988 in the U.S., and others by region." },
+      { icon:"flag", title:"Community reporting", desc:"Anyone can flag a post or comment that feels harmful, unkind, or unsafe. Flagged content is hidden from the public feed pending review." },
+      { icon:"heart-handshake", title:"A kindness-first culture", desc:"No judgment, no arguing, no advice-dumping. Posts and comments that violate this are removed." },
+      { icon:"eye-off", title:"Real anonymity", desc:"No accounts, no names, no profiles. Posts aren't linked to any identity — you decide how much or little to share." }
+    ],
+    disclaimer:"<strong>Please read:</strong> Homeaway is currently a student-built prototype, not a monitored, staffed platform. The features above describe how it's designed to work — automatic detection, reporting, and kindness rules — but there is not yet a 24/7 human moderation team reviewing every post in real time. If you or someone else is in immediate danger, please do not wait on a post being seen — use the crisis resources listed above right away, or contact local emergency services." },
+  footer:{ disclaimer:"<strong>Homeaway is a peer-support space, not a medical service.</strong> Nothing here — the journal, the comments, or the AI listener — replaces care from a licensed mental health professional. If you are in crisis or thinking about harming yourself, please contact your local emergency number, go to your nearest emergency room, or reach a crisis line where you live (in the U.S., call or text <strong>988</strong>). You deserve real, immediate support, and you don't have to face this alone.",
+    fine:"Homeaway · a prototype for international student mental health support · built with care" }
+},
+
+/* ---------------- CHINESE (Simplified) ---------------- */
+zh: {
+  nav:{ journal:"匿名树洞", ai:"AI 倾听者", resources:"资源", why:"为什么重要", guidelines:"安全与规范" },
+  hero:{ eyebrow:"一个可以softly落地的地方",
+    tagline:"你并不孤单。在这里匿名分享、反思、寻找支持。",
+    intro:"孤独、想家、焦虑、文化冲击、学业压力、经济压力——很多国际学生都在默默承受这些,身处一个还不算熟悉的语言和环境里。Homeaway 想让你知道,别人也在经历相似的事情,而寻求支持,并不需要解释一切,甚至不需要留下你的名字。",
+    cta1:"分享你的故事", cta2:"和 AI 聊聊", note:"无需注册,不留姓名,只有真实的人。" },
+  journal:{ eyebrow:"匿名树洞", heading:"把没说出口的话写下来。",
+    sub:"自由书写。发布后会立刻显示,除了你的心情,不会附带任何信息——其他人也可以在下面留言支持你。",
+    kindness:"这里是一个善意优先的空间。不评判、不说教、不争吵——只是彼此陪伴。请对帖子背后的人温柔一些。",
+    composerPlaceholder:"今天在想什么?没有人会知道是你写的……",
+    composerHint:"始终匿名发布", postBtn:"匿名发布",
+    replyPlaceholder:"留下一句支持的话……", replyBtn:"回复", newTag:"新帖",
+    reportLabel:"举报", reportedLabel:"谢谢——这条帖子已被标记待审核,并已从动态中隐藏。",
+    crisisTitle:"听起来你现在可能正承受着很沉重的东西。",
+    crisisBody:"在你发布之前,请知道现在就有真实、即时的支持可以帮助你。在美国,你可以随时拨打或短信 988。你的帖子依然会照常发布——但你值得的,不只是一个匿名动态。",
+    crisisLink:"查看危机支持资源" },
+  posts:[
+    { who:"Homesick Maple", when:"2 小时前", tag:"想家",
+      body:"已经四个月了,每次视频通话闻到妈妈做饭的味道,我还是会忍不住掉眼泪。没想到想念一个厨房会这么痛。这种感觉一直这么强烈,正常吗?",
+      comments:[ {who:"Quiet Harbor", text:"太正常了。我做了一个家乡声音的播放列表,专门用来哄自己入睡。它会慢慢变轻,虽然可能永远不会完全消失。"},
+                 {who:"Steady Fern", text:"抱抱你。这种想念,说明家里有很多爱在等着你。"} ] },
+    { who:"Weary Compass", when:"5 小时前", tag:"学业压力",
+      body:"两周后期中考试,我一直没告诉任何人自己已经落后了很多,因为我怕签证会受成绩影响,而且家里人都以为我在这里过得很好。我不知道该怎么开口说自己撑不住了。",
+      comments:[ {who:"Hopeful Sparrow", text:"你能在这里说出来,已经很勇敢了。学校的心理咨询中心见过很多这种担心——你不是第一个。"} ] },
+    { who:"Curious Pebble", when:"昨天", tag:"小小的进步",
+      body:"一个小小的进步:今天我没有假笑着装懂一个没听懂的笑话,而是直接问了同学。她很乐意地解释了,我们后来还一起去喝了咖啡。可能就是这样一小步一小步来的吧。",
+      comments:[ {who:"Bright Lantern", text:"看到这个我笑了。这正是那种看似很小、但很勇敢的事情,慢慢累积起来就不一样了。"},
+                 {who:"Gentle River", text:"和新朋友喝咖啡,听起来就是很棒的一天。为你骄傲。"} ] }
+  ],
+  ai:{ eyebrow:"AI 倾听者", heading:"无论几点,总有人愿意听你说。",
+    sub:"它不是治疗师,也无法替代治疗师——只是在你需要把感受说出口时,一个平静、不评判的倾听者。",
+    chatTitle:"Homeaway 倾听者", chatStatus:"随时倾听",
+    greeting:"你好,很高兴你在这里。不用着急——想说什么都可以,或者只是聊聊今天过得怎么样。",
+    placeholder:"说说你现在的感受……",
+    note:"这是一个支持性倾听工具,不是危机干预服务,也不是持证治疗师。如果你正处于危险中,请查看下方的资源。",
+    crisisWords:["自杀","不想活","结束生命","伤害自己","自残","活不下去","想死"],
+    responseBank:[
+      { keys:["想家","想念家人","想我妈","想我家"],
+        replies:["这种对家的思念听起来又真实又沉重。此刻你最想念的是什么——一个人、一个地方、一种味道、还是一种声音?",
+                 "想家常常会在最不经意的时刻冒出来,会难受是很自然的。有没有什么小小的家乡的东西,今天可以试着带进生活里?"] },
+      { keys:["焦虑","紧张","恐慌","担心","不安"],
+        replies:["听起来焦虑现在占据了你很多心思。如果你愿意的话,可以说说具体是关于什么吗?",
+                 "那种担心真的很消耗人。有时候,把最害怕的事情具体说出来,会让它的力量小一点——对你来说,最糟糕的部分是什么?"] },
+      { keys:["孤独","一个人","没有朋友","没人理解我","孤单"],
+        replies:["在一个陌生的地方感到孤独,是这段经历里最难的部分之一,而且比你现在感觉到的要普遍得多。这种感觉持续多久了?",
+                 "我能感受到这种孤立感。你愿意在这里说出来,哪怕是匿名的,已经是很实在的一步。今天怎样才能感觉不那么孤单一点?"] },
+      { keys:["压力","喘不过气","期末","考试","成绩","deadline"],
+        replies:["听起来你同时扛着好多事情。现在感觉最重的部分是什么?",
+                 "在适应新环境的同时还要面对学业压力,真的很不容易。要不要一起理一理最先该处理的事,或者你也可以先在这里发泄一下?"] },
+      { keys:["难过","低落","想哭","绝望","emo"],
+        replies:["谢谢你愿意告诉我这些。这听起来确实很沉重。这种感觉持续多久了?",
+                 "谢谢你愿意信任我,说出这些。你不需要说得多完美——不管今天它是以什么样子出现的,都没关系。"] },
+      { keys:["文化差异","格格不入","融入不了","语言障碍","听不懂"],
+        replies:["在适应一切的同时还要适应新的文化,这真的是一件很辛苦的事,即使从外面看起来不像'work'。最近让你觉得最陌生的是什么?",
+                 "那种不上不下的感觉——不再完全是'家',又还没完全是'这里'——很多人都有过。你有权利慢慢来。"] }
+    ],
+    generic:["谢谢你愿意和我分享这些。能再多说一点这种感觉是怎样的吗?",
+             "听起来这真的不容易扛。我在这里,不用着急——现在最想说的是什么?",
+             "我听到了。不管你现在是什么感受,都可以自然地存在,不需要被评判。",
+             "考虑到你正在适应的这一切,这完全说得通。今天具体过得怎么样?"],
+    nudges:["如果有帮助的话,试试慢慢吸气数四拍、呼气数六拍,也许能让此刻没那么难熬。",
+            "有时候一件很小的事——出门走几分钟,或者给一个你信任的人发条消息——帮助会比想象中大。",
+            "也许可以把这些写在上面的树洞里——有时候,把感受写出来之后,会觉得轻一点。"],
+    nudgeFollowup:"如果这种感觉一直持续,学校的心理咨询中心会是一个不带评判、值得尝试的下一步。",
+    crisisReply:"谢谢你愿意告诉我这些,我希望你现在就能得到能实时提供帮助的支持。如果你在美国,可以随时拨打或短信 988(自杀与危机热线),全天候都有人接听。如果你不在美国,请联系当地的紧急求助电话或学校的危机热线。你值得立刻获得真实的支持——我很在意你的安全。"
+  },
+  resources:{ eyebrow:"实用资源", heading:"当你准备好寻求更多支持时。",
+    sub:"匿名倾诉和贴心的 AI 都能帮上忙——但有时候,下一步需要的是真实的人。这里是一些起点。",
+    note:"以下大多数资源链接是英文内容——我们希望未来能提供更多语言选项。",
+    community:{ title:"想要真实的、面对面的社群吗?",
+      desc:"IFI USA(International Friendships, Inc.)是一家全国性组织,帮助国际学生找到愿意接待的寄宿家庭、校园友谊小组,以及遍布美国各地的当地社群。它是一家基督教信仰背景的非营利组织,与教会和大学合作——如果信仰归属对你来说很重要,这一点值得提前了解。",
+      fine:"免费加入。全美各地都有据点,也有面向所有地区的线上社群。",
+      links:[ {label:"查找你附近的 IFI 据点", href:"https://www.ifiusa.org/locations/"},
+              {label:"加入 IFI 学生 WhatsApp 社群", href:"https://chat.whatsapp.com/IyqBAXCC6LJCsP0Jgh0RY4"},
+              {label:"了解更多关于 IFI USA", href:"https://www.ifiusa.org"} ] },
+    cards:[
+      { icon:"life-buoy", tone:"var(--hue-danger-soft)", iconColor:"var(--hue-danger)", title:"危机支持",
+        desc:"如果你正处于紧急危险中,或有伤害自己的想法,以下资源现在就有真人在线提供帮助。",
+        links:[ {label:"988 自杀与危机热线(拨打或短信 988)", href:"https://988lifeline.org"},
+                {label:"危机短信热线(发送 HOME 到 741741)", href:"https://www.crisistextline.org"},
+                {label:"查找美国以外地区的危机热线", href:"https://www.iasp.info/resources/Crisis_Centres/"} ] },
+      { icon:"brain", tone:"var(--hue-info-soft)", iconColor:"var(--hue-info)", title:"焦虑",
+        desc:"关于新环境和新压力带来的紧张、担忧情绪的应对方法和相关信息。",
+        links:[ {label:"焦虑与抑郁症协会 (ADAA)", href:"https://adaa.org"},
+                {label:"NIMH——焦虑症概览", href:"https://www.nimh.nih.gov/health/topics/anxiety-disorders"} ] },
+      { icon:"home", tone:"var(--sage-0)", iconColor:"var(--sage-5)", title:"想家",
+        desc:"你完全可以大声地想家。这里提供一些相关的视角和社群支持。",
+        links:[ {label:"NAFSA——国际学生资源", href:"https://www.nafsa.org"},
+                {label:"你所在学校的国际学生办公室", href:"#"} ] },
+      { icon:"graduation-cap", tone:"var(--clay-1)", iconColor:"var(--clay-3)", title:"压力管理",
+        desc:"一点一点理清学业和经济上的压力。",
+        links:[ {label:"JED 基金会——学生心理健康", href:"https://www.jedfoundation.org"},
+                {label:"Mind——压力管理基础知识", href:"https://www.mind.org.uk"} ] },
+      { icon:"building-2", tone:"var(--hue-success-soft)", iconColor:"var(--hue-success)", title:"校园心理咨询",
+        desc:"大多数大学都提供免费或低价的心理咨询,通常也包括面向国际学生的专门服务。",
+        links:[ {label:"向你的学生健康中心咨询相关服务", href:"#"},
+                {label:"Active Minds——校园心理健康", href:"https://www.activeminds.org"} ] },
+      { icon:"flower-2", tone:"var(--sage-1)", iconColor:"var(--sage-6)", title:"正念练习",
+        desc:"简单、低成本的方法,帮你放慢忙碌或焦虑的思绪。",
+        links:[ {label:"UCLA 正念中心——免费引导冥想", href:"https://www.uclahealth.org/programs/marc/mindful-meditations"},
+                {label:"Headspace——正念入门", href:"https://www.headspace.com"} ] },
+      { icon:"sparkles", tone:"var(--hue-warning-soft)", iconColor:"var(--hue-warning)", title:"自我关怀小贴士",
+        desc:"睡眠、运动、饮食、社交连接——这些微小而可持续的习惯,是一切的基础。",
+        links:[ {label:"Active Minds——自我关怀基础", href:"https://www.activeminds.org/about-mental-health/self-care/"},
+                {label:"NAMI——照顾好自己的心理健康", href:"https://www.nami.org"} ] }
+    ]
+  },
+  why:{ eyebrow:"为什么重要", heading:"被理解,会改变一切。",
+    sub:"很多国际学生在某个时刻都以为,只有自己在挣扎。但其实并不是——而意识到这一点,往往是不再感到孤单的第一步。",
+    cards:[
+      { icon:"users", title:"你不是唯一一个", desc:"读到别人的匿名故事——听起来和你的很像——常常正是孤立感开始松动的时刻。" },
+      { icon:"message-square-heart", title:"说出来,会有帮助", desc:"把一种感觉说出来,哪怕是匿名的,也会更容易理解、更容易承受。这往往是求助之前的一步。" },
+      { icon:"footprints", title:"小小的一步也算数", desc:"你不需要有诊断证明,也不需要处于危机中,才能来到这里。艰难的一周、想家的一晚,或者真实的小突破,都欢迎。" },
+      { icon:"globe-2", title:"每个人需要的支持方式都不一样", desc:"语言、文化、经济状况和污名化,都会影响一个人是否敢于求助。这个空间希望能一点点降低这些门槛。" }
+    ]
+  },
+  guidelines:{ eyebrow:"安全与规范", heading:"我们如何努力让这里保持安全。",
+    sub:"为了学生本身,也为了在意他们的家人和社群。",
+    points:[
+      { icon:"radar", title:"自动危机语言识别", desc:"树洞和 AI 倾听者都会扫描可能表明有人处于危险中的语言,并立即展示真实、由人提供的危机资源——在美国是 988,其他地区也有相应资源。" },
+      { icon:"flag", title:"社区举报机制", desc:"任何人都可以举报感觉上有害、不友善或不安全的帖子或评论。被举报的内容会在等待审核期间从公开动态中隐藏。" },
+      { icon:"heart-handshake", title:"善意优先的文化", desc:"不评判、不争吵、不说教式建议。违反这一原则的帖子和评论会被移除。" },
+      { icon:"eye-off", title:"真正的匿名", desc:"没有账号,没有姓名,没有个人主页。帖子不会与任何身份关联——分享多少,由你决定。" }
+    ],
+    disclaimer:"<strong>请注意:</strong> Homeaway 目前是一个由学生开发的原型项目,还不是一个有专人全天候监控的正式平台。以上功能描述的是它的设计目标——自动识别、举报机制和善意准则——但目前还没有 24 小时人工审核团队实时查看每一条帖子。如果你或身边的人正处于紧急危险中,请不要等待帖子被看到——立即使用上方列出的危机资源,或联系当地紧急服务。" },
+  footer:{ disclaimer:"<strong>Homeaway 是一个同伴支持空间,不是医疗服务。</strong>这里的任何内容——树洞、评论,或 AI 倾听者——都无法替代持证心理健康专业人士提供的照护。如果你正处于危机中,或有伤害自己的想法,请联系当地的紧急求助电话,前往最近的急诊室,或拨打你所在地区的危机热线(在美国,可拨打或短信 <strong>988</strong>)。你值得获得真实、及时的支持,你不必independently面对这一切。",
+    fine:"Homeaway · 一个关于国际学生心理健康支持的原型项目 · 用心制作" }
+},
+
+/* ---------------- KOREAN ---------------- */
+ko: {
+  nav:{ journal:"익명 감정 일기", ai:"AI 리스너", resources:"자료", why:"중요한 이유", guidelines:"안전 및 운영 원칙" },
+  hero:{ eyebrow:"조금 더 편히 내려앉을 수 있는 곳",
+    tagline:"당신은 혼자가 아니에요. 익명으로 이야기를 나누고, 돌아보고, 위로를 찾아보세요.",
+    intro:"외로움, 향수병, 불안, 문화 충격, 학업 스트레스, 경제적 부담—많은 유학생들이 아직 낯선 언어와 낯선 곳에서 이런 감정을 조용히 견디고 있어요. Homeaway는 당신만 그런 게 아니라는 걸, 그리고 도움을 구하는 데 모든 걸 설명하거나 이름을 밝힐 필요가 없다는 걸 알려드리고 싶어요.",
+    cta1:"내 이야기 남기기", cta2:"AI와 대화하기", note:"가입도, 이름도 필요 없어요. 그냥 사람들이 있을 뿐이에요." },
+  journal:{ eyebrow:"익명 감정 일기", heading:"차마 소리 내어 말하지 못했던 그 이야기.",
+    sub:"자유롭게 적어보세요. 글은 바로 게시되고, 당신의 이름은 남지 않아요—다른 사람들이 아래에 따뜻한 댓글을 남겨줄 수 있어요.",
+    kindness:"이곳은 따뜻함이 우선인 공간이에요. 평가도, 잔소리도, 다툼도 없이—그저 서로를 위해 곁에 있어주는 곳이에요. 글을 남긴 사람에게 다정하게 대해주세요.",
+    composerPlaceholder:"오늘 무슨 생각을 하고 있나요? 아무도 당신인 줄 몰라요...",
+    composerHint:"언제나 익명으로 게시돼요", postBtn:"익명으로 게시하기",
+    replyPlaceholder:"따뜻한 댓글을 남겨주세요...", replyBtn:"댓글", newTag:"새 글",
+    reportLabel:"신고", reportedLabel:"감사합니다 — 이 게시물은 검토 대상으로 표시되어 피드에서 숨겨졌어요.",
+    crisisTitle:"지금 많이 힘든 걸 혼자 견디고 있는 것 같아요.",
+    crisisBody:"글을 올리기 전에, 지금 바로 도움을 받을 수 있는 곳이 있다는 걸 알아주세요. 미국에서는 언제든 988로 전화하거나 문자할 수 있어요. 아래 글은 그대로 게시되지만, 당신은 익명 피드보다 더 많은 도움을 받을 자격이 있어요.",
+    crisisLink:"위기 지원 자료 보기" },
+  posts:[
+    { who:"Homesick Maple", when:"2시간 전", tag:"향수병",
+      body:"벌써 넉 달째인데, 영상통화에서 엄마가 요리하는 냄새를 맡을 때마다 아직도 눈물이 나요. 부엌 하나가 이렇게까지 그리울 줄은 몰랐어요. 아직도 이렇게 생생하게 아픈 게 정상인가요?",
+      comments:[ {who:"Quiet Harbor", text:"완전 정상이에요. 저는 집에서 나던 소리들만 모은 플레이리스트를 만들어서 잠들 때 듣곤 해요. 완전히 사라지진 않아도 점점 부드러워지긴 하더라고요."},
+                 {who:"Steady Fern", text:"꼭 안아드리고 싶어요. 그 그리움은 곧 집에 당신을 기다리는 사랑이 많다는 뜻이에요."} ] },
+    { who:"Weary Compass", when:"5시간 전", tag:"학업 스트레스",
+      body:"2주 후면 중간고사인데, 제가 얼마나 뒤처졌는지 아무한테도 말 못했어요. 비자가 성적에 달려있다는 게 무섭고, 고향 사람들은 다들 제가 여기서 잘하고 있다고 생각하거든요. 힘들다는 말을 어떻게 꺼내야 할지 모르겠어요.",
+      comments:[ {who:"Hopeful Sparrow", text:"여기에라도 말할 수 있었다는 것 자체가 이미 용기예요. 학교 상담센터는 이런 두려움을 정말 많이 봐왔어요—당신이 처음이 아니에요."} ] },
+    { who:"Curious Pebble", when:"어제", tag:"작은 성취",
+      body:"작은 성취 하나: 오늘은 못 알아들은 농담에 그냥 따라 웃지 않고, 친구한테 무슨 뜻인지 물어봤어요. 친구가 기꺼이 설명해줬고, 결국 같이 커피도 마셨어요. 작은 발걸음씩 나아가는 거겠죠.",
+      comments:[ {who:"Bright Lantern", text:"이거 보고 웃었어요. 이런 작고 용감한 행동들이 쌓여서 결국 달라지는 거예요."},
+                 {who:"Gentle River", text:"새로운 친구랑 커피라니, 정말 좋은 하루였겠네요. 응원할게요."} ] }
+  ],
+  ai:{ eyebrow:"AI 리스너", heading:"밤 몇 시든, 들어줄 누군가가 있어요.",
+    sub:"치료사는 아니고, 치료사를 대신할 수도 없지만—지금 느끼는 감정을 말로 꺼내야 할 때 조용히, 평가 없이 들어주는 존재예요.",
+    chatTitle:"Homeaway 리스너", chatStatus:"언제나 듣고 있어요",
+    greeting:"안녕하세요, 여기 와줘서 반가워요. 서두르지 않아도 돼요—뭐든 마음에 있는 걸 말해줘도 좋고, 오늘 하루가 어땠는지 얘기해도 좋아요.",
+    placeholder:"지금 느끼는 감정을 적어보세요...",
+    note:"이곳은 지지적인 리스너일 뿐, 위기 대응 서비스나 면허를 가진 치료사가 아니에요. 위험한 상황이라면 아래 자료를 확인해주세요.",
+    crisisWords:["자살","죽고 싶","스스로 목숨","자해","살기 싫","끝내고 싶"],
+    responseBank:[
+      { keys:["향수병","집 그리워","가족이 그리워","고향이 그리워"],
+        replies:["집에 대한 그리움이 지금 정말 무겁게 느껴지나 봐요. 지금 이 순간 가장 그리운 건 뭐예요 — 사람, 장소, 냄새, 아니면 소리인가요?",
+                 "향수병은 가장 사소한 순간에 불쑥 찾아오곤 해요. 아픈 게 당연해요. 오늘, 아주 작게라도 고향의 무언가를 가져올 수 있는 방법이 있을까요?"] },
+      { keys:["불안","걱정","긴장","패닉","초조"],
+        replies:["지금 불안이 마음의 많은 부분을 차지하고 있는 것 같아요. 괜찮다면, 무엇에 대한 불안인지 말해줄 수 있어요?",
+                 "그런 걱정을 안고 있는 건 정말 지치는 일이에요. 가장 두려운 게 무엇인지 정확히 이름 붙여보면, 그 힘이 조금은 줄어들기도 해요 — 당신에게 가장 힘든 부분은 뭐예요?"] },
+      { keys:["외로","혼자","친구가 없","아무도 이해","고립"],
+        replies:["낯선 곳에서 혼자라고 느끼는 건 이 경험에서 가장 힘든 부분 중 하나예요. 그리고 지금 느끼는 것보다 훨씬 더 흔한 감정이에요. 이런 느낌이 든 지 얼마나 됐어요?",
+                 "그 고립감이 얼마나 힘든지 느껴져요. 익명으로라도 여기서 이야기를 꺼낸 건 진짜 의미 있는 한 걸음이에요. 오늘 조금이라도 덜 외로워지려면 뭐가 필요할까요?"] },
+      { keys:["스트레스","힘들","압박","시험","마감","성적"],
+        replies:["한꺼번에 정말 많은 걸 짊어지고 있는 것 같아요. 지금 가장 무겁게 느껴지는 부분은 뭐예요?",
+                 "다른 모든 것에 적응하면서 학업 압박까지 견디는 건 정말 힘든 일이에요. 뭐가 먼저 급한지 같이 정리해볼까요, 아니면 그냥 잠깐 털어놓고 싶어요?"] },
+      { keys:["슬퍼","우울","눈물","희망이 없","무기력"],
+        replies:["그렇게 말해줘서 정말 고마워요. 안고 있기엔 무거운 감정이었겠어요. 이런 느낌이 든 지 얼마나 됐어요?",
+                 "그걸 믿고 말해줘서 고마워요. 완벽하게 설명하지 않아도 괜찮아요 — 오늘 그게 어떤 모습으로 나타나든 다 괜찮아요."] },
+      { keys:["문화 충격","적응이 안","안 맞","언어 장벽","못 알아들"],
+        replies:["다른 모든 걸 해내면서 동시에 새로운 문화에 적응하는 건, 겉으로는 '일'처럼 안 보여도 정말 힘든 일이에요. 요즘 가장 낯설게 느껴진 건 뭐예요?",
+                 "완전히 고향도 아니고, 아직 완전히 여기도 아닌 그 애매한 느낌 — 이 커뮤니티의 많은 사람들이 이야기하는 감정이에요. 천천히 자리 잡아도 괜찮아요."] }
+    ],
+    generic:["그 얘기를 나눠줘서 고마워요. 그게 어떤 느낌인지 조금 더 말해줄 수 있어요?",
+             "안고 있기엔 정말 많은 것 같아요. 저는 여기 있고, 서두르지 않아도 돼요 — 지금 가장 하고 싶은 말이 뭐예요?",
+             "듣고 있어요. 지금 어떤 감정을 느끼든, 평가받지 않고 그냥 있어도 괜찮아요.",
+             "지금 적응해야 할 게 이렇게 많은 걸 생각하면 충분히 그럴 만해요. 오늘 하루는 구체적으로 어땠어요?"],
+    nudges:["도움이 된다면, 넷을 세며 천천히 숨을 들이쉬고 여섯을 세며 내쉬어보는 것만으로도 힘든 순간이 조금 누그러질 수 있어요.",
+            "잠깐 밖에 나가보거나 믿는 사람에게 문자 한 통 보내는 것처럼 작은 행동이, 생각보다 훨씬 도움이 될 때가 있어요.",
+            "위에 있는 일기장에 이 감정을 적어보는 것도 도움이 될 수 있어요 — 머릿속에서 꺼내놓으면 조금 가벼워지기도 해요."],
+    nudgeFollowup:"만약 이 감정이 계속 이어진다면, 학교 상담센터가 평가 없이 시도해볼 수 있는 좋은 다음 단계예요.",
+    crisisReply:"이렇게 말해줘서 정말 고마워요. 지금 실시간으로 도와줄 수 있는 사람에게 바로 도움을 받았으면 좋겠어요. 미국에 있다면 언제든 988(자살 및 위기 상담전화)로 전화하거나 문자할 수 있어요. 다른 지역에 있다면, 현지 응급 전화나 학교의 위기 상담 라인에 연락해주세요. 당신은 지금 즉시, 진짜 도움을 받을 자격이 있어요 — 당신의 안전이 저에게 중요해요."
+  },
+  resources:{ eyebrow:"도움이 되는 자료", heading:"조금 더 큰 도움이 필요할 때.",
+    sub:"익명으로 털어놓는 것과 다정한 AI도 도움이 되지만, 때로는 진짜 사람이 다음 단계가 되기도 해요. 여기서 시작해보세요.",
+    note:"아래 링크된 자료 대부분은 영어로 제공돼요 — 앞으로 더 많은 언어 옵션을 추가하고 싶어요.",
+    community:{ title:"진짜, 직접 만나는 커뮤니티를 찾고 있나요?",
+      desc:"IFI USA(International Friendships, Inc.)는 유학생을 따뜻하게 맞아주는 호스트 가정, 캠퍼스 친구 모임, 그리고 미국 전역의 지역 커뮤니티와 연결해주는 전국 단위 단체예요. 교회 및 대학교와 협력하는 기독교 신앙 기반 비영리단체이기도 해요 — 신앙적 배경이 당신에게 중요하다면 미리 알아두면 좋을 부분이에요.",
+      fine:"가입은 무료예요. 전국 각지에 지역 모임이 있고, 어디에 있든 참여할 수 있는 온라인 커뮤니티도 있어요.",
+      links:[ {label:"내 근처 IFI 찾아보기", href:"https://www.ifiusa.org/locations/"},
+              {label:"IFI 학생 WhatsApp 커뮤니티 참여하기", href:"https://chat.whatsapp.com/IyqBAXCC6LJCsP0Jgh0RY4"},
+              {label:"IFI USA 더 알아보기", href:"https://www.ifiusa.org"} ] },
+    cards:[
+      { icon:"life-buoy", tone:"var(--hue-danger-soft)", iconColor:"var(--hue-danger)", title:"위기 지원",
+        desc:"당장 위험한 상황이거나 자해를 생각하고 있다면, 아래는 지금 바로 실제 사람이 응답하는 곳이에요.",
+        links:[ {label:"988 자살 및 위기 상담전화 (988로 전화/문자)", href:"https://988lifeline.org"},
+                {label:"위기 문자상담 (741741로 HOME 전송)", href:"https://www.crisistextline.org"},
+                {label:"미국 외 지역의 위기상담 찾기", href:"https://www.iasp.info/resources/Crisis_Centres/"} ] },
+      { icon:"brain", tone:"var(--hue-info-soft)", iconColor:"var(--hue-info)", title:"불안",
+        desc:"새로운 나라, 새로운 압박감과 함께 찾아오는 조급하고 불안한 생각을 위한 안정화 방법과 정보예요.",
+        links:[ {label:"불안·우울 협회 (ADAA)", href:"https://adaa.org"},
+                {label:"NIMH — 불안장애 개요", href:"https://www.nimh.nih.gov/health/topics/anxiety-disorders"} ] },
+      { icon:"home", tone:"var(--sage-0)", iconColor:"var(--sage-5)", title:"향수병",
+        desc:"고향을 크게 그리워해도 괜찮아요. 이 자료들은 그 특별한 아픔에 대한 관점과 공동체를 제공해요.",
+        links:[ {label:"NAFSA — 유학생을 위한 자료", href:"https://www.nafsa.org"},
+                {label:"우리 학교 국제학생지원실", href:"#"} ] },
+      { icon:"graduation-cap", tone:"var(--clay-1)", iconColor:"var(--clay-3)", title:"스트레스 관리",
+        desc:"학업과 경제적 압박을, 조금씩 풀어나가는 법.",
+        links:[ {label:"JED 재단 — 학생 정신건강", href:"https://www.jedfoundation.org"},
+                {label:"Mind — 스트레스 관리 기초", href:"https://www.mind.org.uk"} ] },
+      { icon:"building-2", tone:"var(--hue-success-soft)", iconColor:"var(--hue-success)", title:"교내 상담센터",
+        desc:"대부분의 대학교는 무료 또는 저렴한 상담을 제공하며, 유학생 전담 상담사가 있는 경우도 많아요.",
+        links:[ {label:"학생건강센터에 상담 관련 문의하기", href:"#"},
+                {label:"Active Minds — 캠퍼스 정신건강", href:"https://www.activeminds.org"} ] },
+      { icon:"flower-2", tone:"var(--sage-1)", iconColor:"var(--sage-6)", title:"마음챙김",
+        desc:"바쁘고 불안한 마음을 늦춰주는, 간단하고 비용 부담 없는 방법들이에요.",
+        links:[ {label:"UCLA 마음챙김 센터 — 무료 명상 가이드", href:"https://www.uclahealth.org/programs/marc/mindful-meditations"},
+                {label:"Headspace — 마음챙김 입문", href:"https://www.headspace.com"} ] },
+      { icon:"sparkles", tone:"var(--hue-warning-soft)", iconColor:"var(--hue-warning)", title:"셀프케어 팁",
+        desc:"수면, 운동, 식사, 관계 — 이 모든 걸 지탱해주는 작지만 지속 가능한 습관들이에요.",
+        links:[ {label:"Active Minds — 셀프케어 기본", href:"https://www.activeminds.org/about-mental-health/self-care/"},
+                {label:"NAMI — 내 마음 돌보기", href:"https://www.nami.org"} ] }
+    ]
+  },
+  why:{ eyebrow:"중요한 이유", heading:"이해받는다는 느낌은, 많은 걸 바꿔요.",
+    sub:"많은 유학생들이 한 번쯤은 자기만 힘들다고 생각해요. 하지만 대부분 그렇지 않아요 — 그 사실을 아는 것이 덜 외로워지는 첫걸음이 되곤 해요.",
+    cards:[
+      { icon:"users", title:"당신만 그런 게 아니에요", desc:"나와 비슷한, 누군가의 익명 이야기를 읽는 순간이 고립감이 풀리기 시작하는 순간이 되곤 해요." },
+      { icon:"message-square-heart", title:"이름을 붙이는 것만으로도 도움이 돼요", desc:"익명으로라도 감정을 말로 표현하면, 이해하기도 견디기도 더 쉬워져요. 도움을 요청하기 전 단계가 되기도 해요." },
+      { icon:"footprints", title:"작은 걸음도 의미 있어요", desc:"진단이나 위기 상황이 있어야만 여기 올 수 있는 건 아니에요. 힘든 한 주, 향수병 앓는 저녁, 진짜 작은 성취 — 다 환영이에요." },
+      { icon:"globe-2", title:"필요한 도움의 모양은 사람마다 달라요", desc:"언어, 문화, 비용, 낙인 — 이 모든 게 누군가 도움을 요청할 수 있는지에 영향을 줘요. 이 공간은 그 장벽들을 하나씩 낮추려고 해요." }
+    ]
+  },
+  guidelines:{ eyebrow:"안전 및 운영 원칙", heading:"이 공간을 안전하게 지키기 위한 노력.",
+    sub:"학생들을 위해, 그리고 그들을 아끼는 가족과 커뮤니티를 위해.",
+    points:[
+      { icon:"radar", title:"자동 위기 언어 감지", desc:"일기와 AI 리스너 모두 누군가 위험할 수 있음을 암시하는 표현을 감지하면, 즉시 실제 위기 상담 자료를 보여줘요 — 미국은 988, 다른 지역은 각 지역 자료로요." },
+      { icon:"flag", title:"커뮤니티 신고", desc:"해롭거나, 불친절하거나, 안전하지 않다고 느껴지는 게시물이나 댓글은 누구나 신고할 수 있어요. 신고된 콘텐츠는 검토가 끝날 때까지 피드에서 숨겨져요." },
+      { icon:"heart-handshake", title:"따뜻함을 우선하는 문화", desc:"평가, 다툼, 훈계식 조언은 없어요. 이를 어기는 게시물과 댓글은 삭제돼요." },
+      { icon:"eye-off", title:"진짜 익명성", desc:"계정도, 이름도, 프로필도 없어요. 게시물은 어떤 신원과도 연결되지 않아요 — 얼마나 공유할지는 당신이 정해요." }
+    ],
+    disclaimer:"<strong>꼭 읽어주세요:</strong> Homeaway는 현재 학생이 만든 프로토타입이며, 관리자가 상주하는 정식 플랫폼이 아니에요. 위에 설명한 기능들은 이 공간이 지향하는 설계 방향—자동 감지, 신고, 따뜻함 우선 원칙—을 보여주는 것이지만, 아직 모든 게시물을 실시간으로 검토하는 24시간 인력 운영팀은 없어요. 지금 당신이나 다른 누군가가 즉각적인 위험에 처해 있다면, 게시물이 확인되기를 기다리지 말고 위에 있는 위기 지원 자료를 바로 이용하거나 현지 응급 서비스에 연락해주세요." },
+  footer:{ disclaimer:"<strong>Homeaway는 또래 지지 공간이지, 의료 서비스가 아니에요.</strong> 일기, 댓글, AI 리스너 그 무엇도 면허를 가진 정신건강 전문가의 치료를 대신할 수 없어요. 지금 위기 상황이거나 자해를 생각하고 있다면, 현지 응급전화로 연락하거나 가장 가까운 응급실로 가거나, 거주 지역의 위기상담 전화를 이용해주세요 (미국에서는 <strong>988</strong>로 전화 또는 문자). 당신은 진짜, 즉각적인 도움을 받을 자격이 있고, 이 상황을 혼자 감당하지 않아도 돼요.",
+    fine:"Homeaway · 유학생 정신건강 지원을 위한 프로토타입 · 진심을 담아 제작" }
+},
+
+/* ---------------- JAPANESE ---------------- */
+ja: {
+  nav:{ journal:"匿名の心の日記", ai:"AIリスナー", resources:"リソース", why:"大切な理由", guidelines:"安全性と運営方針" },
+  hero:{ eyebrow:"少し安心して降り立てる場所",
+    tagline:"あなたは一人じゃない。匿名で気持ちを分かち合い、振り返り、支えを見つけよう。",
+    intro:"孤独感、ホームシック、不安、カルチャーショック、学業のプレッシャー、経済的な不安——多くの留学生が、まだ馴染みきらない言語と環境の中で、こうした気持ちを静かに抱えています。Homeawayは、あなたと同じような気持ちを抱えている人が他にもいること、そして助けを求めるのに全てを説明したり名前を明かしたりする必要はないことを伝えたくて生まれました。",
+    cta1:"あなたの話を共有する", cta2:"AIと話す", note:"登録不要、名前も不要。ただ人がいるだけです。" },
+  journal:{ eyebrow:"匿名の心の日記", heading:"声に出せなかったことを、ここに書いてみて。",
+    sub:"自由に書いてください。投稿はすぐに反映され、あなたの気持ち以外は何も添えられません——他の人が下に温かいコメントを残すこともできます。",
+    kindness:"ここは優しさを大切にする場所です。批判も、説教も、口論もなく——ただお互いに寄り添うだけ。投稿の向こうにいる人に、どうか優しくしてください。",
+    composerPlaceholder:"今日は何を考えていますか?誰もあなただとは分かりません…",
+    composerHint:"常に匿名で投稿されます", postBtn:"匿名で投稿する",
+    replyPlaceholder:"温かいコメントを残してください…", replyBtn:"返信", newTag:"新着",
+    reportLabel:"報告", reportedLabel:"ありがとうございます——この投稿は確認のためフラグが立てられ、フィードから非表示になりました。",
+    crisisTitle:"今、とても重いものを抱えているように感じます。",
+    crisisBody:"投稿する前に、今すぐ本当に役立つサポートがあることを知ってください。アメリカでは、いつでも988に電話またはメッセージを送ることができます。あなたの投稿はこのまま共有されますが、あなたには匿名フィード以上のサポートを受ける価値があります。",
+    crisisLink:"危機支援のリソースを見る" },
+  posts:[
+    { who:"Homesick Maple", when:"2時間前", tag:"ホームシック",
+      body:"もう4か月経つのに、ビデオ通話で母の料理の匂いがするたびに、まだ少し泣いてしまいます。台所ひとつをこんなに恋しく思うなんて思っていませんでした。まだこんなに生々しく感じるのは普通なのでしょうか?",
+      comments:[ {who:"Quiet Harbor", text:"すごく普通のことですよ。私は実家の音を集めたプレイリストを作って、眠るときに聴いています。完全には消えなくても、少しずつ和らいでいきます。"},
+                 {who:"Steady Fern", text:"ハグを送ります。その痛みは、故郷にたくさんの愛があなたを待っている証拠です。"} ] },
+    { who:"Weary Compass", when:"5時間前", tag:"学業のプレッシャー",
+      body:"2週間後に中間試験があるのに、どれだけ遅れているか誰にも言えていません。ビザが成績次第だと思うと怖いし、故郷のみんなは私がここでうまくやっていると思っています。しんどいって、どう伝えたらいいのか分かりません。",
+      comments:[ {who:"Hopeful Sparrow", text:"ここで言葉にできただけでも、もう勇気があることです。学校のカウンセリングセンターは、この不安を何度も見てきています——あなたが最初ではありません。"} ] },
+    { who:"Curious Pebble", when:"昨日", tag:"小さな一歩",
+      body:"小さな一歩:分からなかった冗談に、愛想笑いでごまかす代わりに、クラスメートに聞いてみました。彼女は喜んで説明してくれて、その後一緒にコーヒーを飲みに行きました。少しずつ、なんでしょうね。",
+      comments:[ {who:"Bright Lantern", text:"これを読んで思わず笑顔になりました。まさにこういう小さくて勇気のあることが積み重なっていくんですよね。"},
+                 {who:"Gentle River", text:"新しい友達とコーヒー、いい一日だったんですね。誇りに思います。"} ] }
+  ],
+  ai:{ eyebrow:"AIリスナー", heading:"何時でも、話を聞いてくれる誰かがいる。",
+    sub:"セラピストではなく、その代わりにもなりません——ただ、気持ちを言葉にしたいときに、穏やかで評価しない耳を傾ける存在です。",
+    chatTitle:"Homeaway リスナー", chatStatus:"いつでも聞いています",
+    greeting:"こんにちは、来てくれて嬉しいです。急がなくて大丈夫——何でも思っていることを話してください。今日一日がどうだったかだけでも構いません。",
+    placeholder:"今の気持ちを入力してください…",
+    note:"これは支援的なリスナーであり、危機対応サービスや有資格のセラピストではありません。危険な状況にある場合は、下記のリソースをご覧ください。",
+    crisisWords:["自殺","死にたい","自分を傷つけ","消えたい","終わりにしたい"],
+    responseBank:[
+      { keys:["ホームシック","家が恋し","家族が恋し","実家が恋し"],
+        replies:["家への思いが、今とても重く感じられているようですね。今この瞬間、一番恋しいものは何ですか——人、場所、匂い、それとも音でしょうか?",
+                 "ホームシックは、思いがけない瞬間に顔を出すものです。つらいのは当然です。今日、ほんの少しでも故郷の何かを取り入れられるとしたら、何がありますか?"] },
+      { keys:["不安","心配","パニック","緊張","落ち着かない"],
+        replies:["今、不安が心の多くを占めているようですね。よかったら、何についての不安か教えてもらえますか?",
+                 "そういう心配を抱え続けるのは本当に疲れますよね。一番怖いことを具体的に言葉にすると、その力が少し弱まることがあります——あなたにとって一番つらい部分は何ですか?"] },
+      { keys:["孤独","一人","友達がいない","誰も分かってくれない","孤立"],
+        replies:["新しい場所で孤独を感じるのは、この経験の中で一番つらいことの一つです。そして、今感じているよりもずっとよくあることです。この気持ちはどのくらい続いていますか?",
+                 "その孤立感、伝わってきます。匿名でも、ここで声を上げたことは本当に大きな一歩です。今日、少しでも孤独を和らげるには何ができそうですか?"] },
+      { keys:["ストレス","余裕がない","プレッシャー","締め切り","試験","成績"],
+        replies:["一度にたくさんのことを抱えているようですね。今、一番重く感じているのは何ですか?",
+                 "他のすべてに適応しながら学業のプレッシャーまで抱えるのは、本当に大変なことです。何が一番先にやるべきか一緒に整理してみますか、それとも今はただ吐き出したい気分ですか?"] },
+      { keys:["悲しい","落ち込","涙","絶望","無気力"],
+        replies:["それを話してくれて、本当にありがたいです。抱えているには重い気持ちですね。この気持ちはどのくらい続いていますか?",
+                 "信じて話してくれてありがとうございます。完璧に説明できなくて大丈夫です——今日それがどんな形で表れていても、それでいいんです。"] },
+      { keys:["カルチャーショック","馴染めない","違和感","言葉の壁","聞き取れない"],
+        replies:["他のすべてをこなしながら新しい文化に適応するのは、外からは「頑張り」に見えなくても、本当に大変なことです。最近、一番不慣れに感じたことは何ですか?",
+                 "完全に故郷でもなく、まだ完全にここでもない——その中間の感覚は、このコミュニティの多くの人が語っています。落ち着くまでの時間は、あなたにあります。"] }
+    ],
+    generic:["それを話してくれてありがとうございます。もう少し、その気持ちについて教えてもらえますか?",
+             "それはたくさんのことを抱えているようですね。ここにいますので、急がなくて大丈夫です——今、一番伝えたいことは何ですか?",
+             "聞いています。今どんな気持ちであっても、評価されることなくそのままでいて大丈夫です。",
+             "今適応しなければならないことを考えると、それも当然のことです。今日は具体的にどんな一日でしたか?"],
+    nudges:["もしよければ、4カウントでゆっくり息を吸い、6カウントで吐くだけでも、つらい瞬間が少し和らぐことがあります。",
+            "少し外に出てみる、信頼できる誰かにメッセージを送ってみるなど、小さなことが思った以上に助けになることがあります。",
+            "上の日記に、この気持ちを書き留めてみるのもいいかもしれません——頭の外に出すことで、少し軽くなることがあります。"],
+    nudgeFollowup:"もしこの気持ちがずっと続くようなら、学校のカウンセリングセンターは、評価されることのない良い次のステップです。",
+    crisisReply:"話してくれて本当にありがとうございます。今すぐ、リアルタイムで助けてくれる人からサポートを受けてほしいです。アメリカにいる場合、いつでも988(自殺・危機ライフライン)に電話またはメッセージを送ることができます。他の地域にいる場合は、お住まいの地域の緊急電話番号か、学校の危機対応窓口に連絡してください。あなたは今すぐ、本当のサポートを受ける価値があります——あなたの安全を大切に思っています。"
+  },
+  resources:{ eyebrow:"役立つリソース", heading:"もっとサポートが必要だと感じたときに。",
+    sub:"匿名での発散や、優しいAIも助けになりますが、時には次のステップとして本物の人とのつながりが必要になります。ここから始めてみてください。",
+    note:"以下のリンク先の多くは英語です——今後、より多くの言語に対応できるよう努めています。",
+    community:{ title:"実際に会える、本当のコミュニティを探していますか?",
+      desc:"IFI USA(International Friendships, Inc.)は、留学生を温かく迎えるホストファミリーやキャンパスの交流グループ、そしてアメリカ全土の地域コミュニティにつなげてくれる全国組織です。教会や大学と連携するキリスト教信仰に基づく非営利団体でもあります——信仰的な背景があなたにとって大切なら、事前に知っておくとよいでしょう。",
+      fine:"参加は無料です。全米各地に拠点があり、どこにいてもつながれるオンラインコミュニティもあります。",
+      links:[ {label:"近くのIFI拠点を探す", href:"https://www.ifiusa.org/locations/"},
+              {label:"IFI学生WhatsAppコミュニティに参加する", href:"https://chat.whatsapp.com/IyqBAXCC6LJCsP0Jgh0RY4"},
+              {label:"IFI USAについてもっと知る", href:"https://www.ifiusa.org"} ] },
+    cards:[
+      { icon:"life-buoy", tone:"var(--hue-danger-soft)", iconColor:"var(--hue-danger)", title:"危機支援",
+        desc:"今すぐ危険な状況にある、または自分を傷つけることを考えている場合、以下は今すぐ本物の人が対応してくれる窓口です。",
+        links:[ {label:"988自殺・危機ライフライン(988に電話/メッセージ)", href:"https://988lifeline.org"},
+                {label:"危機テキストライン(741741にHOMEを送信)", href:"https://www.crisistextline.org"},
+                {label:"アメリカ以外の危機ホットラインを探す", href:"https://www.iasp.info/resources/Crisis_Centres/"} ] },
+      { icon:"brain", tone:"var(--hue-info-soft)", iconColor:"var(--hue-info)", title:"不安",
+        desc:"新しい国、新しいプレッシャーと共にやってくる、焦りや不安な気持ちのためのグラウンディング法と情報です。",
+        links:[ {label:"不安・抑うつ協会(ADAA)", href:"https://adaa.org"},
+                {label:"NIMH — 不安障害の概要", href:"https://www.nimh.nih.gov/health/topics/anxiety-disorders"} ] },
+      { icon:"home", tone:"var(--sage-0)", iconColor:"var(--sage-5)", title:"ホームシック",
+        desc:"故郷を大いに恋しがっていいんです。ここでは、その特別な痛みへの視点とコミュニティを提供します。",
+        links:[ {label:"NAFSA — 留学生向けリソース", href:"https://www.nafsa.org"},
+                {label:"あなたの大学の留学生課", href:"#"} ] },
+      { icon:"graduation-cap", tone:"var(--clay-1)", iconColor:"var(--clay-3)", title:"ストレス管理",
+        desc:"学業や経済的なプレッシャーを、少しずつほどいていく方法です。",
+        links:[ {label:"JED財団 — 学生のメンタルヘルス", href:"https://www.jedfoundation.org"},
+                {label:"Mind — ストレス管理の基本", href:"https://www.mind.org.uk"} ] },
+      { icon:"building-2", tone:"var(--hue-success-soft)", iconColor:"var(--hue-success)", title:"学内カウンセリング",
+        desc:"ほとんどの大学では無料または低料金のカウンセリングを提供しており、留学生専門のセッションがあることも多いです。",
+        links:[ {label:"学生健康センターにカウンセリングについて相談する", href:"#"},
+                {label:"Active Minds — キャンパスのメンタルヘルス", href:"https://www.activeminds.org"} ] },
+      { icon:"flower-2", tone:"var(--sage-1)", iconColor:"var(--sage-6)", title:"マインドフルネス",
+        desc:"忙しく不安な心をゆっくりさせる、シンプルで費用のかからない方法です。",
+        links:[ {label:"UCLAマインドフルネスセンター — 無料ガイド瞑想", href:"https://www.uclahealth.org/programs/marc/mindful-meditations"},
+                {label:"Headspace — マインドフルネス入門", href:"https://www.headspace.com"} ] },
+      { icon:"sparkles", tone:"var(--hue-warning-soft)", iconColor:"var(--hue-warning)", title:"セルフケアのヒント",
+        desc:"睡眠、運動、食事、つながり——これらすべてを支える、小さくて続けやすい習慣です。",
+        links:[ {label:"Active Minds — セルフケアの基本", href:"https://www.activeminds.org/about-mental-health/self-care/"},
+                {label:"NAMI — 自分の心を大切にする", href:"https://www.nami.org"} ] }
+    ]
+  },
+  why:{ eyebrow:"大切な理由", heading:"理解されていると感じることが、物事を変えます。",
+    sub:"多くの留学生は、どこかの時点で「苦しんでいるのは自分だけだ」と思い込みます。でも、たいていはそうではありません——そのことに気づくのが、孤独を和らげる第一歩になります。",
+    cards:[
+      { icon:"users", title:"あなただけではありません", desc:"自分とよく似た、誰かの匿名の話を読むこと——それが孤立感がほどけ始める瞬間になることがよくあります。" },
+      { icon:"message-square-heart", title:"言葉にすることが助けになる", desc:"匿名であっても気持ちを言葉にすることで、理解しやすく、抱えやすくなります。それは助けを求める前の一歩でもあります。" },
+      { icon:"footprints", title:"小さな一歩にも意味がある", desc:"診断や危機的な状況がなくても、ここにいていいんです。つらい一週間も、ホームシックな夜も、本物の小さな前進も、すべて歓迎します。" },
+      { icon:"globe-2", title:"支えの形は人それぞれ", desc:"言語、文化、費用、スティグマ——これらすべてが、助けを求められるかどうかに影響します。この空間は、そうした壁を一つずつ低くしようとしています。" }
+    ]
+  },
+  guidelines:{ eyebrow:"安全性と運営方針", heading:"この場所の安全性を保つための取り組み。",
+    sub:"学生のために、そして彼らを大切に思う家族やコミュニティのために。",
+    points:[
+      { icon:"radar", title:"危機に関する言葉の自動検知", desc:"日記もAIリスナーも、危険を示唆する可能性のある言葉を検知し、実際の危機支援リソースをすぐに表示します——アメリカでは988、他の地域ではそれぞれの窓口を案内します。" },
+      { icon:"flag", title:"コミュニティによる報告", desc:"有害・不親切・危険だと感じる投稿やコメントは、誰でも報告できます。報告された内容は、確認が完了するまで公開フィードから非表示になります。" },
+      { icon:"heart-handshake", title:"優しさを最優先する文化", desc:"批判も、口論も、説教めいたアドバイスもありません。これに反する投稿やコメントは削除されます。" },
+      { icon:"eye-off", title:"本当の意味での匿名性", desc:"アカウントも、名前も、プロフィールもありません。投稿はどんな個人情報とも結び付けられません——どこまで共有するかは、あなたが決められます。" }
+    ],
+    disclaimer:"<strong>必ずお読みください:</strong> Homeawayは現在、学生が制作したプロトタイプであり、常駐スタッフのいる正式な運営プラットフォームではありません。上記の機能は、このサイトが目指す設計——自動検知、報告、優しさを優先するルール——を説明したものですが、すべての投稿をリアルタイムで確認する24時間体制の人的モデレーションチームはまだ存在しません。もしあなたや周りの誰かが今すぐ危険な状況にある場合は、投稿が見られるのを待たずに、上記の危機支援リソースをすぐに利用するか、地域の緊急サービスに連絡してください。" },
+  footer:{ disclaimer:"<strong>Homeawayは仲間同士の支え合いの場であり、医療サービスではありません。</strong>日記も、コメントも、AIリスナーも、資格を持つメンタルヘルスの専門家によるケアの代わりにはなりません。もし今、危機的な状況にある、または自分を傷つけることを考えているなら、お住まいの地域の緊急電話番号に連絡するか、最寄りの救急外来へ行くか、あなたのいる地域の危機ホットラインに連絡してください(アメリカでは<strong>988</strong>に電話またはメッセージ)。あなたには本物の、即座のサポートを受ける価値があり、これを一人で抱え込む必要はありません。",
+    fine:"Homeaway · 留学生のメンタルヘルス支援のためのプロトタイプ · 心を込めて制作" }
+},
+
+/* ---------------- HINDI ---------------- */
+hi: {
+  nav:{ journal:"अनाम डायरी", ai:"AI लिसनर", resources:"संसाधन", why:"यह क्यों ज़रूरी है", guidelines:"सुरक्षा और नियम" },
+  hero:{ eyebrow:"थोड़ा सुकून से ठहरने की जगह",
+    tagline:"आप अकेले नहीं हैं। बेनाम होकर अपनी बात कहें, सोचें, और सहारा पाएं।",
+    intro:"अकेलापन, घर की याद, चिंता, कल्चर शॉक, पढ़ाई का दबाव, पैसों की चिंता — बहुत से इंटरनेशनल स्टूडेंट्स ये सब चुपचाप सहते हैं, एक ऐसी भाषा और जगह में जो अभी भी नई-नई लगती है। Homeaway आपको यह याद दिलाने के लिए है कि कोई और भी कुछ ऐसा ही महसूस कर रहा है, और मदद माँगने के लिए सब कुछ बताना या अपना नाम देना ज़रूरी नहीं है।",
+    cta1:"अपनी बात लिखें", cta2:"AI से बात करें", note:"कोई साइन-अप नहीं, कोई नाम नहीं — बस लोग हैं।" },
+  journal:{ eyebrow:"अनाम डायरी", heading:"जो बात कभी ज़ोर से नहीं कही, वो यहाँ लिखिए।",
+    sub:"बेझिझक लिखिए। यह तुरंत पोस्ट हो जाता है, बिना किसी पहचान के — सिर्फ आपकी भावना, और यहाँ मौजूद बाकी लोग नीचे एक अच्छा शब्द छोड़ सकते हैं।",
+    kindness:"यहाँ हमेशा अपनापन रहता है। कोई जज नहीं करेगा, कोई सलाह नहीं थोपेगा, कोई बहस नहीं होगी — बस लोग एक-दूसरे के लिए मौजूद हैं। पोस्ट के पीछे मौजूद इंसान के साथ नरमी से पेश आइए।",
+    composerPlaceholder:"आज मन में क्या चल रहा है? कोई नहीं जान पाएगा कि यह आप हैं...",
+    composerHint:"हमेशा अनाम रूप से पोस्ट होता है", postBtn:"अनाम रूप से पोस्ट करें",
+    replyPlaceholder:"एक सहारा देने वाली टिप्पणी लिखें...", replyBtn:"जवाब दें", newTag:"नई पोस्ट",
+    reportLabel:"रिपोर्ट करें", reportedLabel:"धन्यवाद — इस पोस्ट को समीक्षा के लिए चिह्नित कर दिया गया है और फ़ीड से हटा दिया गया है।",
+    crisisTitle:"ऐसा लग रहा है कि आप इस वक़्त कुछ बहुत भारी महसूस कर रहे हैं।",
+    crisisBody:"पोस्ट करने से पहले, यह जान लें कि अभी, इसी वक़्त असली मदद उपलब्ध है। अमेरिका में, आप कभी भी 988 पर कॉल या मैसेज कर सकते हैं। आपकी पोस्ट फिर भी शेयर होगी — लेकिन आप सिर्फ एक अनाम फ़ीड से कहीं ज़्यादा के हक़दार हैं।",
+    crisisLink:"क्राइसिस सहायता संसाधन देखें" },
+  posts:[
+    { who:"Homesick Maple", when:"2 घंटे पहले", tag:"घर की याद",
+      body:"चार महीने हो गए हैं, और अब भी वीडियो कॉल पर जब मम्मी के खाना बनाने की खुशबू आती है तो थोड़ा रो पड़ती हूँ। मुझे नहीं पता था कि सिर्फ़ एक रसोई को इतना मिस करना इतना दुखी कर सकता है। क्या इतने महीनों बाद भी ऐसा महसूस करना सामान्य है?",
+      comments:[ {who:"Quiet Harbor", text:"बिल्कुल सामान्य है। मैंने घर की आवाज़ों की एक प्लेलिस्ट बनाई है, बस उसी को सुनते हुए सोती हूँ। यह धीरे-धीरे हल्का हो जाता है, भले ही पूरी तरह कभी न जाए।"},
+                 {who:"Steady Fern", text:"एक गले लगना भेज रही हूँ। यह दर्द बताता है कि घर पर आपके लिए बहुत सारा प्यार इंतज़ार कर रहा है।"} ] },
+    { who:"Weary Compass", when:"5 घंटे पहले", tag:"पढ़ाई का दबाव",
+      body:"दो हफ़्ते में मिड-टर्म हैं, और मैंने किसी को नहीं बताया कि मैं कितना पीछे रह गया हूँ, क्योंकि मुझे डर है कि मेरा वीज़ा मेरे ग्रेड्स पर निर्भर है, और घर पर सब सोचते हैं कि मैं यहाँ बहुत अच्छा कर रहा हूँ। मुझे समझ नहीं आता कि यह कैसे कहूँ कि मैं struggle कर रहा हूँ।",
+      comments:[ {who:"Hopeful Sparrow", text:"आपने अभी यहाँ कह दिया, और इसमें ही हिम्मत लगती है। आपके कैंपस काउंसलिंग सेंटर ने यह डर पहले भी देखा है — आप पहले नहीं हैं।"} ] },
+    { who:"Curious Pebble", when:"कल", tag:"छोटी जीत",
+      body:"एक छोटी सी जीत: आज मैंने एक joke समझ न आने पर बस हँसने का नाटक करने के बजाय, अपने क्लासमेट से पूछ लिया। उसने खुशी-खुशी समझाया, और फिर हम साथ में कॉफ़ी पीने चले गए। शायद यह सब छोटे-छोटे कदमों में ही होता है।",
+      comments:[ {who:"Bright Lantern", text:"इसे पढ़कर मुस्कुरा दी। यही वो छोटी, हिम्मत वाली बात है जो धीरे-धीरे जुड़ती जाती है।"},
+                 {who:"Gentle River", text:"नए दोस्त के साथ कॉफ़ी — सच में अच्छा दिन लगता है। आप पर गर्व है।"} ] }
+  ],
+  ai:{ eyebrow:"AI लिसनर", heading:"रात के किसी भी पहर, सुनने वाला कोई है।",
+    sub:"यह कोई थेरेपिस्ट नहीं है, और न ही उसकी जगह ले सकता है — बस एक शांत, बिना जज किए सुनने वाला, जब आपको अपनी भावनाओं को शब्द देने हों।",
+    chatTitle:"Homeaway लिसनर", chatStatus:"सुनने के लिए यहाँ है",
+    greeting:"नमस्ते, मुझे खुशी है कि आप यहाँ हैं। कोई जल्दी नहीं है — जो भी मन में है बताइए, या बस यह बताइए कि आज का दिन कैसा रहा।",
+    placeholder:"अभी जैसा महसूस कर रहे हैं, वो लिखें...",
+    note:"यह एक सहायक लिसनर है, कोई क्राइसिस सेवा या लाइसेंस प्राप्त थेरेपिस्ट नहीं। अगर आप ख़तरे में हैं, तो कृपया नीचे दिए संसाधन देखें।",
+    crisisWords:["आत्महत्या","खुद को नुकसान","जीना नहीं चाहता","मरना चाहता","खुद को खत्म"],
+    responseBank:[
+      { keys:["घर की याद","घर मिस","परिवार की याद","घर याद आ"],
+        replies:["घर की यह याद अभी सच में भारी लग रही है। इस पल आपको सबसे ज़्यादा किस चीज़ की याद आ रही है — किसी इंसान की, किसी जगह की, किसी खुशबू या आवाज़ की?",
+                 "घर की याद अक्सर सबसे छोटे पलों में उभर आती है। दर्द होना समझ में आता है। क्या आज घर की कोई छोटी सी चीज़ है जिसे आप अपने दिन में शामिल कर सकते हैं?"] },
+      { keys:["चिंता","घबराहट","बेचैनी","डर लग","टेंशन"],
+        replies:["लग रहा है कि अभी चिंता ने आपके मन में बहुत जगह ले ली है। अगर आप बताना चाहें, तो यह किस बारे में है?",
+                 "इस तरह की चिंता को ढोना सच में थका देता है। कभी-कभी जिस बात से सबसे ज़्यादा डर लगता है, उसे नाम देने से उसका असर थोड़ा कम हो जाता है — आपके लिए सबसे मुश्किल हिस्सा क्या है?"] },
+      { keys:["अकेला","अकेलापन","दोस्त नहीं","कोई समझता नहीं","अलग-थलग"],
+        replies:["एक नई जगह में अकेला महसूस करना इस पूरे अनुभव के सबसे मुश्किल हिस्सों में से एक है, और यह जितना अभी लग रहा है उससे कहीं ज़्यादा आम है। यह एहसास कब से हो रहा है?",
+                 "यह अलगाव कितना भारी है, मैं समझ सकता/सकती हूँ। बेनाम होकर भी यहाँ बोलना, एक असली कदम है। आज थोड़ा कम अकेला महसूस करने के लिए क्या मदद करेगा?"] },
+      { keys:["तनाव","दबाव","परीक्षा","एग्ज़ाम","डेडलाइन","ग्रेड"],
+        replies:["लग रहा है कि आप एक साथ बहुत कुछ संभाल रहे हैं। अभी सबसे भारी हिस्सा क्या लग रहा है?",
+                 "बाकी सब कुछ adjust करते हुए पढ़ाई का दबाव झेलना सच में बहुत कुछ है। क्या यह मदद करेगा कि हम पहले क्या ज़रूरी है वो समझें, या आप बस अभी थोड़ा मन हल्का करना चाहेंगे?"] },
+      { keys:["उदास","दुखी","रोना","निराश","हिम्मत टूट"],
+        replies:["यह बताने के लिए शुक्रिया। यह भावना अपने साथ रखना सच में भारी लगता होगा। यह कब से महसूस हो रहा है?",
+                 "मुझ पर भरोसा करके यह बताने के लिए शुक्रिया। इसे परफेक्ट तरीके से समझाना ज़रूरी नहीं — आज यह जैसे भी सामने आ रहा है, वैसे ही ठीक है।"] },
+      { keys:["कल्चर शॉक","फिट नहीं","अलग महसूस","भाषा की दिक्कत","समझ नहीं आता"],
+        replies:["बाकी सब कुछ करते हुए एक नई संस्कृति में adjust करना सच में मुश्किल काम है, भले ही बाहर से यह 'काम' जैसा न दिखे। हाल ही में सबसे अनजाना क्या महसूस हुआ?",
+                 "न पूरी तरह घर जैसा, न अभी पूरी तरह यहाँ का — यह बीच का एहसास, इस community के बहुत से लोग बताते हैं। आपको settle होने का समय लेने का पूरा हक़ है।"] }
+    ],
+    generic:["यह मेरे साथ शेयर करने के लिए शुक्रिया। क्या आप थोड़ा और बता सकते हैं कि यह कैसा महसूस हो रहा है?",
+             "लगता है यह संभालने के लिए बहुत कुछ है। मैं यहाँ हूँ, कोई जल्दी नहीं है — अभी सबसे ज़रूरी बात क्या कहना चाहेंगे?",
+             "मैं सुन रहा/रही हूँ। अभी आप जो भी महसूस कर रहे हैं, वो बिना किसी जजमेंट के वैसा ही रहने दिया जा सकता है।",
+             "जितना कुछ आप adjust कर रहे हैं, उसे देखते हुए यह पूरी तरह समझ में आता है। आज खासतौर पर दिन कैसा रहा?"],
+    nudges:["अगर मदद करे, तो चार गिनती में धीरे से साँस अंदर लें और छह गिनती में बाहर छोड़ें — इससे मुश्किल पल थोड़ा हल्का हो सकता है।",
+            "कभी-कभी कोई छोटी बात — जैसे कुछ मिनट बाहर टहलना या किसी भरोसेमंद इंसान को मैसेज करना — सोचने से कहीं ज़्यादा मदद करती है।",
+            "इसे ऊपर वाली डायरी में भी लिख सकते हैं — कभी-कभी भावना को मन से बाहर निकालते ही वो थोड़ी हल्की लगने लगती है।"],
+    nudgeFollowup:"और अगर यह एहसास बना रहता है, तो आपका कैंपस काउंसलिंग सेंटर बिना जज किए आज़माने के लिए एक अच्छा अगला कदम है।",
+    crisisReply:"यह बताने के लिए सच में शुक्रिया, और मैं चाहता/चाहती हूँ कि आपको अभी, इसी वक़्त किसी ऐसे इंसान से मदद मिले जो रियल टाइम में सहायता कर सके। अगर आप अमेरिका में हैं, तो आप कभी भी, दिन हो या रात, 988 (सुसाइड एंड क्राइसिस लाइफलाइन) पर कॉल या मैसेज कर सकते हैं। अगर आप कहीं और हैं, तो कृपया अपने स्थानीय इमरजेंसी नंबर या कैंपस क्राइसिस लाइन से संपर्क करें। आप अभी, तुरंत, असली मदद के हक़दार हैं — मुझे आपकी सुरक्षा की परवाह है।"
+  },
+  resources:{ eyebrow:"मददगार संसाधन", heading:"जब आपको और सहारे की ज़रूरत महसूस हो।",
+    sub:"बेनाम होकर मन हल्का करना और एक केयरिंग AI मदद कर सकते हैं — लेकिन कभी-कभी अगला सही कदम एक असली इंसान होता है। यहाँ से शुरुआत करें।",
+    note:"नीचे दिए गए ज़्यादातर संसाधन अंग्रेज़ी में हैं — हम समय के साथ और भाषाओं में विकल्प जोड़ने की उम्मीद रखते हैं।",
+    community:{ title:"असली, आमने-सामने वाला community ढूंढ रहे हैं?",
+      desc:"IFI USA (International Friendships, Inc.) एक राष्ट्रीय संगठन है जो इंटरनेशनल स्टूडेंट्स को स्वागत करने वाले होस्ट फैमिलीज़, कैंपस फ्रेंडशिप ग्रुप्स, और अमेरिका भर के स्थानीय community से जोड़ता है। यह एक फेथ-बेस्ड (ईसाई) नॉन-प्रॉफिट संस्था है जो चर्चों और यूनिवर्सिटीज़ के साथ मिलकर काम करती है — अगर आपके लिए धार्मिक जुड़ाव मायने रखता है, तो यह पहले से जान लेना अच्छा रहेगा।",
+      fine:"जुड़ना मुफ़्त है। पूरे देश में लोकेशंस हैं, साथ ही ऑनलाइन community भी है, चाहे आप कहीं भी हों।",
+      links:[ {label:"अपने पास IFI लोकेशन ढूंढें", href:"https://www.ifiusa.org/locations/"},
+              {label:"IFI स्टूडेंट WhatsApp community जॉइन करें", href:"https://chat.whatsapp.com/IyqBAXCC6LJCsP0Jgh0RY4"},
+              {label:"IFI USA के बारे में और जानें", href:"https://www.ifiusa.org"} ] },
+    cards:[
+      { icon:"life-buoy", tone:"var(--hue-danger-soft)", iconColor:"var(--hue-danger)", title:"क्राइसिस सहायता",
+        desc:"अगर आप तुरंत ख़तरे में हैं या खुद को नुकसान पहुँचाने के बारे में सोच रहे हैं, तो यहाँ अभी असली लोग मदद के लिए मौजूद हैं।",
+        links:[ {label:"988 सुसाइड एंड क्राइसिस लाइफलाइन (988 पर कॉल/मैसेज)", href:"https://988lifeline.org"},
+                {label:"क्राइसिस टेक्स्ट लाइन (741741 पर HOME भेजें)", href:"https://www.crisistextline.org"},
+                {label:"अमेरिका के बाहर क्राइसिस लाइन ढूंढें", href:"https://www.iasp.info/resources/Crisis_Centres/"} ] },
+      { icon:"brain", tone:"var(--hue-info-soft)", iconColor:"var(--hue-info)", title:"चिंता",
+        desc:"नए देश और नए दबावों के साथ आने वाले बेचैन, चिंतित विचारों के लिए तरीक़े और जानकारी।",
+        links:[ {label:"Anxiety & Depression Association (ADAA)", href:"https://adaa.org"},
+                {label:"NIMH — Anxiety Disorders जानकारी", href:"https://www.nimh.nih.gov/health/topics/anxiety-disorders"} ] },
+      { icon:"home", tone:"var(--sage-0)", iconColor:"var(--sage-5)", title:"घर की याद",
+        desc:"आपको खुलकर घर को मिस करने का पूरा हक़ है। यहाँ इस खास दर्द के लिए नज़रिया और community मिलेगी।",
+        links:[ {label:"NAFSA — इंटरनेशनल स्टूडेंट्स के लिए संसाधन", href:"https://www.nafsa.org"},
+                {label:"आपकी यूनिवर्सिटी का इंटरनेशनल स्टूडेंट ऑफिस", href:"#"} ] },
+      { icon:"graduation-cap", tone:"var(--clay-1)", iconColor:"var(--clay-3)", title:"तनाव प्रबंधन",
+        desc:"पढ़ाई और पैसों के दबाव को थोड़ा-थोड़ा करके सुलझाना।",
+        links:[ {label:"JED Foundation — स्टूडेंट मेंटल हेल्थ", href:"https://www.jedfoundation.org"},
+                {label:"Mind — तनाव प्रबंधन की बुनियादी बातें", href:"https://www.mind.org.uk"} ] },
+      { icon:"building-2", tone:"var(--hue-success-soft)", iconColor:"var(--hue-success)", title:"कैंपस काउंसलिंग",
+        desc:"ज़्यादातर यूनिवर्सिटीज़ मुफ़्त या सस्ती काउंसलिंग देती हैं, जिसमें अक्सर इंटरनेशनल स्टूडेंट स्पेशलिस्ट भी शामिल होते हैं।",
+        links:[ {label:"अपने स्टूडेंट हेल्थ सेंटर से काउंसलिंग के बारे में पूछें", href:"#"},
+                {label:"Active Minds — कैंपस मेंटल हेल्थ", href:"https://www.activeminds.org"} ] },
+      { icon:"flower-2", tone:"var(--sage-1)", iconColor:"var(--sage-6)", title:"माइंडफुलनेस",
+        desc:"व्यस्त या चिंतित मन को धीमा करने के लिए सरल, कम खर्च वाले तरीक़े।",
+        links:[ {label:"UCLA Mindful Awareness — मुफ़्त गाइडेड मेडिटेशन", href:"https://www.uclahealth.org/programs/marc/mindful-meditations"},
+                {label:"Headspace — माइंडफुलनेस की शुरुआत", href:"https://www.headspace.com"} ] },
+      { icon:"sparkles", tone:"var(--hue-warning-soft)", iconColor:"var(--hue-warning)", title:"सेल्फ-केयर टिप्स",
+        desc:"नींद, हलचल, खाना, जुड़ाव — छोटी, टिकाऊ आदतें जो बाकी सब कुछ संभाले रखती हैं।",
+        links:[ {label:"Active Minds — सेल्फ-केयर की बुनियादी बातें", href:"https://www.activeminds.org/about-mental-health/self-care/"},
+                {label:"NAMI — अपनी मेंटल हेल्थ का ख्याल रखना", href:"https://www.nami.org"} ] }
+    ]
+  },
+  why:{ eyebrow:"यह क्यों ज़रूरी है", heading:"समझा जाना, सब कुछ बदल देता है।",
+    sub:"ज़्यादातर इंटरनेशनल स्टूडेंट्स किसी न किसी पल यह मान लेते हैं कि struggle सिर्फ़ वही कर रहे हैं। पर अक्सर ऐसा नहीं होता — और यह जान लेना ही अकेलापन कम महसूस करने का पहला कदम बनता है।",
+    cards:[
+      { icon:"users", title:"आप अकेले नहीं हैं", desc:"किसी और की अनाम कहानी पढ़ना — जो आपकी अपनी कहानी जैसी लगे — अक्सर वही पल होता है जब अलगाव की पकड़ ढीली पड़ने लगती है।" },
+      { icon:"message-square-heart", title:"नाम देने से मदद मिलती है", desc:"किसी भावना को शब्दों में ढालना, भले ही बेनाम होकर, उसे समझना और संभालना आसान बना देता है। अक्सर यह मदद माँगने से पहले का कदम होता है।" },
+      { icon:"footprints", title:"छोटे कदम भी मायने रखते हैं", desc:"यहाँ आने के लिए कोई डायग्नोसिस या क्राइसिस ज़रूरी नहीं। एक मुश्किल हफ्ता, घर की याद वाली शाम, या एक असली छोटी उपलब्धि — सब का स्वागत है।" },
+      { icon:"globe-2", title:"सहारे का रूप हर किसी के लिए अलग होता है", desc:"भाषा, संस्कृति, खर्च, और stigma — यह सब तय करते हैं कि कोई मदद माँग पाता है या नहीं। यह जगह इन सभी रुकावटों को थोड़ा-थोड़ा कम करने की कोशिश करती है।" }
+    ]
+  },
+  guidelines:{ eyebrow:"सुरक्षा और नियम", heading:"हम इस जगह को सुरक्षित रखने की कोशिश कैसे करते हैं।",
+    sub:"स्टूडेंट्स के लिए, और उन परिवारों व community के लिए जो उनकी परवाह करते हैं।",
+    points:[
+      { icon:"radar", title:"क्राइसिस भाषा की ऑटोमैटिक पहचान", desc:"डायरी और AI लिसनर, दोनों ऐसी भाषा को पहचानते हैं जो बताए कि कोई ख़तरे में हो सकता है, और तुरंत असली, इंसानी क्राइसिस संसाधन दिखाते हैं — अमेरिका में 988, और बाकी जगहों के लिए स्थानीय विकल्प।" },
+      { icon:"flag", title:"Community रिपोर्टिंग", desc:"कोई भी ऐसी पोस्ट या कमेंट रिपोर्ट कर सकता है जो नुकसानदायक, गैर-दयालु या असुरक्षित लगे। रिपोर्ट की गई सामग्री समीक्षा होने तक पब्लिक फ़ीड से हटा दी जाती है।" },
+      { icon:"heart-handshake", title:"अपनेपन को प्राथमिकता देने वाली संस्कृति", desc:"कोई जज नहीं, कोई बहस नहीं, कोई थोपी हुई सलाह नहीं। इसका उल्लंघन करने वाली पोस्ट और कमेंट हटा दिए जाते हैं।" },
+      { icon:"eye-off", title:"असली अनामिता", desc:"कोई अकाउंट नहीं, कोई नाम नहीं, कोई प्रोफ़ाइल नहीं। पोस्ट्स किसी पहचान से नहीं जुड़ी होतीं — कितना शेयर करना है, यह आप तय करते हैं।" }
+    ],
+    disclaimer:"<strong>कृपया ध्यान दें:</strong> Homeaway अभी एक स्टूडेंट द्वारा बनाया गया प्रोटोटाइप है, न कि कोई 24/7 स्टाफ़ वाला मॉनिटर्ड प्लेटफ़ॉर्म। ऊपर बताई गई विशेषताएँ बताती हैं कि इसे कैसे काम करने के लिए डिज़ाइन किया गया है — ऑटोमैटिक पहचान, रिपोर्टिंग, और अपनेपन के नियम — लेकिन अभी हर पोस्ट को रियल टाइम में देखने वाली 24/7 इंसानी मॉडरेशन टीम मौजूद नहीं है। अगर आप या कोई और तुरंत ख़तरे में है, तो कृपया किसी पोस्ट के देखे जाने का इंतज़ार न करें — ऊपर दिए गए क्राइसिस संसाधनों का तुरंत इस्तेमाल करें, या स्थानीय इमरजेंसी सेवाओं से संपर्क करें।" },
+  footer:{ disclaimer:"<strong>Homeaway एक peer-support जगह है, कोई मेडिकल सेवा नहीं।</strong> यहाँ कुछ भी — डायरी, कमेंट्स, या AI लिसनर — किसी लाइसेंस प्राप्त मेंटल हेल्थ प्रोफ़ेशनल की देखभाल की जगह नहीं ले सकता। अगर आप क्राइसिस में हैं या खुद को नुकसान पहुँचाने के बारे में सोच रहे हैं, तो कृपया अपने स्थानीय इमरजेंसी नंबर पर संपर्क करें, नज़दीकी इमरजेंसी रूम जाएँ, या अपनी जगह की क्राइसिस लाइन से संपर्क करें (अमेरिका में <strong>988</strong> पर कॉल या मैसेज करें)। आप असली, तुरंत मिलने वाली मदद के हक़दार हैं, और आपको इसे अकेले झेलने की ज़रूरत नहीं है।",
+    fine:"Homeaway · इंटरनेशनल स्टूडेंट्स की मेंटल हेल्थ सहायता के लिए एक प्रोटोटाइप · पूरी लगन से बनाया गया" }
+}
+};
+
+/* ============================================================
+   STATE + I18N ENGINE
+============================================================ */
+let currentLang = localStorage.getItem('homeaway_lang') || 'en';
+function t(){ return translations[currentLang] || translations.en; }
+function get(path){
+  return path.split('.').reduce((o,k)=> (o && o[k] !== undefined) ? o[k] : undefined, t());
+}
+
+function applyStaticTranslations(){
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const val = get(el.getAttribute('data-i18n'));
+    if (val !== undefined) el.textContent = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const val = get(el.getAttribute('data-i18n-placeholder'));
+    if (val !== undefined) el.setAttribute('placeholder', val);
+  });
+  const sel = document.getElementById('langSelect');
+  if (sel) sel.value = currentLang;
+}
+
+/* ---------- Icons + scroll reveal ---------- */
+function refreshIcons(){ lucide.createIcons(); }
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      io.unobserve(entry.target);
-    }
+    if (entry.isIntersecting) { entry.target.classList.add('in-view'); io.unobserve(entry.target); }
   });
 }, { threshold: 0.15 });
-revealEls.forEach(el => io.observe(el));
+function observeReveals(){ document.querySelectorAll('.reveal:not(.in-view)').forEach(el => io.observe(el)); }
 
-/* ---------- 2. Mobile nav toggle ---------- */
+/* ---------- Mobile nav ---------- */
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-/* ---------- 3. Anonymous journal ---------- */
-// Pool of gentle, anonymous display names — no real identity is ever attached to a post.
+/* ---------- Language switcher ---------- */
+document.getElementById('langSelect').addEventListener('change', (e) => {
+  currentLang = e.target.value;
+  localStorage.setItem('homeaway_lang', currentLang);
+  renderAll();
+});
+
+/* ---------- Anonymous journal ---------- */
 const anonAdjectives = ['Quiet','Gentle','Wandering','Steady','Hopeful','Homesick','Curious','Weary','Patient','Bright'];
 const anonNouns = ['Willow','Sparrow','Maple','Harbor','Compass','Lantern','River','Comet','Pebble','Fern'];
 function randomAnonName(){
-  const a = anonAdjectives[Math.floor(Math.random()*anonAdjectives.length)];
-  const n = anonNouns[Math.floor(Math.random()*anonNouns.length)];
-  return `${a} ${n}`;
+  return anonAdjectives[Math.floor(Math.random()*anonAdjectives.length)] + ' ' + anonNouns[Math.floor(Math.random()*anonNouns.length)];
 }
-function timeAgoLabel(){
-  const opts = ['just now','2 minutes ago','5 minutes ago'];
-  return opts[Math.floor(Math.random()*opts.length)];
-}
+const timeAgoPool = { en:['just now','2 minutes ago','5 minutes ago'], zh:['刚刚','2 分钟前','5 分钟前'],
+  ko:['방금','2분 전','5분 전'], ja:['たった今','2分前','5分前'], hi:['अभी-अभी','2 मिनट पहले','5 मिनट पहले'] };
+function timeAgoLabel(){ const pool = timeAgoPool[currentLang] || timeAgoPool.en; return pool[Math.floor(Math.random()*pool.length)]; }
 
-// Sample posts so the feed feels populated on first load.
-const samplePosts = [
-  {
-    who: 'Homesick Maple', when: '2 hours ago',
-    body: "It's been four months and I still cry a little every time I smell my mom's cooking on a video call. I didn't think missing a kitchen could hurt this much. Is it normal to still feel this raw?",
-    tag: 'Homesickness',
-    comments: [
-      { who:'Quiet Harbor', text:"It's so normal. I made a playlist of sounds from home just to fall asleep to. It does get softer, even if it never fully goes away." },
-      { who:'Steady Fern', text:"Sending you a hug. That ache means you have a lot of love waiting for you back home." }
-    ]
-  },
-  {
-    who: 'Weary Compass', when: '5 hours ago',
-    body: "Midterms are in two weeks and I haven't told anyone how behind I feel because I'm scared my visa depends on my grades and everyone back home thinks I'm doing great here. I don't know how to say I'm struggling.",
-    tag: 'Academic Pressure',
-    comments: [
-      { who:'Hopeful Sparrow', text:"You just said it here, and that already took courage. Your campus counseling center has seen this exact fear before — you're not the first." }
-    ]
-  },
-  {
-    who: 'Curious Pebble', when: 'yesterday',
-    body: "Small win: I asked a classmate to explain a joke I didn't get instead of just laughing along and feeling like an outsider. She explained it happily and we ended up getting coffee. Baby steps, I guess.",
-    tag: 'Small Win',
-    comments: [
-      { who:'Bright Lantern', text:"This made me smile. That's exactly the kind of brave, tiny thing that adds up." },
-      { who:'Gentle River', text:"Coffee with a new friend sounds like a genuinely good day. Proud of you." }
-    ]
-  }
-];
-
+let liveSamplePosts = [];
 const feedEl = document.getElementById('feed');
-
 function avatarInitial(name){ return name.trim().charAt(0); }
 
 function renderComment(c){
-  return `
-    <div class="comment">
-      <div class="comment-avatar">${avatarInitial(c.who)}</div>
-      <div class="comment-body">
-        <div class="comment-who">${c.who}</div>
-        <div class="comment-text">${c.text}</div>
-      </div>
-    </div>`;
+  return '<div class="comment"><div class="comment-avatar">'+avatarInitial(c.who)+'</div>'
+    + '<div class="comment-body"><div class="comment-who">'+c.who+'</div><div class="comment-text">'+c.text+'</div></div></div>';
+}
+
+function markReported(container){
+  container.innerHTML = '<div class="reported-overlay"><i data-lucide="flag" class="icon" style="margin:0 auto 8px"></i>'+ get('journal.reportedLabel') +'</div>';
+  refreshIcons();
 }
 
 function createPostCard(post, isNew){
   const card = document.createElement('div');
   card.className = 'card card-raised post' + (isNew ? ' reveal' : '');
-  card.innerHTML = `
-    <div class="post-head">
-      <div class="post-avatar"><i data-lucide="user-round" class="icon"></i></div>
-      <div>
-        <div class="post-who">${post.who}</div>
-        <div class="post-when">${post.when}</div>
-      </div>
-    </div>
-    <p class="post-body">${post.body}</p>
-    ${post.tag ? `<span class="badge post-tag"><span class="badge-dot"></span>${post.tag}</span>` : ''}
-    <div class="comments">
-      ${post.comments.map(renderComment).join('')}
-      <form class="comment-form" data-role="comment-form">
-        <input type="text" placeholder="Leave a supportive comment..." maxlength="200" required />
-        <button type="submit" class="btn btn-soft btn-sm">Reply</button>
-      </form>
-    </div>
-  `;
-  // Wire up the per-post comment form.
+  card.innerHTML =
+    '<div class="post-head"><div class="post-avatar"><i data-lucide="user-round" class="icon"></i></div>'
+    + '<div><div class="post-who">'+post.who+'</div><div class="post-when">'+post.when+'</div></div></div>'
+    + '<p class="post-body">'+post.body+'</p>'
+    + (post.tag ? '<span class="badge post-tag"><span class="badge-dot"></span>'+post.tag+'</span>' : '')
+    + '<div class="post-foot"><button class="report-btn" data-role="report-post"><i data-lucide="flag" class="icon" style="width:13px;height:13px"></i>'+get('journal.reportLabel')+'</button></div>'
+    + '<div class="comments">' + post.comments.map(renderComment).join('')
+    + '<form class="comment-form" data-role="comment-form"><input type="text" placeholder="'+get('journal.replyPlaceholder')+'" maxlength="200" required />'
+    + '<button type="submit" class="btn btn-soft btn-sm">'+get('journal.replyBtn')+'</button></form></div>';
+
   const form = card.querySelector('[data-role="comment-form"]');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -641,119 +1168,64 @@ function createPostCard(post, isNew){
     if (!text) return;
     post.comments.push({ who: randomAnonName(), text });
     const commentsList = card.querySelector('.comments');
-    const newComment = document.createElement('div');
-    newComment.className = 'comment';
-    newComment.innerHTML = renderComment(post.comments[post.comments.length - 1]);
-    commentsList.insertBefore(newComment.firstElementChild, form);
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = renderComment(post.comments[post.comments.length - 1]);
+    commentsList.insertBefore(wrapper.firstElementChild, form);
     input.value = '';
   });
+
+  card.querySelector('[data-role="report-post"]').addEventListener('click', () => markReported(card));
+
   return card;
 }
 
 function renderFeed(){
+  liveSamplePosts = JSON.parse(JSON.stringify(t().posts));
   feedEl.innerHTML = '';
-  samplePosts.forEach(p => feedEl.appendChild(createPostCard(p, false)));
-  lucide.createIcons();
-  // Re-observe any reveal elements added after the first pass.
-  document.querySelectorAll('.reveal:not(.in-view)').forEach(el => io.observe(el));
+  liveSamplePosts.forEach(p => feedEl.appendChild(createPostCard(p, false)));
+  refreshIcons();
+  observeReveals();
 }
-renderFeed();
+
+function containsAny(text, words){
+  const lower = text.toLowerCase();
+  return words.some(w => lower.includes(w.toLowerCase()));
+}
+
+function renderJournalCrisisBanner(show){
+  const holder = document.getElementById('journalCrisisBanner');
+  if (!show){ holder.innerHTML = ''; return; }
+  holder.innerHTML = '<div class="crisis-banner reveal in-view"><i data-lucide="heart-pulse" class="icon"></i>'
+    + '<div><h4>' + get('journal.crisisTitle') + '</h4><p>' + get('journal.crisisBody') + ' '
+    + '<a href="#resources">' + get('journal.crisisLink') + '</a></p></div></div>';
+  refreshIcons();
+}
 
 const journalInput = document.getElementById('journalInput');
 const postBtn = document.getElementById('postBtn');
 postBtn.addEventListener('click', () => {
   const text = journalInput.value.trim();
   if (!text) { journalInput.focus(); return; }
-  const newPost = { who: randomAnonName(), when: timeAgoLabel(), body: text, tag: 'New', comments: [] };
-  samplePosts.unshift(newPost);
+
+  const crisisWords = get('ai.crisisWords') || [];
+  const isCrisis = containsAny(text, crisisWords);
+  renderJournalCrisisBanner(isCrisis);
+
+  const newPost = { who: randomAnonName(), when: timeAgoLabel(), body: text, tag: get('journal.newTag'), comments: [] };
+  liveSamplePosts.unshift(newPost);
   const card = createPostCard(newPost, true);
   feedEl.insertBefore(card, feedEl.firstChild);
-  lucide.createIcons();
+  refreshIcons();
   requestAnimationFrame(() => io.observe(card));
   journalInput.value = '';
+  if (isCrisis) document.getElementById('journalCrisisBanner').scrollIntoView({ behavior:'smooth', block:'center' });
 });
 
-/* ---------- 4. AI listener — canned empathetic response engine ---------- */
-// This is a front-end-only simulation: simple keyword matching that picks a
-// reflective, non-judgmental reply. No real AI model or backend is called.
+/* ---------- AI listener ---------- */
 const chatLog = document.getElementById('chatLog');
 const chatInput = document.getElementById('chatInput');
 const chatSend = document.getElementById('chatSend');
-
-const crisisWords = ['suicide','kill myself','end my life','hurt myself','self harm','self-harm',"don't want to live",'want to die'];
-
-const responseBank = [
-  {
-    keys: ['homesick','miss home','miss my family','missing home'],
-    replies: [
-      "That ache for home sounds real and heavy right now. What is it that you miss most in this moment — a person, a place, a smell, a sound?",
-      "Homesickness has a way of showing up in the smallest moments. It makes sense that it hurts. Is there a small piece of home you could bring into today, even in a tiny way?"
-    ]
-  },
-  {
-    keys: ['anxious','anxiety','panic','nervous','worried'],
-    replies: [
-      "It sounds like anxiety is taking up a lot of space for you right now. Can you tell me what it's about, if you feel like sharing?",
-      "That kind of worry can be exhausting to carry. Sometimes naming exactly what we're afraid of takes a little of its power away — what's the worst part of it, for you?"
-    ]
-  },
-  {
-    keys: ['alone','lonely','isolated','no friends','no one understands'],
-    replies: [
-      "Feeling alone in a new place is one of the hardest parts of this experience, and it's more common than it feels like right now. How long have you been feeling this way?",
-      "I hear how isolating this feels. You reaching out here, even anonymously, is a real step. What would feeling a little less alone look like today?"
-    ]
-  },
-  {
-    keys: ['stressed','overwhelmed','pressure','deadline','exam','exams','grades'],
-    replies: [
-      "That sounds like a lot to be carrying at once. What feels like the heaviest part of it right now?",
-      "Academic pressure on top of everything else you're adjusting to is genuinely a lot. Would it help to break down what's due first, or would you rather just vent for a bit?"
-    ]
-  },
-  {
-    keys: ['sad','down','depressed','crying','hopeless'],
-    replies: [
-      "I'm really glad you told me that. That sounds heavy to sit with. How long have you been feeling this way?",
-      "Thank you for trusting me with that. You don't have to explain it perfectly — just however it's showing up for you today is okay."
-    ]
-  },
-  {
-    keys: ['culture shock','different here','don\'t fit in','fit in','language barrier'],
-    replies: [
-      "Adjusting to a new culture while doing everything else on your plate is genuinely hard work, even when it doesn't look like 'work' from the outside. What's felt most unfamiliar lately?",
-      "That in-between feeling — not quite home, not quite here yet — is something a lot of people in this community describe. You're allowed time to land."
-    ]
-  }
-];
-
-const genericReplies = [
-  "Thank you for sharing that with me. Can you tell me a little more about how that's been feeling?",
-  "That sounds like a lot to hold. I'm here, and there's no rush — what feels most important to say right now?",
-  "I hear you. Whatever you're feeling right now is allowed to just be there without judgment.",
-  "That makes a lot of sense given everything you're adjusting to. How has today, specifically, been for you?"
-];
-
-const copingNudges = [
-  "If it helps, even a slow breath in for four counts and out for six can take the edge off a hard moment.",
-  "Something small, like stepping outside for a few minutes or texting one person you trust, sometimes helps more than it seems like it will.",
-  "It might help to write this down in the journal above, too — sometimes a feeling gets lighter once it's out of your head."
-];
-
-function detectCrisis(text){
-  const lower = text.toLowerCase();
-  return crisisWords.some(w => lower.includes(w));
-}
-
-function findReply(text){
-  const lower = text.toLowerCase();
-  for (const bucket of responseBank){
-    if (bucket.keys.some(k => lower.includes(k))){
-      return bucket.replies[Math.floor(Math.random()*bucket.replies.length)];
-    }
-  }
-  return genericReplies[Math.floor(Math.random()*genericReplies.length)];
-}
+let chatTurns = 0;
 
 function addMessage(text, who){
   const msg = document.createElement('div');
@@ -761,23 +1233,24 @@ function addMessage(text, who){
   msg.textContent = text;
   chatLog.appendChild(msg);
   chatLog.scrollTop = chatLog.scrollHeight;
-  return msg;
 }
-
 function showTyping(){
   const typing = document.createElement('div');
-  typing.className = 'typing';
-  typing.id = 'typingIndicator';
+  typing.className = 'typing'; typing.id = 'typingIndicator';
   typing.innerHTML = '<span></span><span></span><span></span>';
   chatLog.appendChild(typing);
   chatLog.scrollTop = chatLog.scrollHeight;
 }
-function hideTyping(){
-  const t = document.getElementById('typingIndicator');
-  if (t) t.remove();
-}
+function hideTyping(){ const el = document.getElementById('typingIndicator'); if (el) el.remove(); }
 
-let chatTurns = 0;
+function findReply(text){
+  const bank = t().ai.responseBank;
+  for (const bucket of bank){
+    if (containsAny(text, bucket.keys)) return bucket.replies[Math.floor(Math.random()*bucket.replies.length)];
+  }
+  const generic = t().ai.generic;
+  return generic[Math.floor(Math.random()*generic.length)];
+}
 
 function handleSend(){
   const text = chatInput.value.trim();
@@ -785,116 +1258,105 @@ function handleSend(){
   addMessage(text, 'user');
   chatInput.value = '';
   chatTurns++;
-
   showTyping();
   const delay = 700 + Math.random() * 600;
-
   setTimeout(() => {
     hideTyping();
-
-    if (detectCrisis(text)){
-      addMessage(
-        "I'm really glad you told me this, and I want you to get support right now from someone who can help in real time. " +
-        "If you're in the U.S., you can call or text 988 (Suicide & Crisis Lifeline) any time, day or night. " +
-        "If you're elsewhere, please contact your local emergency number or campus crisis line. You deserve immediate, real support — I care that you're safe.",
-        'ai'
-      );
+    if (containsAny(text, t().ai.crisisWords)){
+      addMessage(t().ai.crisisReply, 'ai');
       return;
     }
-
     addMessage(findReply(text), 'ai');
-
-    // Every few turns, gently offer a coping suggestion or a nudge toward resources —
-    // without being pushy or repeating the same line each time.
     if (chatTurns % 3 === 0){
       setTimeout(() => {
         showTyping();
         setTimeout(() => {
           hideTyping();
-          addMessage(copingNudges[Math.floor(Math.random()*copingNudges.length)] + " And if this feeling keeps sticking around, your campus counseling center is a good, judgment-free next step.", 'ai');
+          const nudges = t().ai.nudges;
+          addMessage(nudges[Math.floor(Math.random()*nudges.length)] + ' ' + t().ai.nudgeFollowup, 'ai');
         }, 700);
       }, 500);
     }
   }, delay);
 }
-
 chatSend.addEventListener('click', handleSend);
 chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
 
-/* ---------- 5. Resources data + render ---------- */
-const resources = [
-  {
-    icon: 'life-buoy', tone: 'var(--hue-danger-soft)', iconColor: 'var(--hue-danger)',
-    title: 'Crisis Support', desc: "If you're in immediate danger or thinking about harming yourself, these are staffed by real people, right now.",
-    links: [
-      { label: '988 Suicide & Crisis Lifeline (call/text 988)', href: 'https://988lifeline.org' },
-      { label: 'Crisis Text Line (text HOME to 741741)', href: 'https://www.crisistextline.org' },
-      { label: 'Find a crisis line outside the U.S.', href: 'https://www.iasp.info/resources/Crisis_Centres/' }
-    ]
-  },
-  {
-    icon: 'brain', tone: 'var(--hue-info-soft)', iconColor: 'var(--hue-info)',
-    title: 'Anxiety', desc: 'Grounding techniques and information for the racing, worried thoughts that can come with a new country and new pressures.',
-    links: [
-      { label: 'Anxiety & Depression Association (ADAA)', href: 'https://adaa.org' },
-      { label: 'NIMH — Anxiety Disorders overview', href: 'https://www.nimh.nih.gov/health/topics/anxiety-disorders' }
-    ]
-  },
-  {
-    icon: 'home', tone: 'var(--sage-0)', iconColor: 'var(--sage-5)',
-    title: 'Homesickness', desc: 'You are allowed to miss home loudly. These offer perspective and community for that specific ache.',
-    links: [
-      { label: 'NAFSA — resources for international students', href: 'https://www.nafsa.org' },
-      { label: 'Your university’s international student office', href: '#' }
-    ]
-  },
-  {
-    icon: 'graduation-cap', tone: 'var(--clay-1)', iconColor: 'var(--clay-3)',
-    title: 'Stress Management', desc: 'Academic and financial pressure, untangled a little at a time.',
-    links: [
-      { label: 'JED Foundation — student mental health', href: 'https://www.jedfoundation.org' },
-      { label: 'Mind — stress management basics', href: 'https://www.mind.org.uk' }
-    ]
-  },
-  {
-    icon: 'building-2', tone: 'var(--hue-success-soft)', iconColor: 'var(--hue-success)',
-    title: 'Campus Counseling', desc: 'Most universities offer free or low-cost counseling, often including sessions with international student specialists.',
-    links: [
-      { label: 'Ask your student health center about counseling', href: '#' },
-      { label: 'Active Minds — campus mental health', href: 'https://www.activeminds.org' }
-    ]
-  },
-  {
-    icon: 'flower-2', tone: 'var(--sage-1)', iconColor: 'var(--sage-6)',
-    title: 'Mindfulness', desc: 'Simple, low-cost practices for slowing down a busy or anxious mind.',
-    links: [
-      { label: 'UCLA Mindful Awareness — free guided meditations', href: 'https://www.uclahealth.org/programs/marc/mindful-meditations' },
-      { label: 'Headspace — mindfulness basics', href: 'https://www.headspace.com' }
-    ]
-  },
-  {
-    icon: 'sparkles', tone: 'var(--hue-warning-soft)', iconColor: 'var(--hue-warning)',
-    title: 'Self-Care Tips', desc: 'Small, sustainable habits — sleep, movement, food, connection — that support everything else.',
-    links: [
-      { label: 'Active Minds — self-care basics', href: 'https://www.activeminds.org/about-mental-health/self-care/' },
-      { label: 'NAMI — taking care of your mental health', href: 'https://www.nami.org' }
-    ]
-  }
-];
+function renderChatGreeting(){
+  chatLog.innerHTML = '';
+  addMessage(t().ai.greeting, 'ai');
+}
 
+/* ---------- Resources (incl. IFI community feature) ---------- */
 const resourceGrid = document.getElementById('resourceGrid');
-resourceGrid.innerHTML = resources.map(r => `
-  <div class="card card-raised resource-card reveal">
-    <div class="resource-icon" style="background:${r.tone}"><i data-lucide="${r.icon}" class="icon" style="color:${r.iconColor}"></i></div>
-    <h3>${r.title}</h3>
-    <p>${r.desc}</p>
-    <div class="resource-links">
-      ${r.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener"><i data-lucide="arrow-up-right" class="icon" style="width:14px;height:14px"></i>${l.label}</a>`).join('')}
-    </div>
-  </div>
-`).join('');
-lucide.createIcons();
-document.querySelectorAll('.reveal:not(.in-view)').forEach(el => io.observe(el));
+const communityFeatureEl = document.getElementById('communityFeature');
+
+function renderCommunityFeature(){
+  const c = t().resources.community;
+  communityFeatureEl.innerHTML =
+    '<div class="community-feature reveal in-view">'
+    + '<div class="community-feature-body"><div class="community-icon"><i data-lucide="users-round" class="icon" style="color:#fff"></i></div>'
+    + '<h3>' + c.title + '</h3><p>' + c.desc + '</p><p class="fine">' + c.fine + '</p></div>'
+    + '<div class="community-feature-ctas">'
+    + c.links.map(l => '<a href="'+l.href+'" target="_blank" rel="noopener" class="btn btn-primary btn-sm">'+l.label+'</a>').join('')
+    + '</div></div>';
+  refreshIcons();
+}
+
+function renderResourceGrid(){
+  const r = t().resources;
+  resourceGrid.innerHTML = r.cards.map(card => (
+    '<div class="card card-raised resource-card reveal">'
+    + '<div class="resource-icon" style="background:'+card.tone+'"><i data-lucide="'+card.icon+'" class="icon" style="color:'+card.iconColor+'"></i></div>'
+    + '<h3>'+card.title+'</h3><p>'+card.desc+'</p>'
+    + '<div class="resource-links">' + card.links.map(l => '<a href="'+l.href+'" target="_blank" rel="noopener"><i data-lucide="arrow-up-right" class="icon" style="width:14px;height:14px"></i>'+l.label+'</a>').join('') + '</div>'
+    + '</div>'
+  )).join('');
+  refreshIcons();
+}
+
+/* ---------- Why this matters ---------- */
+const whyGrid = document.getElementById('whyGrid');
+function renderWhyGrid(){
+  whyGrid.innerHTML = t().why.cards.map(c => (
+    '<div class="card card-flat feature-card reveal">'
+    + '<div class="feature-icon"><i data-lucide="'+c.icon+'" class="icon"></i></div>'
+    + '<h3>'+c.title+'</h3><p>'+c.desc+'</p></div>'
+  )).join('');
+  refreshIcons();
+}
+
+/* ---------- Guidelines ---------- */
+const guidelinesList = document.getElementById('guidelinesList');
+const guidelinesDisclaimer = document.getElementById('guidelinesDisclaimer');
+function renderGuidelines(){
+  guidelinesList.innerHTML = t().guidelines.points.map(p => (
+    '<div class="guideline-item reveal">'
+    + '<div class="guideline-icon"><i data-lucide="'+p.icon+'" class="icon" style="width:18px;height:18px"></i></div>'
+    + '<div><h4>'+p.title+'</h4><p>'+p.desc+'</p></div></div>'
+  )).join('');
+  guidelinesDisclaimer.innerHTML = t().guidelines.disclaimer;
+  refreshIcons();
+}
+
+/* ---------- Footer ---------- */
+const footerDisclaimer = document.getElementById('footerDisclaimer');
+function renderFooter(){ footerDisclaimer.innerHTML = t().footer.disclaimer; }
+
+/* ---------- Full render ---------- */
+function renderAll(){
+  applyStaticTranslations();
+  renderFeed();
+  renderChatGreeting();
+  renderCommunityFeature();
+  renderResourceGrid();
+  renderWhyGrid();
+  renderGuidelines();
+  renderFooter();
+  refreshIcons();
+  observeReveals();
+}
+renderAll();
 </script>
 </body>
 </html>
