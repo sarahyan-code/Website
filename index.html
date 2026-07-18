@@ -284,6 +284,7 @@ footer{ background:var(--sage-6); color:var(--sage-0); padding:var(--space-8) 0 
         <option value="ko">한국어</option>
         <option value="ja">日本語</option>
         <option value="hi">हिन्दी</option>
+        <option value="vi">Tiếng Việt</option>
       </select>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i data-lucide="menu" class="icon"></i></button>
     </div>
@@ -1075,6 +1076,136 @@ hi: {
     disclaimer:"<strong>कृपया ध्यान दें:</strong> Homeaway अभी एक स्टूडेंट द्वारा बनाया गया प्रोटोटाइप है, न कि कोई 24/7 स्टाफ़ वाला मॉनिटर्ड प्लेटफ़ॉर्म। ऊपर बताई गई विशेषताएँ बताती हैं कि इसे कैसे काम करने के लिए डिज़ाइन किया गया है — ऑटोमैटिक पहचान, रिपोर्टिंग, और अपनेपन के नियम — लेकिन अभी हर पोस्ट को रियल टाइम में देखने वाली 24/7 इंसानी मॉडरेशन टीम मौजूद नहीं है। अगर आप या कोई और तुरंत ख़तरे में है, तो कृपया किसी पोस्ट के देखे जाने का इंतज़ार न करें — ऊपर दिए गए क्राइसिस संसाधनों का तुरंत इस्तेमाल करें, या स्थानीय इमरजेंसी सेवाओं से संपर्क करें।" },
   footer:{ disclaimer:"<strong>Homeaway एक peer-support जगह है, कोई मेडिकल सेवा नहीं।</strong> यहाँ कुछ भी — डायरी, कमेंट्स, या AI लिसनर — किसी लाइसेंस प्राप्त मेंटल हेल्थ प्रोफ़ेशनल की देखभाल की जगह नहीं ले सकता। अगर आप क्राइसिस में हैं या खुद को नुकसान पहुँचाने के बारे में सोच रहे हैं, तो कृपया अपने स्थानीय इमरजेंसी नंबर पर संपर्क करें, नज़दीकी इमरजेंसी रूम जाएँ, या अपनी जगह की क्राइसिस लाइन से संपर्क करें (अमेरिका में <strong>988</strong> पर कॉल या मैसेज करें)। आप असली, तुरंत मिलने वाली मदद के हक़दार हैं, और आपको इसे अकेले झेलने की ज़रूरत नहीं है।",
     fine:"Homeaway · इंटरनेशनल स्टूडेंट्स की मेंटल हेल्थ सहायता के लिए एक प्रोटोटाइप · पूरी लगन से बनाया गया" }
+},
+
+/* ---------------- VIETNAMESE ---------------- */
+vi: {
+  nav:{ journal:"Nhật ký", ai:"Trợ lý AI", resources:"Tài nguyên", why:"Vì sao quan trọng", guidelines:"An toàn & Quy tắc" },
+  hero:{ eyebrow:"một nơi để bạn nhẹ nhàng dừng chân",
+    tagline:"Bạn không đơn độc. Hãy chia sẻ, suy ngẫm, và tìm sự hỗ trợ một cách ẩn danh.",
+    intro:"Cô đơn, nhớ nhà, lo âu, sốc văn hóa, áp lực học tập, áp lực tài chính — rất nhiều du học sinh âm thầm mang theo những cảm xúc này, giữa một ngôn ngữ và một nơi vẫn còn xa lạ. Homeaway ra đời để nhắc bạn rằng có những người khác cũng đang trải qua điều tương tự, và việc tìm kiếm sự hỗ trợ không cần phải giải thích mọi thứ, hay thậm chí không cần nêu tên bạn.",
+    cta1:"Chia sẻ câu chuyện của bạn", cta2:"Trò chuyện với AI", note:"Không cần đăng ký. Không cần tên. Chỉ có những con người thật." },
+  journal:{ eyebrow:"Nhật ký ẩn danh", heading:"Viết ra điều bạn chưa từng nói thành lời.",
+    sub:"Hãy viết thật tự nhiên. Bài viết sẽ được đăng ngay lập tức, không kèm theo bất cứ thông tin nào ngoài cảm xúc của bạn — và những người khác có thể để lại một lời động viên bên dưới.",
+    kindness:"Nơi đây luôn đặt sự tử tế lên hàng đầu. Không phán xét, không lên lớp, không tranh cãi — chỉ có mọi người ở bên nhau. Xin hãy nhẹ nhàng với người đứng sau mỗi bài viết.",
+    composerPlaceholder:"Hôm nay bạn đang nghĩ gì? Sẽ không ai biết đó là bạn đâu...",
+    composerHint:"Luôn được đăng ẩn danh", postBtn:"Đăng ẩn danh",
+    replyPlaceholder:"Để lại một bình luận động viên...", replyBtn:"Trả lời", newTag:"Mới",
+    reportLabel:"Báo cáo", reportedLabel:"Cảm ơn bạn — bài viết này đã được đánh dấu để xem xét và đã được ẩn khỏi bảng tin.",
+    crisisTitle:"Có vẻ như bạn đang mang trong lòng điều gì đó rất nặng nề.",
+    crisisBody:"Trước khi đăng bài, xin bạn hãy biết rằng luôn có sự hỗ trợ thật sự và tức thì. Tại Hoa Kỳ, bạn có thể gọi hoặc nhắn tin đến số 988 bất cứ lúc nào. Bài viết của bạn vẫn sẽ được chia sẻ như bình thường — nhưng bạn xứng đáng được nhiều hơn là một bảng tin ẩn danh.",
+    crisisLink:"Xem các nguồn hỗ trợ khủng hoảng" },
+  posts:[
+    { who:"Homesick Maple", when:"2 giờ trước", tag:"Nhớ nhà",
+      body:"Đã bốn tháng rồi, vậy mà mỗi lần gọi video và ngửi thấy mùi món ăn mẹ nấu, mình vẫn không kìm được nước mắt. Mình không nghĩ nhớ một căn bếp lại có thể đau đến vậy. Cảm giác này còn dữ dội như vậy có bình thường không?",
+      comments:[ {who:"Quiet Harbor", text:"Bình thường lắm luôn. Mình có làm một playlist toàn âm thanh ở nhà để nghe lúc đi ngủ. Nó sẽ dịu lại dần, dù có thể không bao giờ biến mất hoàn toàn."},
+                 {who:"Steady Fern", text:"Gửi bạn một cái ôm. Nỗi nhớ đó có nghĩa là ở nhà đang có rất nhiều tình yêu thương đang chờ bạn."} ] },
+    { who:"Weary Compass", when:"5 giờ trước", tag:"Áp lực học tập",
+      body:"Hai tuần nữa là thi giữa kỳ, mà mình chưa dám nói với ai là mình đang bị tụt lại phía sau nhiều thế nào, vì mình sợ visa phụ thuộc vào điểm số, còn ở nhà thì ai cũng nghĩ mình đang học rất tốt ở đây. Mình không biết phải nói sao để người khác hiểu là mình đang gặp khó khăn.",
+      comments:[ {who:"Hopeful Sparrow", text:"Bạn vừa nói ra được điều đó ở đây, và chỉ riêng vậy thôi cũng đã cần rất nhiều can đảm rồi. Trung tâm tư vấn của trường đã gặp nỗi sợ này rất nhiều lần — bạn không phải người đầu tiên đâu."} ] },
+    { who:"Curious Pebble", when:"hôm qua", tag:"Thành công nhỏ",
+      body:"Một chiến thắng nhỏ: hôm nay thay vì cười theo cho có vì không hiểu một câu đùa, mình đã hỏi thẳng bạn cùng lớp. Bạn ấy vui vẻ giải thích, rồi sau đó tụi mình còn rủ nhau đi uống cà phê. Chắc mọi thứ đều bắt đầu từ những bước nhỏ như vậy.",
+      comments:[ {who:"Bright Lantern", text:"Đọc xong mình mỉm cười luôn. Đó chính là kiểu việc nhỏ nhưng can đảm, và nó sẽ tích lũy dần theo thời gian."},
+                 {who:"Gentle River", text:"Uống cà phê với một người bạn mới nghe thật sự là một ngày đẹp. Tự hào về bạn."} ] }
+  ],
+  ai:{ eyebrow:"Trợ lý AI", heading:"Luôn có người lắng nghe, bất kể giờ nào trong đêm.",
+    sub:"Đây không phải là nhà trị liệu và cũng không thể thay thế một nhà trị liệu — chỉ là một người lắng nghe bình tĩnh, không phán xét, khi bạn cần nói ra cảm xúc của mình.",
+    chatTitle:"Trợ lý Homeaway", chatStatus:"luôn sẵn sàng lắng nghe",
+    greeting:"Chào bạn, rất vui vì bạn ở đây. Không cần vội đâu — hãy nói bất cứ điều gì đang ở trong đầu bạn, hoặc chỉ đơn giản là hôm nay bạn cảm thấy thế nào.",
+    placeholder:"Hãy viết ra cảm xúc của bạn lúc này...",
+    note:"Đây là một người lắng nghe hỗ trợ, không phải dịch vụ khủng hoảng hay nhà trị liệu có giấy phép. Nếu bạn đang gặp nguy hiểm, vui lòng xem các nguồn hỗ trợ bên dưới.",
+    crisisWords:["tự tử","tự sát","muốn chết","làm hại bản thân","tự làm đau mình","không muốn sống"],
+    responseBank:[
+      { keys:["nhớ nhà","nhớ gia đình","nhớ quê"],
+        replies:["Nỗi nhớ nhà lúc này nghe có vẻ thật sự nặng nề. Điều bạn nhớ nhất lúc này là gì — một người, một nơi chốn, một mùi hương, hay một âm thanh nào đó?",
+                 "Nỗi nhớ nhà thường xuất hiện vào những khoảnh khắc nhỏ nhất không ngờ tới. Cảm giác đau lòng là điều dễ hiểu. Hôm nay có điều gì nhỏ bé từ quê nhà mà bạn có thể mang vào cuộc sống của mình không?"] },
+      { keys:["lo âu","lo lắng","hoảng loạn","căng thẳng","bồn chồn"],
+        replies:["Nghe có vẻ như sự lo âu đang chiếm rất nhiều tâm trí của bạn lúc này. Nếu bạn muốn, bạn có thể chia sẻ nó là về điều gì không?",
+                 "Mang theo nỗi lo lắng như vậy thật sự rất mệt mỏi. Đôi khi, gọi tên chính xác điều mình sợ nhất sẽ khiến nó bớt đáng sợ hơn một chút — với bạn, phần khó khăn nhất là gì?"] },
+      { keys:["cô đơn","một mình","không có bạn","không ai hiểu","lạc lõng"],
+        replies:["Cảm thấy cô đơn ở một nơi xa lạ là một trong những phần khó khăn nhất của trải nghiệm này, và nó phổ biến hơn nhiều so với cảm giác hiện tại của bạn. Cảm giác này đã kéo dài bao lâu rồi?",
+                 "Mình cảm nhận được sự cô lập đó nặng nề thế nào. Việc bạn lên tiếng ở đây, dù là ẩn danh, đã là một bước đi thật sự có ý nghĩa. Hôm nay điều gì có thể giúp bạn bớt cô đơn một chút?"] },
+      { keys:["áp lực","căng thẳng học tập","deadline","kỳ thi","điểm số","bài thi"],
+        replies:["Nghe như bạn đang gánh rất nhiều thứ cùng một lúc. Điều gì đang nặng nề nhất với bạn lúc này?",
+                 "Vừa phải thích nghi với mọi thứ khác, vừa phải chịu áp lực học tập, thật sự không hề dễ dàng. Bạn có muốn cùng sắp xếp xem việc gì cần làm trước, hay bạn chỉ muốn xả một chút cảm xúc trước đã?"] },
+      { keys:["buồn","chán nản","muốn khóc","tuyệt vọng","mất hy vọng"],
+        replies:["Cảm ơn bạn đã nói với mình điều đó. Nghe có vẻ đây là một cảm xúc nặng nề để mang theo. Cảm giác này đã kéo dài bao lâu rồi?",
+                 "Cảm ơn bạn đã tin tưởng mình để chia sẻ điều đó. Bạn không cần diễn đạt thật hoàn hảo — dù hôm nay nó xuất hiện dưới hình dạng nào cũng không sao cả."] },
+      { keys:["sốc văn hóa","không hòa nhập được","khác biệt văn hóa","rào cản ngôn ngữ","không hiểu"],
+        replies:["Vừa phải xoay sở với mọi thứ khác, vừa phải thích nghi với một nền văn hóa mới, thật sự là một việc rất vất vả, kể cả khi nhìn từ bên ngoài nó không giống như một nỗ lực rõ ràng. Gần đây điều gì khiến bạn cảm thấy xa lạ nhất?",
+                 "Cảm giác lửng lơ đó — không còn hoàn toàn là quê nhà, mà cũng chưa hẳn là nơi đây — rất nhiều người trong cộng đồng này cũng từng trải qua. Bạn có quyền cho mình thời gian để ổn định."] }
+    ],
+    generic:["Cảm ơn bạn đã chia sẻ điều đó với mình. Bạn có thể nói thêm một chút về cảm giác đó không?",
+             "Nghe có vẻ đó là rất nhiều điều để mang theo. Mình ở đây, không cần vội — điều gì bạn thấy quan trọng nhất để nói lúc này?",
+             "Mình đang lắng nghe. Dù bạn đang cảm thấy gì lúc này, điều đó hoàn toàn có thể tồn tại mà không bị phán xét.",
+             "Điều đó hoàn toàn hợp lý khi xét đến tất cả những gì bạn đang phải thích nghi. Cụ thể hôm nay của bạn đã diễn ra như thế nào?"],
+    nudges:["Nếu có ích, chỉ cần hít vào chậm rãi đếm đến bốn và thở ra đếm đến sáu cũng có thể giúp dịu bớt một khoảnh khắc khó khăn.",
+            "Đôi khi một việc nhỏ — như ra ngoài đi bộ vài phút, hay nhắn tin cho một người bạn tin tưởng — lại giúp ích nhiều hơn ta tưởng.",
+            "Bạn cũng có thể viết điều này vào nhật ký ở phía trên — đôi khi chỉ cần đưa cảm xúc ra khỏi đầu, nó sẽ nhẹ nhõm hơn một chút."],
+    nudgeFollowup:"Và nếu cảm giác này cứ kéo dài, trung tâm tư vấn của trường là một bước tiếp theo tốt, không phán xét, đáng để thử.",
+    crisisReply:"Cảm ơn bạn thật sự rất nhiều vì đã nói với mình điều này, và mình mong bạn nhận được sự hỗ trợ ngay bây giờ từ một người có thể giúp đỡ theo thời gian thực. Nếu bạn ở Hoa Kỳ, bạn có thể gọi hoặc nhắn tin đến số 988 (Đường dây Hỗ trợ Khủng hoảng & Ngăn ngừa Tự tử) bất cứ lúc nào, ngày hay đêm. Nếu bạn ở nơi khác, xin hãy liên hệ số khẩn cấp tại địa phương hoặc đường dây khủng hoảng của trường. Bạn xứng đáng được hỗ trợ thật sự, ngay lập tức — sự an toàn của bạn rất quan trọng với mình."
+  },
+  resources:{ eyebrow:"Tài nguyên hữu ích", heading:"Khi bạn sẵn sàng cần thêm sự hỗ trợ.",
+    sub:"Việc giãi bày ẩn danh và một AI biết quan tâm có thể giúp ích — nhưng đôi khi bước tiếp theo phù hợp lại là một con người thật sự. Đây là nơi để bắt đầu.",
+    note:"Hầu hết các tài nguyên liên kết bên dưới đều bằng tiếng Anh — chúng tôi hy vọng sẽ bổ sung thêm nhiều lựa chọn ngôn ngữ khác theo thời gian.",
+    community:{ title:"Đang tìm một cộng đồng thật sự, gặp gỡ trực tiếp?",
+      desc:"IFI USA (International Friendships, Inc.) là một tổ chức toàn quốc kết nối du học sinh với các gia đình bảo trợ chào đón, các nhóm bạn trong khuôn viên trường, và cộng đồng địa phương khắp nước Mỹ. Đây là một tổ chức phi lợi nhuận có nền tảng đức tin (Cơ Đốc giáo), hợp tác với các nhà thờ và trường đại học — điều đáng biết trước nếu yếu tố tôn giáo quan trọng với bạn.",
+      fine:"Tham gia miễn phí. Có địa điểm khắp cả nước, cùng với cộng đồng trực tuyến cho bất cứ nơi nào bạn đang ở.",
+      links:[ {label:"Tìm địa điểm IFI gần bạn", href:"https://www.ifiusa.org/locations/"},
+              {label:"Tham gia cộng đồng WhatsApp sinh viên IFI", href:"https://chat.whatsapp.com/IyqBAXCC6LJCsP0Jgh0RY4"},
+              {label:"Tìm hiểu thêm về IFI USA", href:"https://www.ifiusa.org"} ] },
+    cards:[
+      { icon:"life-buoy", tone:"var(--hue-danger-soft)", iconColor:"var(--hue-danger)", title:"Hỗ trợ khủng hoảng",
+        desc:"Nếu bạn đang gặp nguy hiểm ngay lập tức hoặc có suy nghĩ làm hại bản thân, đây là những nơi có người thật sẵn sàng hỗ trợ ngay bây giờ.",
+        links:[ {label:"Đường dây 988 (gọi hoặc nhắn tin 988)", href:"https://988lifeline.org"},
+                {label:"Đường dây tin nhắn khủng hoảng (nhắn HOME đến 741741)", href:"https://www.crisistextline.org"},
+                {label:"Tìm đường dây khủng hoảng ngoài Hoa Kỳ", href:"https://www.iasp.info/resources/Crisis_Centres/"} ] },
+      { icon:"brain", tone:"var(--hue-info-soft)", iconColor:"var(--hue-info)", title:"Lo âu",
+        desc:"Các kỹ thuật ổn định tâm lý và thông tin cho những suy nghĩ lo lắng, hối hả thường xuất hiện cùng một đất nước mới và những áp lực mới.",
+        links:[ {label:"Hiệp hội Lo âu & Trầm cảm (ADAA)", href:"https://adaa.org"},
+                {label:"NIMH — Tổng quan về rối loạn lo âu", href:"https://www.nimh.nih.gov/health/topics/anxiety-disorders"} ] },
+      { icon:"home", tone:"var(--sage-0)", iconColor:"var(--sage-5)", title:"Nhớ nhà",
+        desc:"Bạn hoàn toàn có quyền nhớ nhà thật nhiều. Đây là những góc nhìn và cộng đồng dành riêng cho nỗi đau đó.",
+        links:[ {label:"NAFSA — tài nguyên cho du học sinh", href:"https://www.nafsa.org"},
+                {label:"Văn phòng sinh viên quốc tế của trường bạn", href:"#"} ] },
+      { icon:"graduation-cap", tone:"var(--clay-1)", iconColor:"var(--clay-3)", title:"Quản lý căng thẳng",
+        desc:"Gỡ rối áp lực học tập và tài chính, từng chút một.",
+        links:[ {label:"Quỹ JED — sức khỏe tâm thần sinh viên", href:"https://www.jedfoundation.org"},
+                {label:"Mind — kiến thức cơ bản về quản lý căng thẳng", href:"https://www.mind.org.uk"} ] },
+      { icon:"building-2", tone:"var(--hue-success-soft)", iconColor:"var(--hue-success)", title:"Tư vấn tâm lý trong trường",
+        desc:"Hầu hết các trường đại học đều cung cấp dịch vụ tư vấn miễn phí hoặc chi phí thấp, thường có cả các buổi dành riêng cho du học sinh.",
+        links:[ {label:"Hỏi trung tâm y tế sinh viên về dịch vụ tư vấn", href:"#"},
+                {label:"Active Minds — sức khỏe tâm thần trong trường học", href:"https://www.activeminds.org"} ] },
+      { icon:"flower-2", tone:"var(--sage-1)", iconColor:"var(--sage-6)", title:"Chánh niệm",
+        desc:"Những phương pháp đơn giản, ít tốn kém để giúp một tâm trí bận rộn hoặc lo âu chậm lại.",
+        links:[ {label:"UCLA Mindful Awareness — thiền có hướng dẫn miễn phí", href:"https://www.uclahealth.org/programs/marc/mindful-meditations"},
+                {label:"Headspace — nhập môn chánh niệm", href:"https://www.headspace.com"} ] },
+      { icon:"sparkles", tone:"var(--hue-warning-soft)", iconColor:"var(--hue-warning)", title:"Mẹo tự chăm sóc bản thân",
+        desc:"Những thói quen nhỏ, bền vững — giấc ngủ, vận động, ăn uống, kết nối — nâng đỡ mọi thứ khác.",
+        links:[ {label:"Active Minds — kiến thức cơ bản về tự chăm sóc", href:"https://www.activeminds.org/about-mental-health/self-care/"},
+                {label:"NAMI — chăm sóc sức khỏe tâm thần của bạn", href:"https://www.nami.org"} ] }
+    ]
+  },
+  why:{ eyebrow:"Vì sao điều này quan trọng", heading:"Cảm giác được thấu hiểu sẽ thay đổi mọi thứ.",
+    sub:"Rất nhiều du học sinh, vào một thời điểm nào đó, tin rằng chỉ mình họ đang gặp khó khăn. Nhưng thường thì không phải vậy — và biết được điều đó thường là bước đầu tiên để bớt cảm thấy cô đơn.",
+    cards:[
+      { icon:"users", title:"Bạn không phải là người duy nhất", desc:"Đọc câu chuyện ẩn danh của ai đó — nghe rất giống câu chuyện của chính bạn — thường chính là khoảnh khắc cảm giác cô lập bắt đầu nới lỏng." },
+      { icon:"message-square-heart", title:"Gọi tên cảm xúc sẽ giúp ích", desc:"Diễn đạt một cảm xúc thành lời, dù là ẩn danh, cũng giúp nó dễ hiểu hơn và dễ mang theo hơn. Đó thường là bước đi trước khi tìm kiếm sự giúp đỡ." },
+      { icon:"footprints", title:"Những bước nhỏ cũng có ý nghĩa", desc:"Bạn không cần một chẩn đoán hay một cuộc khủng hoảng mới được ở đây. Một tuần khó khăn, một buổi tối nhớ nhà, hay một bước tiến nhỏ thật sự — tất cả đều được chào đón." },
+      { icon:"globe-2", title:"Mỗi người cần một kiểu hỗ trợ khác nhau", desc:"Ngôn ngữ, văn hóa, chi phí, và sự kỳ thị đều ảnh hưởng đến việc một người có dám tìm kiếm sự giúp đỡ hay không. Không gian này cố gắng hạ thấp từng rào cản một." }
+    ]
+  },
+  guidelines:{ eyebrow:"An toàn & quy tắc", heading:"Cách chúng tôi cố gắng giữ cho nơi này an toàn.",
+    sub:"Vì sinh viên, và vì những gia đình cùng cộng đồng quan tâm đến họ.",
+    points:[
+      { icon:"radar", title:"Tự động phát hiện ngôn ngữ khủng hoảng", desc:"Cả nhật ký và trợ lý AI đều quét những ngôn từ cho thấy ai đó có thể đang gặp nguy hiểm, và ngay lập tức hiển thị các nguồn hỗ trợ khủng hoảng thật sự — số 988 tại Hoa Kỳ, và các nguồn khác theo từng khu vực." },
+      { icon:"flag", title:"Báo cáo từ cộng đồng", desc:"Bất kỳ ai cũng có thể báo cáo một bài viết hoặc bình luận có cảm giác gây hại, thiếu tử tế, hoặc không an toàn. Nội dung bị báo cáo sẽ được ẩn khỏi bảng tin công khai trong khi chờ xem xét." },
+      { icon:"heart-handshake", title:"Văn hóa đặt sự tử tế lên hàng đầu", desc:"Không phán xét, không tranh cãi, không áp đặt lời khuyên. Các bài viết và bình luận vi phạm điều này sẽ bị gỡ bỏ." },
+      { icon:"eye-off", title:"Ẩn danh thật sự", desc:"Không có tài khoản, không có tên, không có hồ sơ cá nhân. Bài viết không được liên kết với bất kỳ danh tính nào — bạn là người quyết định chia sẻ nhiều hay ít." }
+    ],
+    disclaimer:"<strong>Xin vui lòng đọc:</strong> Homeaway hiện tại là một sản phẩm mẫu do sinh viên xây dựng, chưa phải là một nền tảng có đội ngũ giám sát chính thức. Các tính năng nêu trên mô tả cách nó được thiết kế để hoạt động — tự động phát hiện, báo cáo, và quy tắc tử tế — nhưng hiện chưa có đội ngũ kiểm duyệt con người hoạt động 24/7 để xem xét từng bài viết theo thời gian thực. Nếu bạn hoặc ai đó đang gặp nguy hiểm ngay lập tức, xin đừng chờ đợi bài viết được xem đến — hãy sử dụng ngay các nguồn hỗ trợ khủng hoảng nêu trên, hoặc liên hệ dịch vụ khẩn cấp tại địa phương." },
+  footer:{ disclaimer:"<strong>Homeaway là một không gian hỗ trợ đồng đẳng, không phải là dịch vụ y tế.</strong> Không có gì ở đây — nhật ký, bình luận, hay trợ lý AI — có thể thay thế sự chăm sóc từ một chuyên gia sức khỏe tâm thần có giấy phép. Nếu bạn đang trong khủng hoảng hoặc có suy nghĩ làm hại bản thân, xin hãy liên hệ số khẩn cấp tại địa phương, đến phòng cấp cứu gần nhất, hoặc liên hệ đường dây khủng hoảng nơi bạn sinh sống (tại Hoa Kỳ, gọi hoặc nhắn tin đến số <strong>988</strong>). Bạn xứng đáng được hỗ trợ thật sự, ngay lập tức, và bạn không cần phải đối mặt với điều này một mình.",
+    fine:"Homeaway · một sản phẩm mẫu hỗ trợ sức khỏe tâm thần cho du học sinh · được xây dựng bằng cả tấm lòng" }
 }
 };
 
