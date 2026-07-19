@@ -1330,6 +1330,33 @@ function containsAny(text, words){
   return words.some(w => lower.includes(w.toLowerCase()));
 }
 
+/* Plain substring matching misses inflected English phrasing (e.g. "kill myself"
+   does not match "killing myself"). These patterns catch common conjugations,
+   typos, and phrasings of suicidal/self-harm intent so detection doesn't rely
+   on someone typing the exact stored phrase. Used as a safety-net alongside
+   each language's crisisWords list. */
+const CRISIS_PATTERNS_EN = [
+  /kill(?:ing|ed|s)?\s+my ?self/i,
+  /hurt(?:ing|s)?\s+my ?self/i,
+  /suicid\w*/i,
+  /self[-\s]?harm/i,
+  /end(?:ing)?\s+(?:my\s+life|it\s+all|my\s+own\s+life)/i,
+  /(?:don'?t|do\s*not|dont)\s+want\s+to\s+(?:live|be\s+alive)(?:\s+anymore)?/i,
+  /want(?:ed|ing)?\s+to\s+die/i,
+  /no\s+(?:reason|point)\s+(?:to|in)\s+(?:keep\s+)?liv(?:e|ing)/i,
+  /better\s+off\s+dead/i,
+  /not\s+worth\s+living/i,
+  /give\s+up\s+on\s+life/i,
+  /wish\s+i\s+(?:was|were)n'?t\s+alive/i,
+  /don'?t\s+want\s+to\s+exist/i
+];
+
+function isCrisisText(text){
+  if (containsAny(text, t().ai.crisisWords)) return true;
+  if (currentLang === 'en') return CRISIS_PATTERNS_EN.some(re => re.test(text));
+  return false;
+}
+
 function renderJournalCrisisBanner(show){
   const holder = document.getElementById('journalCrisisBanner');
   if (!show){ holder.innerHTML = ''; return; }
@@ -1345,8 +1372,7 @@ postBtn.addEventListener('click', () => {
   const text = journalInput.value.trim();
   if (!text) { journalInput.focus(); return; }
 
-  const crisisWords = get('ai.crisisWords') || [];
-  const isCrisis = containsAny(text, crisisWords);
+  const isCrisis = isCrisisText(text);
   renderJournalCrisisBanner(isCrisis);
 
   const newPost = { who: randomAnonName(), when: timeAgoLabel(), body: text, tag: get('journal.newTag'), comments: [] };
@@ -1411,7 +1437,7 @@ function handleSend(){
   const delay = 700 + Math.random() * 600;
   setTimeout(() => {
     hideTyping();
-    if (containsAny(text, t().ai.crisisWords)){
+    if (isCrisisText(text)){
       addMessage(t().ai.crisisReply, 'ai');
       renderChatCrisisBanner();
       return;
